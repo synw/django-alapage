@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block extra_header %}
+<meta name="keywords" content="{{ flatpage.seo_description }}" />
+<meta name="description" content="{{ flatpage.seo_keywords }}" />
+{% endblock %}
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block precontent %}
+	{% if flatpage.slideshow %}
+		{% with load_jquery=0 %}
+			{% with flatpage.slideshow as slideshow %}
+				{% include slideshow.template_name %}
+			{% endwith %}
+	{% endwith %}
+	{% endif %}
+{% endblock %}
+{% block content %}
+	{% if flatpage.content %}{{ flatpage.content|safe }}{% endif %}
+	{% if flatpage.html %}{{ flatpage.html|safe }}{% endif %}
+{% endblock %}

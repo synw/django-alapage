@@ -1,4 +1,9 @@
-# Byte-compiled / optimized / DLL files
+settings.py
+*.sqlite3
+.project
+.pydevproject
+.settings
+
 __pycache__/
 *.py[cod]
 
@@ -54,4 +59,4 @@ coverage.xml
 docs/_build/
 
 # PyBuilder
-target/
+
