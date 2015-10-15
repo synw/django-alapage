@@ -1,7 +1,7 @@
 Django Alapage
 ==============
 
-Simple page management application for Django
+Simple page management application with slideshows for Django
 
 
 Dependencies
