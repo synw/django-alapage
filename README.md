@@ -9,6 +9,7 @@ Dependencies
 
 - Django Flatpages
 - Pillow
+- Django ckeditor
 - Django Jssor (optionnal)
 
 
@@ -17,7 +18,7 @@ Install
 
 - Clone the repository
 - Add "alapage" to INSTALLLED_APPS
-- Optionnal: add "django_jssor" to INSTALLLED_APPS if you plan to use the slideshows
+- Optionnal: add "jssor" to INSTALLLED_APPS if you plan to use the slideshows
 - Add the line url(r'^ckeditor/', include('ckeditor.urls')), to urls
 - Collect static files
 - Run migrations
