@@ -19,7 +19,11 @@ Install
 - Clone the repository
 - Add "alapage" to INSTALLLED_APPS
 - Optionnal: add "jssor" to INSTALLLED_APPS if you plan to use the slideshows
-- Add the line url(r'^ckeditor/', include('ckeditor.urls')), to urls
+- Add the line in  urls.py:
+	url(r'^ckeditor/', include('ckeditor.urls'))
+- Add these lines at the end of urls.py:
+	url(r'^(?P<url>.*/)$', PageView.as_view()),
+    url(r'^$', HomepageView.as_view()),
 - Collect static files
 - Run migrations
 
