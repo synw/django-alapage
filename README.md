@@ -25,14 +25,10 @@ Install
 
 		urlpatterns = patterns('',
 		#...
+		url(r'^ckeditor/', include('ckeditor.urls'))
 	    url(r'^(?P<url>.*/)$', PageView.as_view()),
 	    url(r'^$', HomepageView.as_view()),
 	    )
-	
-- Add these lines at the end of urls.py:
-
-		url(r'^(?P<url>.*/)$', PageView.as_view()),
-	    url(r'^$', HomepageView.as_view()),
     
 - Collect static files
 - Run migrations
