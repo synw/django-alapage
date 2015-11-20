@@ -14,9 +14,11 @@ Dependencies
 - Django Flatpages
 - Pillow
 - Django ckeditor
-- Django Jssor (optionnal)
 
 		pip install pytz pillow django-ckeditor 
+		
+- Django Jssor (optionnal)
+
 		git clone https://github.com/synw/django-jssor.git
 
 Install
@@ -51,7 +53,7 @@ Install
 Config
 --------------
 
-Configure ckeditor to suit you needs:
+Configure ckeditor in settings.py to suit you needs:
 
 	CKEDITOR_UPLOAD_PATH = 'uploads/'
 	CKEDITOR_JQUERY_URL = '/static/js/jquery-2.1.3.min.js'
