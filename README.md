@@ -39,8 +39,8 @@ Install
 		urlpatterns = patterns('',
 		#...
 		url(r'^ckeditor/', include('ckeditor.urls'))
-	    url(r'^(?P<url>.*/)$', PageView.as_view()),
-	    url(r'^$', HomepageView.as_view()),
+	    url(r'^(?P<url>.*/)$', PageView.as_view(), nane='page-view'),
+	    url(r'^$', HomepageView.as_view(), nane='homepage-view'),
 	    )
     
 - Collect static files
@@ -69,3 +69,10 @@ Options
 --------------
 
 To use the application in standalone mode with no slideshows add the setting ALAPAGE_USE_JSSOR = False
+
+Todo
+--------------
+
+- [ ] Tests
+- [ ] Base template selection option
+- [ ] Theming option
