@@ -1,6 +1,8 @@
 Django Alapage
 ==============
 
+[![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage)
+
 Simple page management application with slideshows for Django
 
 
