@@ -5,12 +5,10 @@ from django.http import Http404
 from django.views.generic import TemplateView
 from alapage.models import Page
 
-try:
-    use_jssor=settings.ALAPAGE_USE_JSSOR
-except:
-    use_jssor=True
+
+USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
     
-if use_jssor:
+if USE_JSSOR:
     from jssor.models import Slide
  
 
@@ -33,15 +31,17 @@ class PageView(TemplateView):
         if not url.endswith('/') and settings.APPEND_SLASH:
             url += '/'
         try:
-            if use_jssor:
+            if USE_JSSOR:
                 page = Page.objects.filter(url=url).select_related('slideshow')[0]
             else:
                 page = Page.objects.filter(url=url)[0]
             slides = None
-            if use_jssor:
+            if USE_JSSOR:
                 if page.slideshow:
                     slides = Slide.objects.filter(slideshow=page.slideshow)
         except Http404:
+            raise Http404
+        if not page.published and not self.request.user.is_superuser():
             raise Http404
         context['flatpage'] = page
         context['slides'] = slides
