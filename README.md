@@ -14,22 +14,22 @@ Dependencies
 - Django ckeditor
 - Django Jssor (optionnal)
 
-	pip install pytz pillow django-ckeditor 
-	git clone https://github.com/synw/django-jssor.git
+		pip install pytz pillow django-ckeditor 
+		git clone https://github.com/synw/django-jssor.git
 
 Install
 --------------
 
 - Clone the repository
 
-	INSTALLED_APPS = (
-		# ...
-	    'ckeditor',
-	    'ckeditor_uploader',
-	    'alapage',
-		# option
-	    'jssor',
-	)
+		INSTALLED_APPS = (
+			# ...
+		    'ckeditor',
+		    'ckeditor_uploader',
+		    'alapage',
+			# option
+		    'jssor',
+		)
 
 - Optionnal: add "jssor" to INSTALLLED_APPS if you plan to use the slideshows
 - urls.py:
