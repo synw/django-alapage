@@ -13,7 +13,7 @@ USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
 class PageAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PageAdminForm, self).__init__(*args, **kwargs)
-        self.fields['template_name'].help_text = 'Si non défini, "alapage/default.html" sera utilisé'
+        self.fields['template_name'].help_text = 'Si aucun nom de template n\'est défini ni de layout, "alapage/default.html" sera utilisé'
         self.fields['content'].label = ''
     content = forms.CharField(widget=CKEditorWidget())
     
@@ -44,7 +44,7 @@ class PageAdmin(admin.ModelAdmin):
         }),
         ('Options', {
             'classes': ('collapse',),
-            'fields': ('published','template_name','registration_required')
+            'fields': ('layout','template_name','registration_required','published')
         }),
     )
     

@@ -14,14 +14,7 @@ if USE_JSSOR:
 
 class PageView(TemplateView):
     
-    def get_template_names(self):
-        template_name = 'alapage/default.html'
-        if self.template_name:
-            template_name=self.template_name
-        return template_name
-    
-    def get_context_data(self, **kwargs):
-        context = super(PageView, self).get_context_data(**kwargs)
+    def dispatch(self, request, *args, **kwargs):
         try:
             url = kwargs['url']
         except:
@@ -32,19 +25,34 @@ class PageView(TemplateView):
             url += '/'
         try:
             if USE_JSSOR:
-                page = Page.objects.filter(url=url).select_related('slideshow')[0]
+                self.page = Page.objects.filter(url=url).select_related('slideshow')[0]
             else:
-                page = Page.objects.filter(url=url)[0]
-            slides = None
-            if USE_JSSOR:
-                if page.slideshow:
-                    slides = Slide.objects.filter(slideshow=page.slideshow)
+                self.page = Page.objects.filter(url=url)[0]
         except Http404:
             raise Http404
+        return super(PageView, self).dispatch(request, *args, **kwargs)
+    
+    def get_template_names(self):
+        template_name = 'alapage/default.html'
+        if self.page.template_name:
+            template_name=self.page.template_name
+        return [template_name]
+    
+    def get_context_data(self, **kwargs):
+        context = super(PageView, self).get_context_data(**kwargs)
+        page=self.page
+        layout=self.page.layout
+        slides=None
+        if USE_JSSOR:
+            if page.slideshow:
+                slides = Slide.objects.filter(slideshow=page.slideshow)
         if not page.published and not self.request.user.is_superuser():
             raise Http404
         context['flatpage'] = page
         context['slides'] = slides
+        context['layout'] = layout
+        print layout
+        context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
         return context
 
 

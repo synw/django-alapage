@@ -10,6 +10,8 @@ USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
 
 if USE_JSSOR:
     from jssor.models import Slideshow
+    
+ALAPAGE_LAYOUTS = (('xs-12','Xs 12'),('smooth-md','Smooth md'))
 
 
 class Seo(models.Model):
@@ -25,6 +27,7 @@ class Page(FlatPage, Seo):
     if USE_JSSOR:
         slideshow = models.ForeignKey(Slideshow, related_name='+', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=u'Slideshow') 
     html = models.TextField(null=True, blank=True, verbose_name="Extra code html", help_text="Apparaitra après le contenu")
+    layout = models.CharField(null=True, blank=True, max_length=125, choices=ALAPAGE_LAYOUTS, default=ALAPAGE_LAYOUTS[0][0], help_text='Note: le champs nom du template prends la précédence sur le choix du layout')
     edited = models.DateTimeField(editable=False, null=True, auto_now=True, verbose_name=u'Edité le')
     created = models.DateTimeField(editable=False, null=True, auto_now_add=True, verbose_name=u'Crée le')
     editor = models.ForeignKey(settings.AUTH_USER_MODEL, editable = False, related_name='+', null=True, on_delete=models.SET_NULL, verbose_name=u'Edité par')   

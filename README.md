@@ -28,6 +28,8 @@ Install
 
 		INSTALLED_APPS = (
 			# ...
+			'django.contrib.sites',
+    		'django.contrib.flatpages',
 		    'ckeditor',
 		    'ckeditor_uploader',
 		    'alapage',
@@ -42,7 +44,7 @@ Install
 
 		urlpatterns = patterns('',
 		#...
-		url(r'^ckeditor/', include('ckeditor.urls'))
+		url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 	    url(r'^(?P<url>.*/)$', PageView.as_view(), nane='page-view'),
 	    url(r'^$', HomepageView.as_view(), nane='homepage-view'),
 	    )
@@ -79,4 +81,5 @@ Todo
 
 - [ ] Tests
 - [ ] Base template selection option
+- [ ] Add more layouts
 - [ ] Theming option
