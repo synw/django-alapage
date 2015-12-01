@@ -3,7 +3,7 @@ Django Alapage
 
 [![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage)
 
-Simple page management application with slideshows for Django
+Page management application with slideshows and responsive presentations for Django
 
 
 Dependencies
@@ -17,9 +17,12 @@ Dependencies
 
 		pip install pytz pillow django-ckeditor 
 		
-- Django Jssor (optionnal)
+- Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows) For a ready to use implementation check
+- Optionnal: [Django Allo](https://github.com/synw/django-allo) (responsive presentations)
 
 		git clone https://github.com/synw/django-jssor.git
+		git clone https://github.com/synw/django-allo.git
+		
 
 Install
 --------------
