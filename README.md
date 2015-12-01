@@ -17,7 +17,7 @@ Dependencies
 
 		pip install pytz pillow django-ckeditor 
 		
-- Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows) For a ready to use implementation check
+- Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 - Optionnal: [Django Allo](https://github.com/synw/django-allo) (responsive presentations)
 
 		git clone https://github.com/synw/django-jssor.git
