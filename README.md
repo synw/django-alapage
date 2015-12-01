@@ -77,9 +77,9 @@ Configure ckeditor in settings.py to suit you needs:
 Options
 --------------
 
-To use the application in standalone mode with no slideshows add the setting ALAPAGE_USE_JSSOR = False
+To use the application in standalone mode with no slideshows add the setting *ALAPAGE_USE_JSSOR = False*
 
-You can disable the presentations the same way: set a ALAPAGE_USE_PRESENTATIONS = False
+You can disable the presentations the same way: set a *ALAPAGE_USE_PRESENTATIONS = False* setting
 
 Todo
 --------------
