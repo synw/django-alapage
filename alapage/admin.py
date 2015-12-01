@@ -5,9 +5,10 @@ from django.contrib import admin
 from django import forms
 from django.contrib.flatpages.models import FlatPage
 from ckeditor.widgets import CKEditorWidget
-from alapage.models import Page
+from alapage.models import Page, USE_PRESENTATIONS
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
+USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', True)
 
 
 class PageAdminForm(forms.ModelForm):
@@ -29,9 +30,11 @@ class PageAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_display = ['url','title','edited','editor','created','published','registration_required']
     list_filter = ['created','edited','editor','published','registration_required']
-    jssor_fieldset = ('url','title','slideshow')
-    if not USE_JSSOR:
-        jssor_fieldset = ('url','title')
+    jssor_fieldset = ('url','title')
+    if USE_JSSOR:
+        jssor_fieldset += ('slideshow',)
+    if USE_PRESENTATIONS:
+        jssor_fieldset += ('presentation',)
     fieldsets = (
         (None, {
             'fields': ('content','html')

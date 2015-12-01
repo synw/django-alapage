@@ -7,6 +7,7 @@ from alapage.models import Page
 
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
+USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_ALLO', True)
     
 if USE_JSSOR:
     from jssor.models import Slide
@@ -25,9 +26,15 @@ class PageView(TemplateView):
             url += '/'
         try:
             if USE_JSSOR:
-                self.page = Page.objects.filter(url=url).select_related('slideshow')[0]
+                if USE_PRESENTATIONS:
+                    self.page = Page.objects.filter(url=url).select_related('slideshow','presentation')[0]
+                else:
+                    self.page = Page.objects.filter(url=url).select_related('slideshow')[0]
             else:
-                self.page = Page.objects.filter(url=url)[0]
+                if USE_PRESENTATIONS:
+                    self.page = Page.objects.filter(url=url).select_related('presentation')[0]
+                else:
+                    self.page = Page.objects.filter(url=url)[0]
         except Http404:
             raise Http404
         return super(PageView, self).dispatch(request, *args, **kwargs)
@@ -46,12 +53,16 @@ class PageView(TemplateView):
         if USE_JSSOR:
             if page.slideshow:
                 slides = Slide.objects.filter(slideshow=page.slideshow)
+        presentation = None
+        if USE_PRESENTATIONS:
+                presentation = page.presentation
         if not page.published and not self.request.user.is_superuser():
             raise Http404
         context['flatpage'] = page
+        context['slideshow'] = page.slideshow
         context['slides'] = slides
         context['layout'] = layout
-        print layout
+        context['presentation'] = presentation
         context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
         return context
 

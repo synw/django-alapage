@@ -7,12 +7,11 @@
 {% block title %}{{ flatpage.title }}{% endblock %}
 
 {% block precontent %}
-	{% if flatpage.slideshow %}
-		{% with load_jquery=0 %}
-			{% with flatpage.slideshow as slideshow %}
-				{% include slideshow.template_name %}
-			{% endwith %}
-	{% endwith %}
+	{% if slideshow %}
+		{% include slideshow.template_name %}
+	{% endif %}
+	{% if presentation %}
+		{% include 'allo/default.html' %}
 	{% endif %}
 {% endblock %}
 {% block content %}
