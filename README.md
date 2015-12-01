@@ -40,7 +40,10 @@ Install
 		    'jssor',
 		)
 
-- Optionnal: add "jssor" to INSTALLLED_APPS if you plan to use the slideshows
+- Optionnal: add `"jssor",` to INSTALLLED_APPS if you plan to use the slideshows
+- Optionnal: add `"allo",` to INSTALLLED_APPS if you plan to use the presentations
+Warning: if you change these settings afterwards you will need to run the migrations again
+
 - urls.py:
 
 		from alapage.views import HomepageView, PageView
@@ -77,9 +80,9 @@ Configure ckeditor in settings.py to suit you needs:
 Options
 --------------
 
-To use the application in standalone mode with no slideshows add the setting *ALAPAGE_USE_JSSOR = False*
+To use the application in standalone mode with no slideshows add the setting `ALAPAGE_USE_JSSOR = False`
 
-You can disable the presentations the same way: set a *ALAPAGE_USE_PRESENTATIONS = False* setting
+You can disable the presentations the same way: set a `ALAPAGE_USE_PRESENTATIONS = False` setting
 
 Todo
 --------------
