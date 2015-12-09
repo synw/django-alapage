@@ -8,6 +8,10 @@ env:
 
 install:
   - pip install -r requirements.txt
-
-script: 
-  - python setup.py test
+  - pip install coveralls
+script:
+  coverage run --source=alapage manage.py test
+after_success:
+  coveralls
+#script: 
+#  - python setup.py test
