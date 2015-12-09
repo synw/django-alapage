@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 from alapage.models import Page
 
@@ -24,19 +25,17 @@ class PageView(TemplateView):
             url = '/' + url
         if not url.endswith('/') and settings.APPEND_SLASH:
             url += '/'
-        try:
-            if USE_JSSOR:
-                if USE_PRESENTATIONS:
-                    self.page = Page.objects.filter(url=url).select_related('slideshow','presentation')[0]
-                else:
-                    self.page = Page.objects.filter(url=url).select_related('slideshow')[0]
+        if USE_JSSOR:
+            if USE_PRESENTATIONS:
+                self.page = get_object_or_404(Page.objects.select_related('slideshow','presentation'), url=url)
             else:
-                if USE_PRESENTATIONS:
-                    self.page = Page.objects.filter(url=url).select_related('presentation')[0]
-                else:
-                    self.page = Page.objects.filter(url=url)[0]
-        except Http404:
-            raise Http404
+                self.page = get_object_or_404(Page.objects.select_related('slideshow'), url=url)
+        else:
+            if USE_PRESENTATIONS:
+                self.page = get_object_or_404(Page.objects.select_related('presentation'), url=url)
+            else:
+                self.page = get_object_or_404(Page, url=url)
+                #self.page = Page.objects.filter(url=url)[0]
         return super(PageView, self).dispatch(request, *args, **kwargs)
     
     def get_template_names(self):

@@ -51,8 +51,8 @@ Warning: if you change these settings afterwards you will need to run the migrat
 		urlpatterns = patterns('',
 		#...
 		url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-	    url(r'^(?P<url>.*/)$', PageView.as_view(), nane='page-view'),
-	    url(r'^$', HomepageView.as_view(), nane='homepage-view'),
+	    url(r'^(?P<url>.*/)$', PageView.as_view(), name='page-view'),
+	    url(r'^$', HomepageView.as_view(), name='homepage-view'),
 	    )
     
 - Collect static files
