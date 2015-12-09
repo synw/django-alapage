@@ -1,3 +1,6 @@
+import sys, os
+sys.path.insert(0, os.getcwd())
+import alapage
 from django.test import TestCase
 from alapage.models import Page
 from jssor.models import Slideshow
