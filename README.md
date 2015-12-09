@@ -1,7 +1,7 @@
 Django Alapage
 ==============
 
-[![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) [![Coverage Status](https://coveralls.io/repos/synw/django-alapage/badge.svg?branch=master&service=github)](https://coveralls.io/github/synw/django-alapage?branch=master)
+[![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) 
 
 Page management application with slideshows and responsive presentations for Django
 
