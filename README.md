@@ -20,8 +20,8 @@ Dependencies
 - Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 - Optionnal: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
 
-		git clone https://github.com/synw/django-jssor.git
-		git clone https://github.com/synw/django-zongo.git
+		git clone https://github.com/synw/django-jssor.git && mv jssor path_to_your_project && mkdir media/jssor
+		git clone https://github.com/synw/django-zongo.git && mv zongo path_to_your_project && mkdir media/zongo
 		
 
 Install
