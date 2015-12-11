@@ -13,7 +13,7 @@ if USE_JSSOR:
     from jssor.models import Slideshow
     
 if USE_PRESENTATIONS:
-    from allo.models import FrontShow
+    from zongo.models import ZongoShow
     
 ALAPAGE_LAYOUTS = (('xs-12','Xs 12'),('smooth-md','Smooth md'))
 
@@ -37,7 +37,7 @@ class Page(FlatPage, Seo):
     if USE_JSSOR:
         slideshow = models.ForeignKey(Slideshow, related_name='+', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=u'Slideshow') 
     if USE_PRESENTATIONS:
-        presentation=models.ForeignKey(FrontShow, related_name='+', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=u'Presentation') 
+        presentation=models.ForeignKey(ZongoShow, related_name='+', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=u'Presentation') 
     
     
     class Meta:

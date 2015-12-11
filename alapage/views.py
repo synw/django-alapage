@@ -8,7 +8,7 @@ from alapage.models import Page
 
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
-USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_ALLO', True)
+USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_ZONGO', True)
     
 if USE_JSSOR:
     from jssor.models import Slide

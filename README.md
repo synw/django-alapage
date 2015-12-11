@@ -18,10 +18,10 @@ Dependencies
 		pip install pytz pillow django-ckeditor 
 		
 - Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
-- Optionnal: [Django Allo](https://github.com/synw/django-allo) (responsive presentations)
+- Optionnal: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
 
 		git clone https://github.com/synw/django-jssor.git
-		git clone https://github.com/synw/django-allo.git
+		git clone https://github.com/synw/django-zongo.git
 		
 
 Install
@@ -36,12 +36,13 @@ Install
 		    'ckeditor',
 		    'ckeditor_uploader',
 		    'alapage',
-			# option
+			# options 
 		    'jssor',
+		    'zongo',
 		)
 
 - Optionnal: add `"jssor",` to INSTALLLED_APPS if you plan to use the slideshows
-- Optionnal: add `"allo",` to INSTALLLED_APPS if you plan to use the presentations
+- Optionnal: add `"zongo",` to INSTALLLED_APPS if you plan to use the presentations
 Warning: if you change these settings afterwards you will need to run the migrations again
 
 - urls.py:
@@ -82,12 +83,12 @@ Options
 
 To use the application in standalone mode with no slideshows add the setting `ALAPAGE_USE_JSSOR = False`
 
-You can disable the presentations the same way: set a `ALAPAGE_USE_PRESENTATIONS = False` setting
+You can disable the presentations the same way: set a `ALAPAGE_USE_ZONGO = False` setting
 
 Todo
 --------------
 
-- [ ] Tests
+- [ ] More tests
 - [ ] Base template selection option
 - [ ] Add more layouts
 - [ ] Theming option
