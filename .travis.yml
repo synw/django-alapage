@@ -11,8 +11,7 @@ install:
   - pip install coveralls
 
 script:
-  - python setup.py test
-  - coverage run --source=alapage setup.py test
+  - coverage run --source=alapage manage.py test alapage
 
 after_success:
   coveralls
