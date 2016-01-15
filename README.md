@@ -54,6 +54,8 @@ Warning: if you change these settings afterwards you will need to run the migrat
 		url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 	    url(r'^(?P<url>.*/)$', PageView.as_view(), name='page-view'),
 	    url(r'^$', HomepageView.as_view(), name='homepage-view'),
+	    # option for responsive presentations
+	    url(r'^zongo/', include('zongo.urls')),
 	    )
     
 - Collect static files
