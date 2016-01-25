@@ -76,7 +76,12 @@ Warning: if you change these optional settings afterwards you will need to run t
 	    )
     
 - Collect static files
+
+	python manage.py collectstatic
+
 - Run migrations
+
+	python manage.py makemigrations && python manage.py migrate
 
 Config
 --------------
@@ -84,7 +89,7 @@ Config
 Configure ckeditor in `settings.py` to suit you needs:
 
 	CKEDITOR_UPLOAD_PATH = 'uploads/'
-	CKEDITOR_JQUERY_URL = '/static/js/jquery-2.1.3.min.js'
+	CKEDITOR_JQUERY_URL = '/static/js/jquery-2.1.4.min.js'
 	CKEDITOR_IMAGE_BACKEND = 'pillow'
 	CKEDITOR_CONFIGS = {
 	    'default': {
@@ -107,7 +112,6 @@ You can disable the presentations the same way: set a `ALAPAGE_USE_ZONGO = False
 Todo
 --------------
 
-- [x] Html/css editor widget
 - [ ] More tests
 - [ ] Base template selection option
 - [ ] Add more layouts
