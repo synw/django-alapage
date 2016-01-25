@@ -4,8 +4,18 @@ Django Alapage
 [![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) 
 
 Page management application with slideshows and responsive presentations for Django. 
-The pages are editable in a wysiwig editor and/or in a html/css code editor in the admin interface.
+The pages are editable in a wysiwyg editor and/or in a html/css code editor in the admin interface.
 
+Screenshots
+--------------
+
+Wysiwig editor ( [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor) ):
+
+![Wysiwig editor](https://raw.github.com/synw/django-alapage/master/docs/img/wysiwyg_editor.png)
+
+Wysiwig editor ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) ):
+
+![Code editor](https://raw.github.com/synw/django-alapage/master/docs/img/code_editor.png)
 
 Dependencies
 --------------
