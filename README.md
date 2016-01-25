@@ -77,11 +77,11 @@ Warning: if you change these optional settings afterwards you will need to run t
     
 - Collect static files
 
-	python manage.py collectstatic
+		python manage.py collectstatic
 
 - Run migrations
 
-	python manage.py makemigrations && python manage.py migrate
+		python manage.py makemigrations && python manage.py migrate
 
 Config
 --------------

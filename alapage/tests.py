@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from alapage.models import Page
 from alapage.admin import PageAdmin, PageAdminForm
 from jssor.models import Slideshow
-from zongo.models import ZongoShow
+from zongo.models import Presentation
 
 # models test
 class PageTest(TestCase):
@@ -37,14 +37,14 @@ class PageTest(TestCase):
         self.assertEqual(page.slideshow, slideshow)
     
     #~ presentations
-    def create_presentation(self, slug="presentation", title="Presentation", image_lg=tempfile.NamedTemporaryFile(suffix=".jpg").name):
-        return ZongoShow.objects.create(slug=slug, title=title, image_lg=image_lg)
+    def create_presentation(self, slug="presentation", title="Presentation"):
+        return Presentation.objects.create(slug=slug, title=title)
     
     def test_page_with_presentation_creation(self):
         presentation=self.create_presentation()
         page=self.create_page(presentation=presentation)
         self.assertTrue(isinstance(page, Page))
-        self.assertTrue(isinstance(presentation, ZongoShow))
+        self.assertTrue(isinstance(presentation, Presentation))
         self.assertEqual(page.presentation, presentation)
         
     #~ client tests
