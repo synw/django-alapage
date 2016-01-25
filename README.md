@@ -30,9 +30,11 @@ Dependencies
 		pip install pytz pillow django-ckeditor django-codemirror2
 		
 - Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
+
+		git clone https://github.com/synw/django-jssor.git && mv django-jssor/jssor path_to_your_project && mkdir media/jssor && mkdir media/jssor§thumbnails
+
 - Optionnal: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
 
-		git clone https://github.com/synw/django-jssor.git && mv django-jssor/jssor path_to_your_project && mkdir media/jssor
 		git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
 		
 
@@ -105,8 +107,8 @@ You can disable the presentations the same way: set a `ALAPAGE_USE_ZONGO = False
 Todo
 --------------
 
+- [x] Html/css editor widget
 - [ ] More tests
 - [ ] Base template selection option
 - [ ] Add more layouts
 - [ ] Theming option
-- [x] Html/css editor widget
