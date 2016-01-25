@@ -13,7 +13,7 @@ Wysiwig editor ( [django-ckeditor](https://github.com/django-ckeditor/django-cke
 
 ![Wysiwig editor](https://raw.github.com/synw/django-alapage/master/docs/img/wysiwyg_editor.png)
 
-Wysiwig editor ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) ):
+Code editor ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) ):
 
 ![Code editor](https://raw.github.com/synw/django-alapage/master/docs/img/code_editor.png)
 
