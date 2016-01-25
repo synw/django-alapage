@@ -3,8 +3,8 @@ from setuptools import setup, find_packages
 setup(
   name = 'django-alapage',
   packages=find_packages(),
-  version = '0.1',
-  description = 'Simple page management application with slideshows',
+  version = '0.2',
+  description = 'Page management with slideshows and responsive presentations for Django',
   author = 'synw',
   author_email = 'synwe@yahoo.com',
   url = 'https://github.com/synw/django-alapage', 
@@ -22,6 +22,7 @@ setup(
         'Pillow',
         'pytz',
         'django-ckeditor',
+        'django-codemirror2',
     ],
   zip_safe=False
 )
