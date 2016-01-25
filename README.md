@@ -60,7 +60,7 @@ Install
 
 Warning: if you change these optional settings afterwards you will need to run the migrations again.
 
-- urls.py:
+- `urls.py`:
 
 		from alapage.views import HomepageView, PageView
 
@@ -79,7 +79,7 @@ Warning: if you change these optional settings afterwards you will need to run t
 Config
 --------------
 
-Configure ckeditor in settings.py to suit you needs:
+Configure ckeditor in `settings.py` to suit you needs:
 
 	CKEDITOR_UPLOAD_PATH = 'uploads/'
 	CKEDITOR_JQUERY_URL = '/static/js/jquery-2.1.3.min.js'
