@@ -29,11 +29,11 @@ Dependencies
 
 		pip install pytz pillow django-ckeditor django-codemirror2
 		
-- Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
+- Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 
-		git clone https://github.com/synw/django-jssor.git && mv django-jssor/jssor path_to_your_project && mkdir media/jssor && mkdir media/jssor§thumbnails
+		git clone https://github.com/synw/django-jssor.git && mv django-jssor/jssor path_to_your_project && mkdir media/jssor && mkdir media/jssor/thumbnails
 
-- Optionnal: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
+- Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
 
 		git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
 		
@@ -57,8 +57,8 @@ Install
 		    'zongo',
 		)
 
-- Optionnal: add `"jssor",` to INSTALLLED_APPS if you plan to use the slideshows
-- Optionnal: add `"zongo",` to INSTALLLED_APPS if you plan to use the presentations
+- Optionnal: add `"jssor",` to INSTALLED_APPS if you plan to use the slideshows
+- Optionnal: add `"zongo",` to INSTALLED_APPS if you plan to use the presentations
 
 Warning: if you change these optional settings afterwards you will need to run the migrations again.
 
@@ -102,12 +102,12 @@ Configure ckeditor in `settings.py` to suit you needs:
 	    },
 	}
 
-Options
+Settings
 --------------
 
-To use the application in standalone mode with no slideshows add the setting `ALAPAGE_USE_JSSOR = False`
+To disable the slideshows add the setting `ALAPAGE_USE_JSSOR = False`
 
-You can disable the presentations the same way: set a `ALAPAGE_USE_ZONGO = False` setting
+Disable the presentations the same way: set a `ALAPAGE_USE_ZONGO = False` setting
 
 Todo
 --------------
