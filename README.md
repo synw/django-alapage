@@ -3,7 +3,8 @@ Django Alapage
 
 [![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) 
 
-Page management application with slideshows and responsive presentations for Django
+Page management application with slideshows and responsive presentations for Django. 
+The pages are editable in a wysiwig editor and/or in a html/css code editor in the admin interface.
 
 
 Dependencies
@@ -14,8 +15,9 @@ Dependencies
 - Django Flatpages
 - Pillow
 - Django ckeditor
+- Django codemirror2
 
-		pip install pytz pillow django-ckeditor 
+		pip install pytz pillow django-ckeditor django-codemirror2
 		
 - Optionnal: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 - Optionnal: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
@@ -31,10 +33,12 @@ Install
 
 		INSTALLED_APPS = (
 			# ...
+			# required
 			'django.contrib.sites',
     		'django.contrib.flatpages',
 		    'ckeditor',
 		    'ckeditor_uploader',
+		    'codemirror2',
 		    'alapage',
 			# options 
 		    'jssor',
@@ -43,7 +47,8 @@ Install
 
 - Optionnal: add `"jssor",` to INSTALLLED_APPS if you plan to use the slideshows
 - Optionnal: add `"zongo",` to INSTALLLED_APPS if you plan to use the presentations
-Warning: if you change these settings afterwards you will need to run the migrations again
+
+Warning: if you change these optional settings afterwards you will need to run the migrations again.
 
 - urls.py:
 
@@ -94,3 +99,4 @@ Todo
 - [ ] Base template selection option
 - [ ] Add more layouts
 - [ ] Theming option
+- [x] Html/css editor widget

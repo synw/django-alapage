@@ -5,6 +5,7 @@ from django.contrib import admin
 from django import forms
 from django.contrib.flatpages.models import FlatPage
 from ckeditor.widgets import CKEditorWidget
+from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page, USE_PRESENTATIONS
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
@@ -51,6 +52,10 @@ class PageAdmin(admin.ModelAdmin):
         }),
     )
     
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.attname == "html":
+            kwargs['widget'] = CodeMirrorEditor(options={'mode': 'htmlmixed','indentWithTabs':'true','lineNumbers':'true'}, modes=['css', 'xml', 'javascript', 'htmlmixed'])
+        return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
     def save_model(self, request, obj, form, change):
         obj.editor = request.user
