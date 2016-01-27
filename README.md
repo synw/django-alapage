@@ -102,7 +102,7 @@ Configure ckeditor in `settings.py` to suit you needs:
 	    },
 	}
 
-Settings
+Options
 --------------
 
 To disable the slideshows add the setting `ALAPAGE_USE_JSSOR = False`
