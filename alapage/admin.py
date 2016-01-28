@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 from django import forms
 from django.contrib.flatpages.models import FlatPage
+from reversion.admin import VersionAdmin
 from ckeditor.widgets import CKEditorWidget
 from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page, USE_PRESENTATIONS
@@ -25,7 +26,7 @@ class PageAdminForm(forms.ModelForm):
 
 
 @admin.register(Page)
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(VersionAdmin):
     form = PageAdminForm
     date_hierarchy = 'edited'
     search_fields = ['name']

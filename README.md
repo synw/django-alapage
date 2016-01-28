@@ -26,8 +26,9 @@ Dependencies
 - Pillow
 - Django ckeditor
 - Django codemirror2
+- Django reversion
 
-		pip install pytz pillow django-ckeditor django-codemirror2
+		pip install pytz pillow django-ckeditor django-codemirror2 django-reversion
 		
 - Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 
@@ -51,6 +52,7 @@ Install
 		    'ckeditor',
 		    'ckeditor_uploader',
 		    'codemirror2',
+		    'reversion',
 		    'alapage',
 			# options 
 		    'jssor',
