@@ -10,7 +10,7 @@ from alapage.models import Page, USE_PRESENTATIONS
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
 USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', True)
-USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', False)
+USE_REVERSION=getattr(settings, 'USE_REVERSION', True)
 if USE_REVERSION:
     from reversion.admin import VersionAdmin
 

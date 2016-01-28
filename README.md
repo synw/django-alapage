@@ -110,7 +110,7 @@ Configure ckeditor in `settings.py` to suit you needs:
 Options
 --------------
 
-To use django-reversion add the setting `ALAPAGE_USE_REVERSION = True`
+To disable django-reversion add the setting `USE_REVERSION = False`
 
 To disable the slideshows add the setting `ALAPAGE_USE_JSSOR = False`
 
