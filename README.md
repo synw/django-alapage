@@ -26,9 +26,12 @@ Dependencies
 - Pillow
 - Django ckeditor
 - Django codemirror2
-- Django reversion
 
-		pip install pytz pillow django-ckeditor django-codemirror2 django-reversion
+		pip install pytz pillow django-ckeditor django-codemirror2
+
+- Optional: Django reversion
+
+		pip install django-reversion
 		
 - Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 
@@ -106,6 +109,8 @@ Configure ckeditor in `settings.py` to suit you needs:
 
 Options
 --------------
+
+To use django-reversion add the setting `ALAPAGE_USE_REVERSION = True`
 
 To disable the slideshows add the setting `ALAPAGE_USE_JSSOR = False`
 

@@ -4,13 +4,15 @@ from django.conf import settings
 from django.contrib import admin
 from django import forms
 from django.contrib.flatpages.models import FlatPage
-from reversion.admin import VersionAdmin
 from ckeditor.widgets import CKEditorWidget
 from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page, USE_PRESENTATIONS
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
 USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', True)
+USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', False)
+if USE_REVERSION:
+    from reversion.admin import VersionAdmin
 
 
 class PageAdminForm(forms.ModelForm):
@@ -24,9 +26,11 @@ class PageAdminForm(forms.ModelForm):
         model = Page
         exclude = ('enable_comments','sites')
 
-
+admin_class=admin.ModelAdmin
+if USE_REVERSION:
+    admin_class=VersionAdmin
 @admin.register(Page)
-class PageAdmin(VersionAdmin):
+class PageAdmin(admin_class):
     form = PageAdminForm
     date_hierarchy = 'edited'
     search_fields = ['name']
