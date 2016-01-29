@@ -28,7 +28,7 @@ class Seo(models.Model):
 
 
 class Page(FlatPage, Seo):
-    html = models.TextField(null=True, blank=True, verbose_name="Extra code html", help_text="Apparaitra après le contenu")
+    html = models.TextField(null=True, blank=True, verbose_name="Code html", help_text="Apparaitra après le contenu")
     layout = models.CharField(null=True, blank=True, max_length=125, choices=ALAPAGE_LAYOUTS, default=ALAPAGE_LAYOUTS[0][0], help_text='Note: le champs nom du template prends la précédence sur le choix du layout')
     edited = models.DateTimeField(editable=False, null=True, auto_now=True, verbose_name=u'Edité le')
     created = models.DateTimeField(editable=False, null=True, auto_now_add=True, verbose_name=u'Crée le')

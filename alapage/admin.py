@@ -10,9 +10,10 @@ from alapage.models import Page, USE_PRESENTATIONS
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
 USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', True)
-USE_REVERSION=getattr(settings, 'USE_REVERSION', True)
+USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', False)
 if USE_REVERSION:
     from reversion.admin import VersionAdmin
+CODE_MODE=getattr(settings, 'ALAPAGE_CODE_MODE', False)
 
 
 class PageAdminForm(forms.ModelForm):
@@ -41,21 +42,46 @@ class PageAdmin(admin_class):
         jssor_fieldset += ('slideshow',)
     if USE_PRESENTATIONS:
         jssor_fieldset += ('presentation',)
-    fieldsets = (
-        (None, {
-            'fields': ('content','html')
-        }),
-        (None, {
-            'fields': jssor_fieldset
-        }),
-        ('Référencement', {
-            'fields': ('seo_keywords','seo_description')
-        }),
-        ('Options', {
-            'classes': ('collapse',),
-            'fields': ('layout','template_name','registration_required','published')
-        }),
-    )
+    if not CODE_MODE:
+        fieldsets = (
+            (None, {
+                'fields': ('content',)
+            }),
+            ('Code html', {
+                'classes': ('collapse',),
+                'fields': ('html',)
+            }),
+            (None, {
+                'fields': jssor_fieldset
+            }),
+            ('Référencement', {
+                'fields': ('seo_keywords','seo_description')
+            }),
+            ('Options', {
+                'classes': ('collapse',),
+                'fields': ('layout','template_name','registration_required','published')
+            }),
+        )
+    else:
+        fieldsets = (
+            (None, {
+                'fields': ('html',)
+            }),
+            ('Editeur', {
+                'classes': ('collapse',),
+                'fields': ('content',)
+            }),
+            (None, {
+                'fields': jssor_fieldset
+            }),
+            ('Référencement', {
+                'fields': ('seo_keywords','seo_description')
+            }),
+            ('Options', {
+                'classes': ('collapse',),
+                'fields': ('layout','template_name','registration_required','published')
+            }),
+        )
     
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.attname == "html":

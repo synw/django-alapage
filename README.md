@@ -107,6 +107,8 @@ Configure ckeditor in `settings.py` to suit you needs:
 	    },
 	}
 
+If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_CODE_MODE=True` setting. This put in front the code editor and collapses the wysywig editor.
+
 Options
 --------------
 
