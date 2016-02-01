@@ -35,33 +35,37 @@ Dependencies
 		
 - Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 
-		git clone https://github.com/synw/django-jssor.git && mv django-jssor/jssor path_to_your_project && mkdir media/jssor && mkdir media/jssor/thumbnails
-
+  ```bash
+git clone https://github.com/synw/django-jssor.git && mv django-jssor/jssor path_to_your_project && mkdir media/jssor && mkdir media/jssor/thumbnails
+  ```
+  ```bash
 - Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
 
-		git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
-		
+
+git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
+  ```
 
 Install
 --------------
 
 - Clone the repository
 
-		INSTALLED_APPS = (
-			# ...
-			# required
-			'django.contrib.sites',
-    		'django.contrib.flatpages',
-		    'ckeditor',
-		    'ckeditor_uploader',
-		    'codemirror2',
-		    'reversion',
-		    'alapage',
-			# options 
-		    'jssor',
-		    'zongo',
-		)
-
+  ```python
+INSTALLED_APPS = (
+	# ...
+	# required
+	'django.contrib.sites',
+	'django.contrib.flatpages',
+    'ckeditor',
+    'ckeditor_uploader',
+    'codemirror2',
+    'reversion',
+    'alapage',
+	# options 
+    'jssor',
+    'zongo',
+)
+  ```
 - Optionnal: add `"jssor",` to INSTALLED_APPS if you plan to use the slideshows
 - Optionnal: add `"zongo",` to INSTALLED_APPS if you plan to use the presentations
 
@@ -69,16 +73,18 @@ Warning: if you change these optional settings afterwards you will need to run t
 
 - `urls.py`:
 
-		from alapage.views import HomepageView, PageView
+  ```python
+from alapage.views import HomepageView, PageView
 
-		urlpatterns = patterns('',
-		#...
-		url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-	    url(r'^(?P<url>.*/)$', PageView.as_view(), name='page-view'),
-	    url(r'^$', HomepageView.as_view(), name='homepage-view'),
-	    # option for responsive presentations
-	    url(r'^zongo/', include('zongo.urls')),
-	    )
+urlpatterns = patterns('',
+#...
+url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+url(r'^(?P<url>.*/)$', PageView.as_view(), name='page-view'),
+url(r'^$', HomepageView.as_view(), name='homepage-view'),
+# option for responsive presentations
+url(r'^zongo/', include('zongo.urls')),
+)
+  ```
     
 - Collect static files
 
@@ -93,19 +99,21 @@ Config
 
 Configure ckeditor in `settings.py` to suit you needs:
 
-	CKEDITOR_UPLOAD_PATH = 'uploads/'
-	CKEDITOR_JQUERY_URL = '/static/js/jquery-2.1.4.min.js'
-	CKEDITOR_IMAGE_BACKEND = 'pillow'
-	CKEDITOR_CONFIGS = {
-	    'default': {
-	        'toolbar':  [
-	                    ["Format", "Styles", "Bold", "Italic", "Underline", '-', 'RemoveFormat'],
-	                    ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter','JustifyRight', 'JustifyBlock'],
-	                    ["Image", "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'],
-	                    ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'],["Source", "Maximize"],
-	                    ]
-	    },
-	}
+  ```python
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_JQUERY_URL = '/static/js/jquery-2.1.4.min.js'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar':  [
+                    ["Format", "Styles", "Bold", "Italic", "Underline", '-', 'RemoveFormat'],
+                    ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter','JustifyRight', 'JustifyBlock'],
+                    ["Image", "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'],
+                    ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'],["Source", "Maximize"],
+                    ]
+    },
+}
+  ```
 
 If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_CODE_MODE=True` setting. This put in front the code editor and collapses the wysywig editor.
 
