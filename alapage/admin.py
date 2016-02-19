@@ -22,6 +22,7 @@ class PageAdminForm(forms.ModelForm):
         self.fields['template_name'].help_text = 'Si aucun nom de template n\'est défini ni de layout, "alapage/default.html" sera utilisé'
         self.fields['content'].label = ''
     content = forms.CharField(widget=CKEditorWidget())
+    content.required = False
     
     class Meta:
         model = Page
