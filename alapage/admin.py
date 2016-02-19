@@ -8,8 +8,8 @@ from ckeditor.widgets import CKEditorWidget
 from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page, USE_PRESENTATIONS
 
-USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
-USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', True)
+USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', False)
+USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', False)
 USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', False)
 if USE_REVERSION:
     from reversion.admin import VersionAdmin
@@ -34,9 +34,9 @@ if USE_REVERSION:
 class PageAdmin(admin_class):
     form = PageAdminForm
     date_hierarchy = 'edited'
-    search_fields = ['name']
+    search_fields = ['title','url']
     list_display = ['url','title','edited','editor','created','published','registration_required']
-    list_filter = ['created','edited','editor','published','registration_required']
+    list_filter = ['created','edited','published','registration_required']
     jssor_fieldset = ('url','title')
     if USE_JSSOR:
         jssor_fieldset += ('slideshow',)

@@ -52,20 +52,21 @@ Install
 
   ```python
 INSTALLED_APPS = (
-	# ...
-	# required
+	#~ ...
+	#~ required
 	'django.contrib.sites',
 	'django.contrib.flatpages',
     'ckeditor',
     'ckeditor_uploader',
     'codemirror2',
-    'reversion',
     'alapage',
-	# options 
-    'jssor',
-    'zongo',
+	#~ options 
+	#'reversion',
+    #'jssor',
+    #'zongo',
 )
   ```
+- Optionnal: add `"reversion",` to INSTALLED_APPS if you plan to use the django-reversion
 - Optionnal: add `"jssor",` to INSTALLED_APPS if you plan to use the slideshows
 - Optionnal: add `"zongo",` to INSTALLED_APPS if you plan to use the presentations
 
@@ -120,11 +121,11 @@ If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_
 Options
 --------------
 
-To disable django-reversion add the setting `USE_REVERSION = False`
+To enable django-reversion use the setting `ALAPAGE_USE_REVERSION = True`
 
-To disable the slideshows add the setting `ALAPAGE_USE_JSSOR = False`
+To enable the slideshows use the setting `ALAPAGE_USE_JSSOR = True`
 
-Disable the presentations the same way: set a `ALAPAGE_USE_ZONGO = False` setting
+To enable the presentations use the setting `ALAPAGE_USE_ZONGO = True`
 
 Todo
 --------------
