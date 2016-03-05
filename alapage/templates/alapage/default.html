@@ -1,8 +1,11 @@
-{% extends "base.html" %}
+{% extends template_to_extend %}
 
 {% block extra_header %}
-<meta name="keywords" content="{{ flatpage.seo_description }}" />
-<meta name="description" content="{{ flatpage.seo_keywords }}" />
+	<meta name="keywords" content="{{ flatpage.seo_description }}" />
+	<meta name="description" content="{{ flatpage.seo_keywords }}" />
+	{% if use_themes %}
+		<link rel="stylesheet" media="screen, projection" href="/static/themes/{{ current_theme }}/screen.css" />
+	{% endif %}
 {% endblock %}
 {% block title %}{{ flatpage.title }}{% endblock %}
 

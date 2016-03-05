@@ -1,0 +1,11 @@
+body {
+	background-color:darkgrey;
+}
+#header, #footer {
+	background-color:black;
+	color:white;
+}
+#content {
+	background-color:darkslategray;
+	color:lime;
+}

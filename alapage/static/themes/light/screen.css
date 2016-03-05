@@ -1,0 +1,14 @@
+#header, #footer {
+	background-color:white;
+	color:black !important;
+}
+#header, #footer, #content {
+	border-right:1px solid grey;
+	border-left:1px solid grey;
+}
+#header h1, #topbar a, topbar a:visited {
+	color:black !important;
+}
+#header {
+	border-bottom:1px solid grey;
+}
