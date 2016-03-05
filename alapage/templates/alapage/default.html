@@ -3,7 +3,7 @@
 {% block extra_header %}
 	<meta name="keywords" content="{{ flatpage.seo_description }}" />
 	<meta name="description" content="{{ flatpage.seo_keywords }}" />
-	{% if use_themes %}
+	{% if use_themes and current_theme %}
 		<link rel="stylesheet" media="screen, projection" href="/static/themes/{{ current_theme }}/screen.css" />
 	{% endif %}
 {% endblock %}
