@@ -3,7 +3,7 @@ Django Alapage
 
 [![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) 
 
-Page management application with slideshows and responsive presentations for Django. 
+Page management application with slideshows and responsive presentations for Django. Built on top of flatpages. 
 The pages are editable in a wysiwyg editor and/or in a html/css code editor in the admin interface.
 
 Screenshots
@@ -27,12 +27,16 @@ Dependencies
 - Django ckeditor
 - Django codemirror2
 
-		pip install pytz pillow django-ckeditor==4.5.1 django-codemirror2
+  ```bash
+pip install pytz pillow django-ckeditor==4.5.1 django-codemirror2
+  ```
 
 - Optional: Django reversion
 
-		pip install django-reversion
-		
+  ```bash
+pip install django-reversion
+  ```
+
 - Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 
   ```bash
@@ -74,22 +78,16 @@ Warning: if you change these optional settings afterwards you will need to run t
 - `urls.py`:
 
   ```python
-from alapage.views import HomepageView, PageView
-
 urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^comptes/', include('allauth.urls')),
 	url(r'^ckeditor/', include('ckeditor.urls')),
+	# ...
 	)
-
-if settings.DEBUG:
-	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-   
+  
 urlpatterns += url(r'^', include('alapage.urls')),
   ```
 
-:pencil2: You have to put alapage urls in last if you want to have your pages served from `/`  
+:pencil2: You have to put alapage urls in last if you want to have your pages served from `/`
 
 - Collect static files
 
