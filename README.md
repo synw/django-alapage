@@ -39,7 +39,7 @@ Dependencies
 pip install django-jssor
   ```
 
-- Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentation: :warning: Warning: experimental)
+- Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations: :warning: Warning: experimental)
 
   ```bash
 git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
@@ -123,17 +123,17 @@ CKEDITOR_CONFIGS = {
 Options
 --------------
 
-- To enable reversion use the setting `ALAPAGE_USE_REVERSION = True`
+- `ALAPAGE_USE_REVERSION = True` : to enable reversion
 
-- To enable the slideshows use the setting `ALAPAGE_USE_JSSOR = True`
+- `ALAPAGE_USE_JSSOR = True` : to enable the slideshows
 
-- To enable the presentations use the setting `ALAPAGE_USE_ZONGO = True`
+- `ALAPAGE_USE_ZONGO = True` : to enable the responsive presentations
 
-- If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_CODE_MODE=True` setting. This will put the code editor in front and collapse the wysywig editor.
+- `ALAPAGE_CODE_MODE=True` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
 
-- Theming option : use the setting `ALAPAGE_USE_THEMES = True` : [documented here](https://raw.github.com/synw/django-alapage/master/docs/themes/README.md)
+- `ALAPAGE_USE_THEMES = True` : theming option : [documented here](https://raw.github.com/synw/django-alapage/master/docs/themes/)
 
-- To choose a root base template with a different name than the default `base.html` set `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'`
+- `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'` : to choose a root base template with a different name than the default `base.html`
 
 Todo
 --------------
