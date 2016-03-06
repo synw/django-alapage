@@ -38,7 +38,7 @@ In a template use `current_theme` and `themes`
   ```HTML+Django
  	{% if current_theme %}
 		<a href="{% url 'change-theme' theme='default' %}?from={{ request.get_full_path }}" class="btn btn-link">
-			Supprimer le thème
+			Remove theme
 		</a>
 	{% endif %}
 	{% for theme in themes %}
