@@ -77,14 +77,14 @@ Warning: if you change these optional settings afterwards you will need to run t
 from alapage.views import HomepageView, PageView
 
 urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^comptes/', include('allauth.urls')),
-    url(r'^ckeditor/', include('ckeditor.urls')),
-    )
+	url(r'^admin/', include(admin.site.urls)),
+	url(r'^comptes/', include('allauth.urls')),
+	url(r'^ckeditor/', include('ckeditor.urls')),
+	)
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
    
 urlpatterns += url(r'^', include('alapage.urls')),
   ```

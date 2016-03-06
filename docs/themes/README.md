@@ -23,13 +23,13 @@ ALAPAGE_THEMES = (
 
 In this folder create subfolders for your themes (from the slug you chooses in `ALAPAGE_THEMES`): `dark`, `light` . These two can be found `alapage/templates/themes` for an example.
 
-You can just copy your `base.html` template in the themes templates folder and start customizing.
+You can just copy your `base.html` template in these folders and start customizing.
 
 :two: In `static` create a `themes` folder.
 
 In this folder create subfolders for your themes (from the slug you chooses in `ALAPAGE_THEMES`): `dark`, `light` . These two can be found in `alapage/static/themes` for an example
 
-You can extend your base css putting a `screen.css` file in your themes static folders.
+You can extend your base css putting a `screen.css` file in theses folders.
 
 ### Make a menu in template for theme choosing
 
