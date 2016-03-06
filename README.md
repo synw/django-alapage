@@ -124,10 +124,15 @@ Options
 --------------
 
 `ALAPAGE_USE_REVERSION = True` : to enable reversion
+
 `ALAPAGE_USE_JSSOR = True` : to enable the slideshows
+
 `ALAPAGE_USE_ZONGO = True` : to enable the responsive presentations
+
 `ALAPAGE_CODE_MODE=True` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
+
 `ALAPAGE_USE_THEMES = True` : theming option : [documented here](https://raw.github.com/synw/django-alapage/master/docs/themes/)
+
 `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'` : to choose a root base template with a different name than the default `base.html`
 
 Todo
