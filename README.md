@@ -38,9 +38,9 @@ Dependencies
   ```bash
 pip install django-jssor
   ```
-  
-  - Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentation: :warning: Warning: experimental)
-  
+
+- Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentation: :warning: Warning: experimental)
+
   ```bash
 git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
   ```
@@ -88,9 +88,9 @@ if settings.DEBUG:
    
 urlpatterns += url(r'^', include('alapage.urls')),
   ```
-:pencil2: You have to put alapage urls in last if you want to have your pages served from /  
 
-    
+:pencil2: You have to put alapage urls in last if you want to have your pages served from `/`  
+
 - Collect static files
 
 		python manage.py collectstatic
@@ -99,7 +99,7 @@ urlpatterns += url(r'^', include('alapage.urls')),
 
 		python manage.py makemigrations && python manage.py migrate
 
-Config
+Configuration
 --------------
 
 Configure ckeditor in `settings.py` to suit you needs:
@@ -120,16 +120,20 @@ CKEDITOR_CONFIGS = {
 }
   ```
 
-If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_CODE_MODE=True` setting. This put in front the code editor and collapses the wysywig editor.
-
 Options
 --------------
 
-To enable django-reversion use the setting `ALAPAGE_USE_REVERSION = True`
+To enable reversion use the setting `ALAPAGE_USE_REVERSION = True`
 
 To enable the slideshows use the setting `ALAPAGE_USE_JSSOR = True`
 
 To enable the presentations use the setting `ALAPAGE_USE_ZONGO = True`
+
+If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_CODE_MODE=True` setting. This will put the code editor in front and collapse the wysywig editor.
+
+Theming option : use the setting `ALAPAGE_USE_THEMES = True` : [documented here](https://raw.github.com/synw/django-alapage/master/docs/themes/README.md)
+
+To choose a root base template with a different name than the default `base.html` set `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'`
 
 Todo
 --------------
