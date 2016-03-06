@@ -1,0 +1,16 @@
+<div class="row" id="themes_menu">
+	<div class="col-xs-12 text-right">
+		{% if current_theme %}
+			<a href="{% url 'change-theme' theme='default' %}?from={{ request.get_full_path }}" class="btn btn-link gbf">
+				Supprimer le thème
+			</a>
+		{% endif %}
+		{% for theme in themes %}
+			{% if not theme.0 == current_theme %}
+			<a href="{% url 'change-theme' theme=theme.0 %}?from={{ request.get_full_path }}" class="btn btn-link gbf">
+				{{ theme.1 }}
+			</a>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>
