@@ -141,4 +141,4 @@ Todo
 - [ ] More tests
 - [ ] Base template selection option
 - [ ] Add more layouts
-- [ x ] Theming option
+
