@@ -37,6 +37,7 @@ class PageAdmin(admin_class):
     date_hierarchy = 'edited'
     search_fields = ['title','url','editor__username']
     list_display = ['url','title','edited','editor','created','published','registration_required']
+    list_display_links = ['title','url']
     list_filter = ['created','edited','published','registration_required']
     jssor_fieldset = ('url','title')
     if USE_JSSOR:
