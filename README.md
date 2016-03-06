@@ -123,17 +123,17 @@ CKEDITOR_CONFIGS = {
 Options
 --------------
 
-To enable reversion use the setting `ALAPAGE_USE_REVERSION = True`
+- To enable reversion use the setting `ALAPAGE_USE_REVERSION = True`
 
-To enable the slideshows use the setting `ALAPAGE_USE_JSSOR = True`
+- To enable the slideshows use the setting `ALAPAGE_USE_JSSOR = True`
 
-To enable the presentations use the setting `ALAPAGE_USE_ZONGO = True`
+- To enable the presentations use the setting `ALAPAGE_USE_ZONGO = True`
 
-If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_CODE_MODE=True` setting. This will put the code editor in front and collapse the wysywig editor.
+- If you plan to code html manualy more than in the wysywig editor set a `ALAPAGE_CODE_MODE=True` setting. This will put the code editor in front and collapse the wysywig editor.
 
-Theming option : use the setting `ALAPAGE_USE_THEMES = True` : [documented here](https://raw.github.com/synw/django-alapage/master/docs/themes/README.md)
+- Theming option : use the setting `ALAPAGE_USE_THEMES = True` : [documented here](https://raw.github.com/synw/django-alapage/master/docs/themes/README.md)
 
-To choose a root base template with a different name than the default `base.html` set `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'`
+- To choose a root base template with a different name than the default `base.html` set `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'`
 
 Todo
 --------------
