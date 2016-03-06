@@ -123,9 +123,9 @@ Optional settings
 
 `ALAPAGE_USE_REVERSION = True` : to enable reversion
 
-`ALAPAGE_USE_JSSOR = True` : to enable the slideshows
+`ALAPAGE_USE_JSSOR = True` : to enable the slideshows. Warning: you will have to run a migration if you change this setting after the first migration.
 
-`ALAPAGE_USE_PRESENTATIONS = True` : to enable the responsive presentations
+`ALAPAGE_USE_PRESENTATIONS = True` : to enable the responsive presentations. Warning: you will have to run a migration if you change this setting after the first migration.
 
 `ALAPAGE_CODE_MODE=True` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
 
