@@ -6,8 +6,8 @@ from django.contrib.flatpages.models import FlatPage
 from ckeditor.fields import RichTextField
 
 
-USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', True)
-USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', True)
+USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', False)
+USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', False)
 
 if USE_JSSOR:
     from jssor.models import Slideshow
