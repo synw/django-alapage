@@ -36,12 +36,12 @@ Dependencies
 - Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
 
   ```bash
-git clone https://github.com/synw/django-jssor.git && mv django-jssor/jssor path_to_your_project && mkdir media/jssor && mkdir media/jssor/thumbnails
+pip install django-jssor
   ```
+  
+  - Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentation: :warning: Warning: experimental)
+  
   ```bash
-- Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations)
-
-
 git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
   ```
 
@@ -57,7 +57,6 @@ INSTALLED_APPS = (
 	'django.contrib.sites',
 	'django.contrib.flatpages',
     'ckeditor',
-    'ckeditor_uploader',
     'codemirror2',
     'alapage',
 	#~ options 
@@ -79,7 +78,7 @@ from alapage.views import HomepageView, PageView
 
 urlpatterns = patterns('',
 #...
-url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+url(r'^ckeditor/', include('ckeditor.urls')),
 url(r'^(?P<url>.*/)$', PageView.as_view(), name='page-view'),
 url(r'^$', HomepageView.as_view(), name='homepage-view'),
 # option for responsive presentations
