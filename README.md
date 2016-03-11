@@ -133,6 +133,13 @@ Optional settings
 
 `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'` : to choose a root base template with a different name than the default `base.html`
 
+Management commands
+--------------
+
+Create a homepage: `python manage.py create_homepage`
+Create a page: `python manage.py create_page 'Title' /url/`
+
+
 Todo
 --------------
 
