@@ -6,7 +6,7 @@ from alapage.models import Page
 from alapage.management.conf import bcolors
 
 class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
+    help = 'Populates a page with content from direct input of file: option "-f filename.html""'
 
     def add_arguments(self, parser):
         parser.add_argument('content', nargs='+', type=str)

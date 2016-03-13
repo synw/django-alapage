@@ -41,8 +41,8 @@ class Page(FlatPage, Seo):
     
     
     class Meta:
-        verbose_name = 'Page simple'
-        verbose_name_plural = 'Pages simples'
+        verbose_name = 'Page'
+        verbose_name_plural = 'Pages'
         ordering = ('url','edited')
         
 
