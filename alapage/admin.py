@@ -39,6 +39,7 @@ class PageAdmin(admin_class):
     list_display = ['url','title','edited','editor','created','published','registration_required']
     list_display_links = ['title','url']
     list_filter = ['created','edited','published','registration_required']
+    save_on_top = True
     jssor_fieldset = ('url','title')
     if USE_JSSOR:
         jssor_fieldset += ('slideshow',)
