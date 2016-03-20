@@ -61,6 +61,7 @@ INSTALLED_APPS = (
 	'django.contrib.sites',
 	'django.contrib.flatpages',
     'ckeditor',
+    'ckeditor_uploader',
     'codemirror2',
     'alapage',
 	#~ options 
@@ -80,7 +81,7 @@ Warning: if you change these optional settings afterwards you will need to run t
   ```python
 urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^ckeditor/', include('ckeditor.urls')),
+	url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 	# ...
 	)
   

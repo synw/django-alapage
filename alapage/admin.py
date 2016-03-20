@@ -4,9 +4,9 @@ from django.conf import settings
 from django.contrib import admin
 from django import forms
 from django.contrib.flatpages.models import FlatPage
-from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from codemirror2.widgets import CodeMirrorEditor
-from alapage.models import Page, USE_PRESENTATIONS
+from alapage.models import Page
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', False)
 USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', False)
@@ -21,7 +21,8 @@ class PageAdminForm(forms.ModelForm):
         super(PageAdminForm, self).__init__(*args, **kwargs)
         self.fields['template_name'].help_text = 'Si aucun nom de template n\'est défini ni de layout, "alapage/default.html" sera utilisé'
         self.fields['content'].label = ''
-    content = forms.CharField(widget=CKEditorWidget())
+        self.fields['html'].label = 'Html'
+    content = forms.CharField(widget=CKEditorUploadingWidget())
     content.required = False
     
     class Meta:
