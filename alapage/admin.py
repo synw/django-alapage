@@ -74,7 +74,7 @@ class PageAdmin(admin_class):
                 'classes': ('collapse',),
                 'fields': ('layout','template_name','registration_required','published')
             }),
-            monitoring_fieldset,
+            #monitoring_fieldset,
         )
     else:
         fieldsets = (
@@ -96,7 +96,7 @@ class PageAdmin(admin_class):
                 'classes': ('collapse',),
                 'fields': ('layout','template_name','registration_required','published')
             }),
-            monitoring_fieldset,
+            #monitoring_fieldset,
         )
     
     def formfield_for_dbfield(self, db_field, **kwargs):
