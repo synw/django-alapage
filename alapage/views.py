@@ -7,14 +7,9 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import TemplateView, View
 from django.views.generic.base import RedirectView
 from django.utils.html import strip_tags
-from django.utils.cache import add_never_cache_headers
 from alapage.models import Page
+from alapage.conf import USER_MODEL, USE_JSSOR, USE_PRESENTATIONS, USE_THEMES, BASE_TEMPLATE_PATH, USE_THEMES, THEMES
 
-
-USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', False)
-USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_ZONGO', False)
-USE_THEMES = getattr(settings, 'ALAPAGE_USE_THEMES', False)
-BASE_TEMPLATE_PATH = getattr(settings, 'ALAPAGE_BASE_TEMPLATE_PATH', 'base.html')
 
 if USE_JSSOR:
     from jssor.models import Slide
@@ -79,12 +74,7 @@ class PageView(TemplateView):
         themes = ()
         current_theme = None
         if USE_THEMES:
-            try:
-                themes = settings.ALAPAGE_THEMES
-            except AttributeError:
-                if settings.DEBUG:
-                    print '======================================='
-                    print 'You must set ALAPAGE_THEMES in settings'
+            themes = THEMES
             if "theme" in self.request.session.keys():
                 current_theme = self.request.session['theme']
         context['use_themes'] = USE_THEMES
@@ -102,44 +92,22 @@ class PageView(TemplateView):
 
 class HomepageView(PageView):
     pass
-"""
-class ChangeThemeView(View):
-    
-    def dispatch(self, request, *args, **kwargs):
-        try:
-            print "DISPATCH "+self.request.session['theme']
-        except:
-            print 'DISPATCH'
-        return super(ChangeThemeView, self).dispatch(request, *args, **kwargs)
-"""
+
 
 class ChangeThemeView(RedirectView):
     permanent = False
     
-    def dispatch(self, request, *args, **kwargs):
-        try:
-            print "DISPATCH : old theme: "+self.request.session['theme']
-        except:
-            print 'DISPATCH'
-        return super(ChangeThemeView, self).dispatch(request, *args, **kwargs)
-    
     def get_redirect_url(self, *args, **kwargs):
-        print "REDIRECT"
         theme = self.kwargs['theme']
         if "theme" in self.request.session.keys():
             if not theme == "default":
                 self.request.session['theme'] = theme
             else:
-                print 'del'
                 del self.request.session['theme']
                 self.request.session.modified = True
         else:
             if not theme == "default":
                 self.request.session['theme'] = theme
-        if "theme" in self.request.session.keys():
-            print "New theme: "+self.request.session['theme']
-        else:
-            print "No theme"
         url = strip_tags(self.request.GET['from'])
         if not url.endswith('/') and settings.APPEND_SLASH:
             url += '/'

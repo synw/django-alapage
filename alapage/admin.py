@@ -7,6 +7,7 @@ from django.contrib.flatpages.models import FlatPage
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page
+from alapage.conf import MONITORING_LEVEL
 
 USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', False)
 USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', False)
@@ -46,6 +47,13 @@ class PageAdmin(admin_class):
         jssor_fieldset += ('slideshow',)
     if USE_PRESENTATIONS:
         jssor_fieldset += ('presentation',)
+    monitoring_fieldset = ()
+    """
+    if MONITORING_LEVEL == 3:
+        monitoring_fieldset = ('Monitoring level', {
+                            'fields': ('monitoring_level',)
+                        })
+    """
     if not CODE_MODE:
         fieldsets = (
             (None, {
@@ -59,12 +67,14 @@ class PageAdmin(admin_class):
                 'fields': jssor_fieldset
             }),
             ('Référencement', {
+                'classes': ('collapse',),
                 'fields': ('seo_keywords','seo_description')
             }),
             ('Options', {
                 'classes': ('collapse',),
                 'fields': ('layout','template_name','registration_required','published')
             }),
+            monitoring_fieldset,
         )
     else:
         fieldsets = (
@@ -79,12 +89,14 @@ class PageAdmin(admin_class):
                 'fields': jssor_fieldset
             }),
             ('Référencement', {
+                'classes': ('collapse',),
                 'fields': ('seo_keywords','seo_description')
             }),
             ('Options', {
                 'classes': ('collapse',),
                 'fields': ('layout','template_name','registration_required','published')
             }),
+            monitoring_fieldset,
         )
     
     def formfield_for_dbfield(self, db_field, **kwargs):
