@@ -21,14 +21,12 @@ Dependencies
 --------------
 
 - pytz
-- Django 1.8
-- Django Flatpages
 - Pillow
 - Django ckeditor
 - Django codemirror2
 
   ```bash
-pip install pytz pillow django-ckeditor==4.5.1 django-codemirror2
+pip install pytz pillow django-ckeditor django-codemirror2
   ```
 
 - Optional: Django reversion
