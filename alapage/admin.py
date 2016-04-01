@@ -21,10 +21,10 @@ class PageAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PageAdminForm, self).__init__(*args, **kwargs)
         self.fields['template_name'].help_text = 'Si aucun nom de template n\'est défini ni de layout, "alapage/default.html" sera utilisé'
-        self.fields['content'].label = ''
+        #self.fields['content'].label = ''
         self.fields['html'].label = 'Html'
-    content = forms.CharField(widget=CKEditorUploadingWidget())
-    content.required = False
+    #content = forms.CharField(widget=CKEditorUploadingWidget())
+    #content.required = False
     
     class Meta:
         model = Page
@@ -102,20 +102,18 @@ class PageAdmin(admin_class):
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.attname == "html":
             kwargs['widget'] = CodeMirrorEditor(options={
-                                                         'mode': 'htmlmixed',
+                                                         'mode':'htmlmixed',
                                                          'indentWithTabs':'true', 
                                                          'indentUnit' : '4',
                                                          'lineNumbers':'true',
                                                          'autofocus':'true',
-                                                         'autoCloseTags': 'true',
-                                                         'highlightSelectionMatches': '{showToken: /\w/, annotateScrollbar: true}',
+                                                         #'highlightSelectionMatches': '{showToken: /\w/, annotateScrollbar: true}',
                                                          'styleActiveLine': 'true',
+                                                         'autoCloseTags': 'true',
                                                          'keyMap':'vim',
-                                                         'theme':'night',
-                                                         'extraKeys': """{"F11": function(cm) {cm.setOption("fullScreen", !cm.getOption("fullScreen"));},"Esc": function(cm) {if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);}}""",
-                                                        }, 
+                                                         'theme':'blackboard',
+                                                         }, 
                                                          modes=['css', 'xml', 'javascript', 'htmlmixed'],
-                                                         #attrs = {'data-widearea': "enable", 'style': 'rows:20'}
                                                          )
         return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
