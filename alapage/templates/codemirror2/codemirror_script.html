@@ -13,8 +13,9 @@
 <script type="text/javascript">
     (function() {
         var elem = document.getElementById("id_{{ name }}");
-        CodeMirror.fromTextArea(elem, {{ options|safe }});
+        elmirror = CodeMirror.fromTextArea(elem, {{ options|safe }});
     })();
+	elmirror.setSize(1130, 420);
 </script>
 
 
