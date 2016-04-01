@@ -101,7 +101,18 @@ class PageAdmin(admin_class):
     
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.attname == "html":
-            kwargs['widget'] = CodeMirrorEditor(options={'mode': 'htmlmixed','indentWithTabs':'true','lineNumbers':'true'}, modes=['css', 'xml', 'javascript', 'htmlmixed'])
+            kwargs['widget'] = CodeMirrorEditor(options={
+                                                         'mode': 'htmlmixed',
+                                                         'indentWithTabs':'true', 
+                                                         'indentUnit' : '4',
+                                                         'lineNumbers':'true',
+                                                         'autofocus':'true',
+                                                         'autoCloseTags': 'true',
+                                                        }, 
+                                                         modes=['css', 'xml', 'javascript', 'htmlmixed'],
+                                                         themes = ["night"],
+                                                         #attrs = {'data-widearea': "enable", 'style': 'rows:20'}
+                                                         )
         return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
     def save_model(self, request, obj, form, change):

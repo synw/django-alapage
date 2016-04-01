@@ -1,0 +1,11 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/night.css' %}" />
+<script src="{% static 'codemirror2/addon/edit/closetag.js' %}"></script>
+<script type="text/javascript">
+    (function() {
+        var elem = document.getElementById("id_{{ name }}");
+        CodeMirror.fromTextArea(elem, {{ options|safe }});
+    })();
+</script>
+
+
