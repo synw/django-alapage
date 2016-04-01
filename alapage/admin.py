@@ -108,9 +108,13 @@ class PageAdmin(admin_class):
                                                          'lineNumbers':'true',
                                                          'autofocus':'true',
                                                          'autoCloseTags': 'true',
+                                                         'highlightSelectionMatches': '{showToken: /\w/, annotateScrollbar: true}',
+                                                         'styleActiveLine': 'true',
+                                                         'keyMap':'vim',
+                                                         'theme':'night',
+                                                         'extraKeys': """{"F11": function(cm) {cm.setOption("fullScreen", !cm.getOption("fullScreen"));},"Esc": function(cm) {if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);}}""",
                                                         }, 
                                                          modes=['css', 'xml', 'javascript', 'htmlmixed'],
-                                                         themes = ["night"],
                                                          #attrs = {'data-widearea': "enable", 'style': 'rows:20'}
                                                          )
         return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
