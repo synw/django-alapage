@@ -4,32 +4,14 @@ from django.conf import settings
 from django.contrib import admin
 from django import forms
 from django.contrib.flatpages.models import FlatPage
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page
-from alapage.conf import MONITORING_LEVEL
+from alapage.forms import PageAdminForm
+from alapage.conf import MONITORING_LEVEL, USE_JSSOR, USE_PRESENTATIONS, USE_REVERSION, CODE_MODE
 
-USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', False)
-USE_PRESENTATIONS=getattr(settings, 'ALAPAGE_USE_PRESENTATIONS', False)
-USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', False)
+
 if USE_REVERSION:
     from reversion.admin import VersionAdmin
-CODE_MODE=getattr(settings, 'ALAPAGE_CODE_MODE', False)
-
-
-class PageAdminForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(PageAdminForm, self).__init__(*args, **kwargs)
-        self.fields['template_name'].help_text = 'Si aucun nom de template n\'est défini ni de layout, "alapage/default.html" sera utilisé'
-        #self.fields['content'].label = ''
-        self.fields['html'].label = 'Html'
-    #content = forms.CharField(widget=CKEditorUploadingWidget())
-    #content.required = False
-    
-    class Meta:
-        model = Page
-        exclude = ('enable_comments','sites')
-
 admin_class=admin.ModelAdmin
 if USE_REVERSION:
     admin_class=VersionAdmin
