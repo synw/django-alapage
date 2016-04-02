@@ -81,8 +81,9 @@ class PageView(TemplateView):
         context['themes'] = themes
         context['current_theme'] = current_theme
         context['flatpage'] = page
-        context['slideshow'] = page.slideshow
-        context['slides'] = slides
+        if USE_JSSOR:
+            context['slideshow'] = page.slideshow
+            context['slides'] = slides
         context['layout'] = layout
         context['presentation'] = presentation
         context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
