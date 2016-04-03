@@ -24,62 +24,64 @@ class PageAdmin(admin_class):
     list_display_links = ['title','url']
     list_filter = ['created','edited','published','registration_required']
     save_on_top = True
-    jssor_fieldset = ('url','title')
-    if USE_JSSOR:
-        jssor_fieldset += ('slideshow',)
-    if USE_PRESENTATIONS:
-        jssor_fieldset += ('presentation',)
-    monitoring_fieldset = ()
-    """
-    if MONITORING_LEVEL == 3:
-        monitoring_fieldset = ('Monitoring level', {
-                            'fields': ('monitoring_level',)
-                        })
-    """
-    if not CODE_MODE:
-        fieldsets = (
-            (None, {
-                'fields': ('content',)
-            }),
-            ('Code html', {
-                'classes': ('collapse',),
-                'fields': ('html',)
-            }),
-            (None, {
-                'fields': jssor_fieldset
-            }),
-            ('Référencement', {
-                'classes': ('collapse',),
-                'fields': ('seo_keywords','seo_description')
-            }),
-            ('Options', {
-                'classes': ('collapse',),
-                'fields': ('layout','template_name','registration_required','published')
-            }),
-            #monitoring_fieldset,
-        )
-    else:
-        fieldsets = (
-            (None, {
-                'fields': ('html',)
-            }),
-            ('Editeur', {
-                'classes': ('collapse',),
-                'fields': ('content',)
-            }),
-            (None, {
-                'fields': jssor_fieldset
-            }),
-            ('Référencement', {
-                'classes': ('collapse',),
-                'fields': ('seo_keywords','seo_description')
-            }),
-            ('Options', {
-                'classes': ('collapse',),
-                'fields': ('layout','template_name','registration_required','published')
-            }),
-            #monitoring_fieldset,
-        )
+
+    
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super(PageAdmin, self).get_fieldsets(request, obj)
+        jssor_fieldset = ('url','title')
+        if USE_JSSOR:
+            jssor_fieldset += ('slideshow',)
+        if USE_PRESENTATIONS:
+            jssor_fieldset += ('presentation',)
+        if not CODE_MODE:
+            fieldsets = (
+                (None, {
+                    'fields': ('content',)
+                }),
+                ('Code html', {
+                    'classes': ('collapse',),
+                    'fields': ('html',)
+                }),
+                (None, {
+                    'fields': jssor_fieldset
+                }),
+                ('Référencement', {
+                    'classes': ('collapse',),
+                    'fields': ('seo_keywords','seo_description')
+                }),
+                ('Options', {
+                    'classes': ('collapse',),
+                    'fields': ('layout','template_name','registration_required','published',)
+                }),
+            )
+        else:
+            fieldsets = (
+                (None, {
+                    'fields': ('html',)
+                }),
+                ('Editeur', {
+                    'classes': ('collapse',),
+                    'fields': ('content',)
+                }),
+                (None, {
+                    'fields': jssor_fieldset
+                }),
+                ('Référencement', {
+                    'classes': ('collapse',),
+                    'fields': ('seo_keywords','seo_description')
+                }),
+                ('Options', {
+                    'classes': ('collapse',),
+                    'fields': ('layout','template_name','registration_required','published',)
+                }),
+            )
+        if MONITORING_LEVEL == 3:
+            if request.user.is_superuser:
+                fieldsets += ('Monitoring', {
+                                             'fields' : ('monitoring_level',)
+                                             }),
+        return fieldsets
+    
     
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.attname == "html":
