@@ -7,7 +7,7 @@ from django.contrib.flatpages.models import FlatPage
 from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page
 from alapage.forms import PageAdminForm
-from alapage.conf import MONITORING_LEVEL, USE_JSSOR, USE_PRESENTATIONS, USE_REVERSION, CODE_MODE
+from alapage.conf import MONITORING_LEVEL, USE_JSSOR, USE_PRESENTATIONS, USE_REVERSION, EDIT_MODE
 
 
 if USE_REVERSION:
@@ -33,48 +33,25 @@ class PageAdmin(admin_class):
             jssor_fieldset += ('slideshow',)
         if USE_PRESENTATIONS:
             jssor_fieldset += ('presentation',)
-        if not CODE_MODE:
-            fieldsets = (
-                (None, {
-                    'fields': ('content',)
-                }),
-                ('Code html', {
-                    'classes': ('collapse',),
-                    'fields': ('html',)
-                }),
-                (None, {
-                    'fields': jssor_fieldset
-                }),
-                ('Référencement', {
-                    'classes': ('collapse',),
-                    'fields': ('seo_keywords','seo_description')
-                }),
-                ('Options', {
-                    'classes': ('collapse',),
-                    'fields': ('layout','template_name','registration_required','published',)
-                }),
-            )
-        else:
-            fieldsets = (
-                (None, {
-                    'fields': ('html',)
-                }),
-                ('Editeur', {
-                    'classes': ('collapse',),
-                    'fields': ('content',)
-                }),
-                (None, {
-                    'fields': jssor_fieldset
-                }),
-                ('Référencement', {
-                    'classes': ('collapse',),
-                    'fields': ('seo_keywords','seo_description')
-                }),
-                ('Options', {
-                    'classes': ('collapse',),
-                    'fields': ('layout','template_name','registration_required','published',)
-                }),
-            )
+        edit_fieldset = ('content',)
+        if EDIT_MODE == 'code':
+            edit_fieldset = ('html',)
+        fieldsets = (
+            (None, {
+                'fields': edit_fieldset
+            }),
+            (None, {
+                'fields': jssor_fieldset
+            }),
+            ('Référencement', {
+                'classes': ('collapse',),
+                'fields': ('seo_keywords','seo_description')
+            }),
+            ('Options', {
+                'classes': ('collapse',),
+                'fields': ('layout', 'template_name','registration_required','published',)
+            }),
+        )
         if MONITORING_LEVEL == 3:
             if request.user.is_superuser:
                 fieldsets += ('Monitoring', {

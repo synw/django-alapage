@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.flatpages.models import FlatPage
 from ckeditor.fields import RichTextField
-from alapage.conf import LAYOUTS, USER_MODEL, USE_JSSOR, USE_PRESENTATIONS, MONITORING_LEVEL
+from alapage.conf import USER_MODEL, USE_JSSOR, USE_PRESENTATIONS, MONITORING_LEVEL, LAYOUTS
 
 
 if USE_JSSOR:
