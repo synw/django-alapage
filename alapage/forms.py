@@ -13,7 +13,7 @@ class PageAdminForm(forms.ModelForm):
         self.fields['template_name'].help_text = 'Si aucun nom de template n\'est défini ni de layout, "alapage/default.html" sera utilisé'
         #self.fields['content'].label = ''
         if EDIT_MODE == 'code':
-            self.fields['html'].label = 'Html'
+            self.fields['html'].label = 'no label'
     content = forms.CharField(widget=CKEditorUploadingWidget())
     content.required = False
     
