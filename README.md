@@ -126,7 +126,7 @@ Optional settings
 
 `ALAPAGE_USE_PRESENTATIONS = True` : to enable the responsive presentations. Warning: you will have to run a migration if you change this setting after the first migration.
 
-`ALAPAGE_CODE_MODE=True` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
+`ALAPAGE_EDIT_MODE='code'` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
 
 `ALAPAGE_USE_THEMES = True` : theming option : [documented here](https://github.com/synw/django-alapage/tree/master/docs/themes)
 
