@@ -4,7 +4,9 @@ Django Alapage
 [![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) 
 
 Page management application with slideshows and responsive presentations for Django. Built on top of flatpages. 
-The pages are editable in a wysiwyg editor or in a html/css code editor in the admin interface.
+The pages are editable in a wysiwyg editor or in a html/css code editor in the admin interface. 
+
+This app is designed to work with django admin bootstraped and Django 1.8.
 
 Screenshots
 --------------
@@ -22,9 +24,10 @@ Dependencies
 - Pillow
 - Django ckeditor
 - Django codemirror2
+- Django admin bootstraped
 
   ```bash
-pip install pytz pillow django-ckeditor django-codemirror2
+pip install pytz pillow django-ckeditor django-codemirror2 django-admin-bootstrapped
   ```
 
 - Optional: Django reversion
@@ -54,6 +57,8 @@ Install
 INSTALLED_APPS = (
 	#~ ...
 	#~ required
+	'django_admin_bootstrapped', # put it before 'django.contrib.admin'
+	'django.contrib.admin',
 	'django.contrib.sites',
 	'django.contrib.flatpages',
     'ckeditor',
@@ -85,6 +90,8 @@ urlpatterns += url(r'^', include('alapage.urls')),
   ```
 
 :pencil2: You have to put alapage urls in last if you want to have your pages served from `/`
+
+Copy the `alapage/admin/includes` folder in your `templates/admin` folder
 
 - Collect static files
 
