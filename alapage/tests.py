@@ -5,8 +5,8 @@ from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from alapage.models import Page
 from alapage.admin import PageAdmin, PageAdminForm
-#from jssor.models import Slideshow
-#from zongo.models import Presentation
+from jssor.models import Slideshow
+from zongo.models import Presentation
 
 # models test
 class PageTest(TestCase):
@@ -24,10 +24,10 @@ class PageTest(TestCase):
         self.assertEqual(page.html, '<blink>!!</blink>')
         self.assertEqual(page.layout, 'xs-12')
         self.assertTrue(page.published)
-    """
+    
     #~ slideshows
-    def create_slideshow(self, slug="slideshow", template_name="full_width_slider.html", title="Slideshow", width=780, height=300):
-        return Slideshow.objects.create(slug=slug, template_name=template_name, title=title, width=width, height=height)
+    def create_slideshow(self, template_name="full_width_slider.html", title="Slideshow", width=780, height=300):
+        return Slideshow.objects.create(template_name=template_name, title=title, width=width, height=height)
 
     def test_page_with_slideshow_creation(self):
         slideshow=self.create_slideshow()
@@ -46,7 +46,7 @@ class PageTest(TestCase):
         self.assertTrue(isinstance(page, Page))
         self.assertTrue(isinstance(presentation, Presentation))
         self.assertEqual(page.presentation, presentation)
-    """    
+      
     #~ client tests
     def test_404_page(self):
         response = self.client.get('/404_not_found/')
@@ -102,8 +102,3 @@ class PageTest(TestCase):
         admin.save_model(request, page, form, True)
         self.assertTrue(page.editor ,self.user)
         
-
-        
-        
-    
-    
