@@ -5,7 +5,6 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.flatpages.models import FlatPage
 from ckeditor.fields import RichTextField
-from mqueue.tracking import MTracker
 from alapage.conf import USER_MODEL, USE_JSSOR, USE_PRESENTATIONS, MONITORING_LEVEL, LAYOUTS
 
 
@@ -48,11 +47,6 @@ class Page(BasePage):
         ordering = ['url']
 
 
-#~ connect model for monitoring
-if MONITORING_LEVEL == 1:
-    MTracker().register(Page, 1)
-elif MONITORING_LEVEL == 2:
-    MTracker().register(Page, 2)
         
 
 
