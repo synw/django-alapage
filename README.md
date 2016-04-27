@@ -91,7 +91,7 @@ urlpatterns += url(r'^', include('alapage.urls')),
 
 :pencil2: You have to put alapage urls in last if you want to have your pages served from `/`
 
-Copy the `alapage/admin/includes` folder in your `templates/admin` folder
+Copy the `alapage/templates/admin/includes` folder in your `templates/admin` folder
 
 - Collect static files
 
