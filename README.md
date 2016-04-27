@@ -4,18 +4,16 @@ Django Alapage
 [![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) 
 
 Page management application with slideshows and responsive presentations for Django. Built on top of flatpages. 
-The pages are editable in a wysiwyg editor and/or in a html/css code editor in the admin interface.
+The pages are editable in a wysiwyg editor or in a html/css code editor in the admin interface.
 
 Screenshots
 --------------
 
-Wysiwig editor ( [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor) ):
+Pages can be edited in wysiwyg mode or code mode with ( [django-ckeditor](https://github.com/django-ckeditor/django-ckeditor) ) 
+or ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) )
 
-![Wysiwig editor](https://raw.github.com/synw/django-alapage/master/docs/img/wysiwyg_editor.png)
+![Editors](https://raw.github.com/synw/django-alapage/master/docs/img/editors.png)
 
-Code editor ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) ):
-
-![Code editor](https://raw.github.com/synw/django-alapage/master/docs/img/code_editor.png)
 
 Dependencies
 --------------
@@ -113,6 +111,8 @@ CKEDITOR_CONFIGS = {
                     ["Image", "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'],
                     ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'],["Source", "Maximize"],
                     ]
+        'width': '1150px',
+        'height': '450px',
     },
 }
   ```
@@ -128,7 +128,7 @@ Optional settings
 
 `ALAPAGE_EDIT_MODE='code'` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
 
-`ALAPAGE_USE_THEMES = True` : theming option : [documented here](https://github.com/synw/django-alapage/tree/master/docs/themes)
+`'ALAPAGE_CODEMIRROR_KEYMAP'`='vim' : select your favourite keymap for codemirror editor (ex: "vim", "emacs"): default is no mapping
 
 `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'` : to choose a root base template with a different name than the default `base.html`
 
