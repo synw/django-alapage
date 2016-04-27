@@ -4,10 +4,9 @@ from django.conf import settings
 from django.contrib import admin
 from django import forms
 from django.contrib.flatpages.models import FlatPage
-from codemirror2.widgets import CodeMirrorEditor
 from alapage.models import Page
 from alapage.forms import PageAdminForm
-from alapage.conf import MONITORING_LEVEL, USE_JSSOR, USE_PRESENTATIONS, USE_REVERSION, EDIT_MODE
+from alapage.conf import USE_JSSOR, USE_PRESENTATIONS, USE_REVERSION, EDIT_MODE
 
 
 if USE_REVERSION:
@@ -33,12 +32,9 @@ class PageAdmin(admin_class):
             jssor_fieldset += ('slideshow',)
         if USE_PRESENTATIONS:
             jssor_fieldset += ('presentation',)
-        edit_fieldset = ('content',)
-        if EDIT_MODE == 'code':
-            edit_fieldset = ('html',)
         fieldsets = (
             (None, {
-                'fields': edit_fieldset
+                'fields': ('content',)
             }),
             (None, {
                 'fields': jssor_fieldset
@@ -52,32 +48,8 @@ class PageAdmin(admin_class):
                 'fields': ('layout', 'template_name','registration_required','published',)
             }),
         )
-        if MONITORING_LEVEL == 3:
-            if request.user.is_superuser:
-                fieldsets += ('Monitoring', {
-                                             'fields' : ('monitoring_level',)
-                                             }),
         return fieldsets
     
-    
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        if db_field.attname == "html":
-            kwargs['widget'] = CodeMirrorEditor(options={
-                                                         'mode':'htmlmixed',
-                                                         'indentWithTabs':'true', 
-                                                         'indentUnit' : '4',
-                                                         'lineNumbers':'true',
-                                                         'autofocus':'true',
-                                                         #'highlightSelectionMatches': '{showToken: /\w/, annotateScrollbar: true}',
-                                                         'styleActiveLine': 'true',
-                                                         'autoCloseTags': 'true',
-                                                         'keyMap':'vim',
-                                                         'theme':'blackboard',
-                                                         }, 
-                                                         modes=['css', 'xml', 'javascript', 'htmlmixed'],
-                                                         )
-        return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-
     def save_model(self, request, obj, form, change):
         obj.editor = request.user
         obj.save()

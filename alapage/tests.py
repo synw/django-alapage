@@ -14,14 +14,13 @@ class PageTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 
-    def create_page(self, url='/mypage/', html='<blink>!!</blink>', layout='xs-12', published=True, template_name='', slideshow=None, presentation=None):
-        return Page.objects.create(url=url, html=html, layout=layout, slideshow=slideshow, published=published, template_name=template_name, presentation=presentation)
+    def create_page(self, url='/mypage/', layout='xs-12', published=True, template_name='', slideshow=None, presentation=None):
+        return Page.objects.create(url=url, layout=layout, slideshow=slideshow, published=published, template_name=template_name, presentation=presentation)
     
     def test_page_creation(self):
         page=self.create_page()
         self.assertTrue(isinstance(page, Page))
         self.assertEqual(page.url, '/mypage/')
-        self.assertEqual(page.html, '<blink>!!</blink>')
         self.assertEqual(page.layout, 'xs-12')
         self.assertTrue(page.published)
     
@@ -102,3 +101,8 @@ class PageTest(TestCase):
         admin.save_model(request, page, form, True)
         self.assertTrue(page.editor ,self.user)
         
+
+        
+        
+    
+    

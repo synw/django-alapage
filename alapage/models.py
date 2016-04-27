@@ -31,7 +31,6 @@ class BasePage(FlatPage, Seo):
 
 
 class Page(BasePage):
-    html = models.TextField(null=True, blank=True, verbose_name=_(u'Html code'), help_text=_(u'Will appear after content'))
     layout = models.CharField(null=True, blank=True, max_length=125, choices=LAYOUTS, default=LAYOUTS[0][0], help_text=_(u'Note: the field name of the template takes precedence over layout choices'))
     edited = models.DateTimeField(editable=False, null=True, auto_now=True, verbose_name=_(u'Edited'))
     created = models.DateTimeField(editable=False, null=True, auto_now_add=True, verbose_name=_(u'Created'))
