@@ -66,9 +66,9 @@ class PageTest(TestCase):
         self.assertTemplateUsed(response, 'alapage/default.html')
         
     def test_trailing_slash(self):
-        page=self.create_page(url='/mypage/')
+        self.create_page(url='/mypage/')
         response = self.client.get('/mypage')
-        self.assertRedirects(response, '/mypage/', status_code=301, target_status_code=200)
+        self.assertEqual(response.status_code, 200)
         
     def page_not_published(self):
         page=self.create_page(url='/mypage/', published=False)

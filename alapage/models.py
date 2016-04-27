@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.flatpages.models import FlatPage
 from ckeditor.fields import RichTextField
+from mqueue.tracking import MTracker
 from alapage.conf import USER_MODEL, USE_JSSOR, USE_PRESENTATIONS, MONITORING_LEVEL, LAYOUTS
 
 
@@ -13,6 +14,7 @@ if USE_JSSOR:
     
 if USE_PRESENTATIONS:
     from zongo.models import Presentation
+
 
 class Seo(models.Model):
     seo_description = models.CharField(max_length=256, null=True, blank=True, verbose_name=_(u'SEO: description'), help_text=_(u'Short description of the page content'))
@@ -23,28 +25,9 @@ class Seo(models.Model):
         verbose_name=_(u'SEO')
 
 
-if MONITORING_LEVEL == 1:
-    from mqueue.models import MonitoredModel
-    class BasePage(FlatPage, Seo, MonitoredModel):
-        class Meta:
-            abstract = True
-            
-elif MONITORING_LEVEL == 2:
-    from mqueue.models import HighlyMonitoredModel
-    class BasePage(FlatPage, Seo, HighlyMonitoredModel):
-        class Meta:
-            abstract = True
-            
-elif MONITORING_LEVEL == 3:
-    from mqueue.models import ObjectLevelMonitoredModel
-    class BasePage(FlatPage, Seo, ObjectLevelMonitoredModel):
-        class Meta:
-            abstract = True
-            
-else:
-    class BasePage(FlatPage, Seo):
-        class Meta:
-            abstract = True
+class BasePage(FlatPage, Seo):
+    class Meta:
+        abstract = True
 
 
 class Page(BasePage):
@@ -64,6 +47,13 @@ class Page(BasePage):
         verbose_name = _(u'Page')
         verbose_name_plural = _(u'Page')
         ordering = ['url']
+
+
+#~ connect model for monitoring
+if MONITORING_LEVEL == 1:
+    MTracker().register(Page, 1)
+elif MONITORING_LEVEL == 2:
+    MTracker().register(Page, 2)
         
 
 
