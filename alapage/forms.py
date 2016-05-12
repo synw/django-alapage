@@ -14,7 +14,7 @@ class PageAdminForm(forms.ModelForm):
         super(PageAdminForm, self).__init__(*args, **kwargs)
         self.fields['template_name'].help_text = _(u'If no template is defined neither any layout, "alapage/default.html" will be used' )
         if 'django_admin_bootstrapped' in settings.INSTALLED_APPS:
-            self.fields['content'].label = 'no label'
+            self.fields['content'].label = ''
     
     if EDIT_MODE == 'visual':    
         content = forms.CharField(widget=CKEditorUploadingWidget())
