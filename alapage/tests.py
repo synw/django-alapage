@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import tempfile
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.contrib.admin.sites import AdminSite
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
@@ -9,11 +11,12 @@ from jssor.models import Slideshow
 from zongo.models import Presentation
 
 # models test
+@override_settings(USE_JSSOR=True, USE_PRESENTATIONS=True)
 class PageTest(TestCase):
     
     def setUp(self):
         self.factory = RequestFactory()
-
+    
     def create_page(self, url='/mypage/', layout='xs-12', published=True, template_name='', slideshow=None, presentation=None):
         return Page.objects.create(url=url, layout=layout, slideshow=slideshow, published=published, template_name=template_name, presentation=presentation)
     

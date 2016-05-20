@@ -6,7 +6,7 @@ Django Alapage
 Page management application with slideshows and responsive presentations for Django. Built on top of flatpages. 
 The pages are editable in a wysiwyg editor or in a html/css code editor in the admin interface. 
 
-This app is designed to work with django admin bootstraped and Django 1.8.
+This app is designed to work with django admin bootstrapped and Django 1.8.
 
 Screenshots
 --------------
@@ -20,7 +20,6 @@ or ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) )
 Dependencies
 --------------
 
-- pytz
 - Pillow
 - Django ckeditor
 - Django codemirror2
@@ -135,7 +134,7 @@ Optional settings
 
 `ALAPAGE_EDIT_MODE='code'` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
 
-`'ALAPAGE_CODEMIRROR_KEYMAP'`='vim' : select your favourite keymap for codemirror editor (ex: "vim", "emacs"): default is no mapping
+`'ALAPAGE_CODEMIRROR_KEYMAP'='vim'` : select your favourite keymap for codemirror editor (ex: "vim", "emacs"): default is no mapping
 
 `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'` : to choose a root base template with a different name than the default `base.html`
 
