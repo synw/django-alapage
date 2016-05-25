@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-25 12:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin.py:45 models.py:22
+msgid "SEO"
+msgstr "Référencement"
+
+#: admin.py:49
+msgid "Layout"
+msgstr "Layout"
+
+#: admin.py:53
+msgid "Permissions"
+msgstr "Permissions"
+
+#: forms.py:16
+msgid ""
+"If no template is defined neither any layout, \"alapage/default.html\" will "
+"be used"
+msgstr "Si aucun template n'est défini ni de layout, \"alapage/default.html\" sera "
+"utilisé"
+
+#: models.py:17
+msgid "SEO: description"
+msgstr "Référencement: description"
+
+#: models.py:17
+msgid "Short description of the page content"
+msgstr "Description courte du contenu de la page"
+
+#: models.py:18
+msgid "SEO: keywords"
+msgstr "Référencement: mots clé"
+
+#: models.py:18
+msgid "List of keywords separated by commas"
+msgstr "Liste de mots clé séparés par une virgule"
+
+#: models.py:31
+msgid ""
+"Note: the field name of the template takes precedence over layout choices"
+msgstr "Note: le champs nom du template prends la précédence sur le choix du layout"
+
+#: models.py:32
+msgid "Edited"
+msgstr "Edité"
+
+#: models.py:33
+msgid "Created"
+msgstr "Crée"
+
+#: models.py:34
+msgid "Edited by"
+msgstr "Edité par"
+
+#: models.py:35
+msgid "Published"
+msgstr "Publié"
+
+#: models.py:36
+msgid "Staff only"
+msgstr "Staff seulement"
+
+#: models.py:37
+msgid "Superuser only"
+msgstr "Superuser seulement"
+
+#: models.py:38
+msgid "Reserved to some groups"
+msgstr "Réservé à des groupes"
+
+#: models.py:39
+msgid "Reserved to some users"
+msgstr "Réservé à des utilisateurs"
+
+#: models.py:41
+msgid "Slideshow"
+msgstr "Slideshow"
+
+#: models.py:45 models.py:46
+msgid "Page"
+msgstr "Page"
+
+#: templates/admin/alapage/page/change_form.html:21
+msgid "Home"
+msgstr "Home"
+
+#: templates/admin/alapage/page/change_form.html:24
+msgid "Add"
+msgstr "Ajouter"
+
+#: templates/admin/alapage/page/change_form.html:49
+msgid "Please correct the error below."
+msgstr "Merci de corriger l'erreur ci-dessous"
+
+#: templates/admin/alapage/page/change_form.html:49
+msgid "Please correct the errors below."
+msgstr "Merci de corriger les erreurs ci-dessous"
