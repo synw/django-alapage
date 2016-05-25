@@ -11,14 +11,14 @@ from jssor.models import Slideshow
 from zongo.models import Presentation
 
 # models test
-@override_settings(USE_JSSOR=True, USE_PRESENTATIONS=True)
+@override_settings(USE_JSSOR=True)
 class PageTest(TestCase):
     
     def setUp(self):
         self.factory = RequestFactory()
     
-    def create_page(self, url='/mypage/', layout='xs-12', published=True, template_name='', slideshow=None, presentation=None):
-        return Page.objects.create(url=url, layout=layout, slideshow=slideshow, published=published, template_name=template_name, presentation=presentation)
+    def create_page(self, url='/mypage/', layout='xs-12', published=True, template_name='', slideshow=None):
+        return Page.objects.create(url=url, layout=layout, slideshow=slideshow, published=published, template_name=template_name)
     
     def test_page_creation(self):
         page=self.create_page()
@@ -37,17 +37,6 @@ class PageTest(TestCase):
         self.assertTrue(isinstance(page, Page))
         self.assertTrue(isinstance(slideshow, Slideshow))
         self.assertEqual(page.slideshow, slideshow)
-    
-    #~ presentations
-    def create_presentation(self, slug="presentation", title="Presentation"):
-        return Presentation.objects.create(slug=slug, title=title)
-    
-    def test_page_with_presentation_creation(self):
-        presentation=self.create_presentation()
-        page=self.create_page(presentation=presentation)
-        self.assertTrue(isinstance(page, Page))
-        self.assertTrue(isinstance(presentation, Presentation))
-        self.assertEqual(page.presentation, presentation)
       
     #~ client tests
     def test_404_page(self):
@@ -62,7 +51,6 @@ class PageTest(TestCase):
         self.assertTrue('layout' in response.context)
         self.assertTrue('slideshow' in response.context)
         self.assertTrue('slides' in response.context)
-        self.assertTrue('presentation' in response.context)
         self.assertTrue('layout_path' in response.context)
         self.assertTrue(page.published)
         self.assertTemplateUsed(response, 'alapage/default.html')

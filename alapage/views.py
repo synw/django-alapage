@@ -8,7 +8,8 @@ from django.views.generic import TemplateView, View
 from django.views.generic.base import RedirectView
 from django.utils.html import strip_tags
 from alapage.models import Page
-from alapage.conf import USE_JSSOR, USE_PRESENTATIONS, BASE_TEMPLATE_PATH
+from alapage.utils import can_see_page
+from alapage.conf import USE_JSSOR, BASE_TEMPLATE_PATH, ENABLE_PRIVATE_PAGES
 
 
 if USE_JSSOR:
@@ -22,6 +23,7 @@ def get_template_to_extend():
 class PageView(TemplateView):
     
     def dispatch(self, request, *args, **kwargs):
+        # get the page
         try:
             url = kwargs['url']
         except:
@@ -31,16 +33,19 @@ class PageView(TemplateView):
         if not url.endswith('/') and settings.APPEND_SLASH:
             url += '/'
         if USE_JSSOR:
-            if USE_PRESENTATIONS:
-                self.page = get_object_or_404(Page.objects.select_related('slideshow','presentation'), url=url)
+            if ENABLE_PRIVATE_PAGES is True:
+                self.page = get_object_or_404(Page.objects.prefetch_related('slideshow','groups_only', 'users_only'), url=url)
             else:
                 self.page = get_object_or_404(Page.objects.select_related('slideshow'), url=url)
         else:
-            if USE_PRESENTATIONS:
-                self.page = get_object_or_404(Page.objects.select_related('presentation'), url=url)
+            if ENABLE_PRIVATE_PAGES is True:
+                self.page = get_object_or_404(Page.objects.prefetch_related('groups_only', 'users_only'), url=url)
             else:
                 self.page = get_object_or_404(Page, url=url)
-                #self.page = Page.objects.filter(url=url)[0]
+        # check permissions
+        if ENABLE_PRIVATE_PAGES is True:
+            if can_see_page(self.page, request.user) is False:
+                raise Http404
         return super(PageView, self).dispatch(request, *args, **kwargs)
     
     def get_template_names(self):
@@ -57,17 +62,13 @@ class PageView(TemplateView):
         if USE_JSSOR:
             if page.slideshow:
                 slides = Slide.objects.filter(slideshow=page.slideshow)
-        presentation = None
-        if USE_PRESENTATIONS:
-                presentation = page.presentation
-        if not page.published and not self.request.user.is_superuser():
+        if not page.published and not self.request.user.is_superuser:
             raise Http404
         context['flatpage'] = page
         if USE_JSSOR:
             context['slideshow'] = page.slideshow
             context['slides'] = slides
         context['layout'] = layout
-        context['presentation'] = presentation
         context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
         context['template_to_extend'] = get_template_to_extend()
         return context

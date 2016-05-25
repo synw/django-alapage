@@ -12,7 +12,10 @@ from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
 class PageAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PageAdminForm, self).__init__(*args, **kwargs)
-        self.fields['template_name'].help_text = _(u'If no template is defined neither any layout, "alapage/default.html" will be used' )
+        try:
+            self.fields['template_name'].help_text = _(u'If no template is defined neither any layout, "alapage/default.html" will be used' )
+        except:
+            pass
         if 'django_admin_bootstrapped' in settings.INSTALLED_APPS:
             self.fields['content'].label = ''
     
