@@ -23,7 +23,8 @@ class PageAdmin(admin_class):
     form = PageAdminForm
     date_hierarchy = 'edited'
     search_fields = ['title','url','editor__username']
-    list_display = ['url','title','edited','editor','created','published','registration_required', 'staff_only', 'superuser_only']
+    list_display = ['url','title','edited','editor','created','published','registration_required', 'staff_only']
+    list_select_related = ['editor']
     list_display_links = ['title','url']
     list_filter = ['created','edited','published','registration_required']
     filter_horizontal = ['users_only']
