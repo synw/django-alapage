@@ -28,7 +28,6 @@ class PageAdmin(admin_class):
     list_display_links = ['title','url']
     list_filter = ['created','edited','published','registration_required']
     filter_horizontal = ['users_only']
-    save_on_top = True
 
     
     def get_fieldsets(self, request, obj=None):
