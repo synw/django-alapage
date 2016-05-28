@@ -6,8 +6,6 @@ Django Alapage
 Page management application with slideshows and responsive presentations for Django. Built on top of flatpages. 
 The pages are editable in a wysiwyg editor or in a html/css code editor in the admin interface. 
 
-This app is designed to work with django admin bootstrapped and Django 1.8.
-
 Screenshots
 --------------
 
