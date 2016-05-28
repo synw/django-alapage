@@ -22,25 +22,15 @@ Install
 pip install django-alapage
   ```
 
-- Optional: Django reversion
+- Options: Django reversion, Codemirror editor, Django Jssor
 
   ```bash
 pip install django-reversion
-  ```
-  
-- Optional: Codemirror editor
-
-  ```bash
 pip install django-codemirror2
-  ```
-
-- Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
-
-  ```bash
 pip install django-jssor
   ```
 
-- `settings.py`:
+In `settings.py`:
 
   ```python
 INSTALLED_APPS = (
@@ -51,10 +41,10 @@ INSTALLED_APPS = (
 	'django.contrib.flatpages',
     'ckeditor',
     'ckeditor_uploader',
-    'codemirror2',
     'alapage',
 	#~ options 
 	#'reversion',
+	#'codemirror2',
     #'jssor',
 )
   ```
@@ -64,7 +54,7 @@ INSTALLED_APPS = (
 
 Check the optional settings below
 
-- `urls.py`:
+In `urls.py`:
 
   ```python
 urlpatterns = patterns('',
