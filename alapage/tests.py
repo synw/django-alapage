@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from alapage.models import Page
 from alapage.admin import PageAdmin, PageAdminForm
 from jssor.models import Slideshow
-from zongo.models import Presentation
 
 # models test
 @override_settings(USE_JSSOR=True)

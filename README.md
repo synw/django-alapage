@@ -20,13 +20,13 @@ or ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) )
 Dependencies
 --------------
 
+- pytz
 - Pillow
 - Django ckeditor
 - Django codemirror2
-- Django admin bootstraped
 
   ```bash
-pip install pytz pillow django-ckeditor django-codemirror2 django-admin-bootstrapped
+pip install pytz pillow django-ckeditor django-codemirror2
   ```
 
 - Optional: Django reversion
@@ -41,12 +41,6 @@ pip install django-reversion
 pip install django-jssor
   ```
 
-- Optional: [Django Zongo](https://github.com/synw/django-zongo) (responsive presentations: :warning: Warning: experimental)
-
-  ```bash
-git clone https://github.com/synw/django-zongo.git && mv django-zongo/zongo path_to_your_project && mkdir media/zongo
-  ```
-
 Install
 --------------
 
@@ -56,7 +50,6 @@ Install
 INSTALLED_APPS = (
 	#~ ...
 	#~ required
-	'django_admin_bootstrapped', # put it before 'django.contrib.admin'
 	'django.contrib.admin',
 	'django.contrib.sites',
 	'django.contrib.flatpages',
@@ -67,12 +60,10 @@ INSTALLED_APPS = (
 	#~ options 
 	#'reversion',
     #'jssor',
-    #'zongo',
 )
   ```
 - Optionnal: add `"reversion",` to INSTALLED_APPS if you plan to use the django-reversion
 - Optionnal: add `"jssor",` to INSTALLED_APPS if you plan to use the slideshows
-- Optionnal: add `"zongo",` to INSTALLED_APPS if you plan to use the presentations
 
 Warning: if you change these optional settings afterwards you will need to run the migrations again.
 
@@ -129,8 +120,6 @@ Optional settings
 `ALAPAGE_USE_REVERSION = True` : to enable reversion
 
 `ALAPAGE_USE_JSSOR = True` : to enable the slideshows. Warning: you will have to run a migration if you change this setting after the first migration.
-
-`ALAPAGE_USE_PRESENTATIONS = True` : to enable the responsive presentations. Warning: you will have to run a migration if you change this setting after the first migration.
 
 `ALAPAGE_EDIT_MODE='code'` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
 
