@@ -28,6 +28,7 @@ class PageAdmin(admin_class):
     list_display_links = ['title','url']
     list_filter = ['created','edited','published','registration_required']
     filter_horizontal = ['users_only']
+    list_select_related = ['editor']
 
     
     def get_fieldsets(self, request, obj=None):
