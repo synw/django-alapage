@@ -24,13 +24,19 @@ Dependencies
 - Django codemirror2
 
   ```bash
-pip install pytz pillow django-ckeditor django-codemirror2
+pip install django-alapage
   ```
 
 - Optional: Django reversion
 
   ```bash
 pip install django-reversion
+  ```
+  
+- Optional: Codemirror editor
+
+  ```bash
+pip install django-codemirror2
   ```
 
 - Optional: [Django Jssor](https://github.com/synw/django-jssor) (slideshows)
@@ -62,6 +68,9 @@ INSTALLED_APPS = (
   ```
 - Optionnal: add `"reversion",` to INSTALLED_APPS if you plan to use the django-reversion
 - Optionnal: add `"jssor",` to INSTALLED_APPS if you plan to use the slideshows
+- Optionnal: add `"codemirror",` to INSTALLED_APPS if you plan to use this editor
+
+Check the settings below
 
 Warning: if you change these optional settings afterwards you will need to run the migrations again.
 
@@ -78,8 +87,6 @@ urlpatterns += url(r'^', include('alapage.urls')),
   ```
 
 :pencil2: You have to put alapage urls in last if you want to have your pages served from `/`
-
-Copy the `alapage/templates/admin/includes` folder in your `templates/admin` folder
 
 - Collect static files
 

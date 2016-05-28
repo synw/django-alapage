@@ -1,5 +1,4 @@
-recursive-include alapage/static *
-recursive-include alapage/templates *
-recursive-include alapage/migrations *
 recursive-include alapage/locale *
 recursive-include alapage/management *
+recursive-include alapage/migrations *
+recursive-include alapage/templates *
