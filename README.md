@@ -40,10 +40,7 @@ pip install django-codemirror2
 pip install django-jssor
   ```
 
-Install
---------------
-
-- Clone the repository
+- `settings.py`:
 
   ```python
 INSTALLED_APPS = (
@@ -65,9 +62,7 @@ INSTALLED_APPS = (
 - Optionnal: add `"jssor",` to INSTALLED_APPS if you plan to use the slideshows
 - Optionnal: add `"codemirror",` to INSTALLED_APPS if you plan to use this editor
 
-Check the settings below
-
-Warning: if you change these optional settings afterwards you will need to run the migrations again.
+Check the optional settings below
 
 - `urls.py`:
 
