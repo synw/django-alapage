@@ -1,14 +1,17 @@
 from setuptools import setup, find_packages
 
+
+version = __import__('alapage').__version__
+
 setup(
   name = 'django-alapage',
   packages=find_packages(),
-  version = '0.2',
-  description = 'Page management with slideshows and responsive presentations for Django',
+  version = version,
+  description = 'Page management app for Django',
   author = 'synw',
   author_email = 'synwe@yahoo.com',
   url = 'https://github.com/synw/django-alapage', 
-  download_url = '',
+  download_url = 'https://github.com/synw/django-alapage/releases/tag/'+version,
   keywords = ['django', 'page management', 'jssor','slideshows'], 
   classifiers = [
         'Development Status :: 3 - Alpha',
@@ -18,7 +21,7 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
   install_requires=[
-        "Django >= 1.8.0",
+        "Django",
         'Pillow',
         'pytz',
         'django-ckeditor',

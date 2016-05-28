@@ -3,7 +3,7 @@ Django Alapage
 
 [![Build Status](https://travis-ci.org/synw/django-alapage.svg?branch=master)](https://travis-ci.org/synw/django-alapage) 
 
-Page management application with slideshows and responsive presentations for Django. Built on top of flatpages. 
+Page management application with slideshows for Django. Built on top of flatpages. 
 The pages are editable in a wysiwyg editor or in a html/css code editor in the admin interface. 
 
 Screenshots
