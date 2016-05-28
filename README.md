@@ -14,6 +14,10 @@ or ( [django-codemirror2](https://github.com/sk1p/django-codemirror2) )
 
 ![Editors](https://raw.github.com/synw/django-alapage/master/docs/img/editors.png)
 
+
+Install
+--------------
+
   ```bash
 pip install django-alapage
   ```
