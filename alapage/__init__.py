@@ -1,2 +1,2 @@
-__version__ = '0.1.4'
+__version__ = '0.1.6'
 default_app_config = 'alapage.apps.AlapageConfig'

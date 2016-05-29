@@ -22,7 +22,7 @@ Install
 pip install django-alapage
   ```
 
-- Options: Django reversion, Codemirror editor, Django Jssor
+Options: Django reversion, Codemirror editor, Django Jssor
 
   ```bash
 pip install django-reversion
@@ -48,11 +48,13 @@ INSTALLED_APPS = (
     #'jssor',
 )
   ```
+Note: `codemirror2` should be loaded after `alapage`
+
 - Optionnal: add `"reversion",` to INSTALLED_APPS if you plan to use the django-reversion
 - Optionnal: add `"jssor",` to INSTALLED_APPS if you plan to use the slideshows
 - Optionnal: add `"codemirror",` to INSTALLED_APPS if you plan to use this editor
 
-Check the optional settings below
+Check the optional settings below.
 
 In `urls.py`:
 
