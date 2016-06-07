@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 
+from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.contrib import admin
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.contrib.flatpages.models import FlatPage
 from django.contrib import messages
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
-from alapage.conf import USE_JSSOR, USE_REVERSION, EDIT_MODE
+from alapage.conf import USE_JSSOR, USE_REVERSION
 
 
 if USE_REVERSION:
@@ -32,7 +33,7 @@ class PageAdmin(admin_class):
 
     
     def get_fieldsets(self, request, obj=None):
-        fieldsets = super(PageAdmin, self).get_fieldsets(request, obj)
+        super(PageAdmin, self).get_fieldsets(request, obj)
         jssor_fieldset = ('url','title')
         if USE_JSSOR:
             jssor_fieldset += ('slideshow',)
@@ -60,7 +61,6 @@ class PageAdmin(admin_class):
     
     
     def get_readonly_fields(self, request, obj=None):
-        user_can_see_page = can_see_page(obj, request.user)
         readonly_fields = ()
         if request.user.has_perm('can_change_page_permissions') is False:
             readonly_fields = ('login_required', 'superuser_only', 'staff_only', 'groups_only', 'users_only')
@@ -79,6 +79,12 @@ class PageAdmin(admin_class):
         if user_can_see_page is False:
             return HttpResponseForbidden()
         return super(PageAdmin, self).change_view(request, object_id)
+    
+    def response_change(self, request, obj):
+        if '_inline' in request.POST:
+            return HttpResponseRedirect(reverse('page-view', kwargs={"url":obj.url}))
+        else:
+            return super(PageAdmin, self).response_change(request, obj)
 
 #~ deactivate flatpages admin
 admin.site.unregister(FlatPage)

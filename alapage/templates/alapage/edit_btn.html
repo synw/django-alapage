@@ -1,0 +1,8 @@
+{% load i18n %}
+{% if perms.alapage.can_change_page %}
+	<div style="font-size:80%;float:right;padding-top:1em">
+		<a href="{% url 'admin:alapage_page_change' flatpage.id %}?i=1">
+			<i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
+		</a>
+	</div>
+{% endif %}
