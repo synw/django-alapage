@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 12:45+0000\n"
+"POT-Creation-Date: 2016-06-07 04:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: admin.py:45 models.py:22
+#: admin.py:47 models.py:22
 msgid "SEO"
 msgstr "Référencement"
 
-#: admin.py:49
+#: admin.py:51
 msgid "Layout"
 msgstr "Layout"
 
-#: admin.py:53
+#: admin.py:55
 msgid "Permissions"
 msgstr "Permissions"
+
+#: apps.py:7
+msgid "Alapage"
+msgstr ""
 
 #: forms.py:16
 msgid ""
 "If no template is defined neither any layout, \"alapage/default.html\" will "
 "be used"
-msgstr "Si aucun template n'est défini ni de layout, \"alapage/default.html\" sera "
+msgstr ""
+"Si aucun template n'est défini ni de layout, \"alapage/default.html\" sera "
 "utilisé"
 
 #: models.py:17
@@ -56,7 +61,8 @@ msgstr "Liste de mots clé séparés par une virgule"
 #: models.py:31
 msgid ""
 "Note: the field name of the template takes precedence over layout choices"
-msgstr "Note: le champs nom du template prends la précédence sur le choix du layout"
+msgstr ""
+"Note: le champs nom du template prends la précédence sur le choix du layout"
 
 #: models.py:32
 msgid "Edited"
@@ -98,18 +104,36 @@ msgstr "Slideshow"
 msgid "Page"
 msgstr "Page"
 
-#: templates/admin/alapage/page/change_form.html:21
+#: templates/admin/alapage/page/change_form.html:18
 msgid "Home"
 msgstr "Home"
 
-#: templates/admin/alapage/page/change_form.html:24
+#: templates/admin/alapage/page/change_form.html:21
 msgid "Add"
 msgstr "Ajouter"
 
-#: templates/admin/alapage/page/change_form.html:49
+#: templates/admin/alapage/page/change_form.html:33
+msgid "History"
+msgstr "Historique"
+
+#: templates/admin/alapage/page/change_form.html:35
+msgid "View on site"
+msgstr "Voir sur le site"
+
+#: templates/admin/alapage/page/change_form.html:47
 msgid "Please correct the error below."
 msgstr "Merci de corriger l'erreur ci-dessous"
 
-#: templates/admin/alapage/page/change_form.html:49
+#: templates/admin/alapage/page/change_form.html:47
 msgid "Please correct the errors below."
 msgstr "Merci de corriger les erreurs ci-dessous"
+
+#: templates/admin/alapage/page/change_form.html:70
+msgid "Save and view page"
+msgstr "Sauver et voir la page"
+
+#: templates/alapage/edit_btn.html:5
+#, fuzzy
+#| msgid "Edited"
+msgid "Edit"
+msgstr "Edité"

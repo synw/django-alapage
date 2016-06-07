@@ -67,7 +67,7 @@
 
 {% block submit_buttons_bottom %}
 	{% if request.GET.i %}
-		<div style="float:right;"><input type="submit" name="_inline" class="default" value="Save and go to page" /></div>
+		<div style="float:right;"><input type="submit" name="_inline" class="default" value="{% trans 'Save and view page' %}" /></div>
 	{% else %}
 		{% submit_row %}
 	{% endif %}
