@@ -36,7 +36,7 @@ class PageAdmin(admin_class):
         super(PageAdmin, self).get_fieldsets(request, obj)
         jssor_fieldset = ('url','title')
         if USE_JSSOR:
-            jssor_fieldset += ('slideshow',)
+            jssor_fieldset += ('slideshow_group', 'breakpoints_with_no_header')
         fieldsets = (
             (None, {
                 'fields': ('content',)

@@ -9,10 +9,6 @@ from ckeditor.fields import RichTextField
 from alapage.conf import USER_MODEL, USE_JSSOR, LAYOUTS
 
 
-if USE_JSSOR:
-    from jssor.models import Slideshow
-
-
 class Seo(models.Model):
     seo_description = models.CharField(max_length=256, null=True, blank=True, verbose_name=_(u'SEO: description'), help_text=_(u'Short description of the page content'))
     seo_keywords = models.CharField(max_length=120, null=True, blank=True, verbose_name=_(u'SEO: keywords'), help_text=_(u'List of keywords separated by commas'))
@@ -38,7 +34,8 @@ class Page(BasePage):
     groups_only = models.ManyToManyField(Group, blank=True, verbose_name=_(u'Reserved to some groups'))
     users_only = models.ManyToManyField(USER_MODEL, blank=True, verbose_name=_(u'Reserved to some users')) 
     if USE_JSSOR:
-        slideshow = models.ForeignKey(Slideshow, related_name='+', null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_(u'Slideshow'))  
+        slideshow_group = models.SlugField(null=True, blank=True, verbose_name=_(u'Slideshows group id'))
+        breakpoints_with_no_header = models.CharField(max_length=8, blank=True, verbose_name=_(u'Breakpoints fullscreen'), help_text=_(u'This will remove the {% header %} or {% site_header %} block to display a fullscreen slideshow/ Ex: 320, 360'))
     
     
     class Meta:
