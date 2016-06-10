@@ -26,11 +26,13 @@
 		{% endif %}
 	{% endif %}
 {% endblock %}
+{% block infoslabel %}
+	{% include "alapage/edit_btn.html" %}
+{% endblock %}
 {% block content %}
 	{% if layout %}
 		{% include layout_path %}
 	{% endif %}
-	{% include "alapage/edit_btn.html" %}
 	{% if page.content %}{{ page.content|safe }}{% endif %}
 	{% if page.html %}{{ page.html|safe }}{% endif %}
 	{% if layout %}
