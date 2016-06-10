@@ -16,7 +16,7 @@ setup(
   keywords = ['django', 'page management', 'jssor', 'slideshows'], 
   classifiers = [
         'Development Status :: 3 - Alpha',
-        'Framework :: Django :: 1.8',
+        'Framework :: Django :: 1.9',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
