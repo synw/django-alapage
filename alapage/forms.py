@@ -25,7 +25,7 @@ class PageAdminForm(forms.ModelForm):
                                                              'mode':'htmlmixed',
                                                              'width':'1170px',
                                                              'indentWithTabs':'true', 
-                                                             'indentUnit' : '4',
+                                                             #'indentUnit' : '4',
                                                              'lineNumbers':'true',
                                                              'autofocus':'true',
                                                              #'highlightSelectionMatches': '{showToken: /\w/, annotateScrollbar: true}',
