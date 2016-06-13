@@ -18,13 +18,11 @@
 	{% endif %}
 {% endblock %}
 {% block precontent %}
-	{% if not user.is_superuser and request.path == '/' %}
-		{% if page.slideshow_group %}
-			{% if not fullscreen %}
-				{% with page.slideshow_group as slideshow_group %}
-					{% include "jssor/loader.html" %}
-				{% endwith %}
-			{% endif %}
+	{% if page.slideshow_group %}
+		{% if not fullscreen %}
+			{% with page.slideshow_group as slideshow_group %}
+				{% include "jssor/loader.html" %}
+			{% endwith %}
 		{% endif %}
 	{% endif %}
 {% endblock %}
