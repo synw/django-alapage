@@ -65,9 +65,12 @@ class PageAdmin(admin_class):
         if request.user.has_perm('can_change_page_permissions') is False:
             readonly_fields = ('login_required', 'superuser_only', 'staff_only', 'groups_only', 'users_only')
         return readonly_fields
-        
-    
+
     def save_model(self, request, obj, form, change):
+        bpn = ''
+        bpn = obj.breakpoints_with_no_header.replace('[','').replace(']','').replace('u','').replace("'",'')
+        print bpn
+        obj.breakpoints_with_no_header = bpn
         obj.editor = request.user
         obj.save()
         return
@@ -81,6 +84,7 @@ class PageAdmin(admin_class):
         return super(PageAdmin, self).change_view(request, object_id)
     
     def response_change(self, request, obj):
+        # for inline editing
         if '_inline' in request.POST:
             return HttpResponseRedirect(reverse('page-view', kwargs={"url":obj.url}))
         else:

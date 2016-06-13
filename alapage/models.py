@@ -45,11 +45,3 @@ class Page(BasePage):
         permissions = (
             ("can_change_page_permissions", "Can change page permissions"),
         )
-
-        
-    
-
-
-        
-
-

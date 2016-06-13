@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from codemirror2.widgets import CodeMirrorEditor
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from alapage.models import Page
-from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
+from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP, USE_JSSOR
 
 
 class PageAdminForm(forms.ModelForm):
