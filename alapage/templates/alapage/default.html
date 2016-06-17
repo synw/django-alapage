@@ -6,24 +6,11 @@
 {% endblock %}
 {% block title %}{{ page.title }}{% endblock %}
 
-{% block header %}
-	{% if page.slideshow_group %}
-		{% if fullscreen %}
-			{% with page.slideshow_group as slideshow_group %}
-				{% include "jssor/loader.html" %}
-			{% endwith %}
-		{% else %}
-			{% include "site_header.html" %}
-		{% endif %}
-	{% endif %}
-{% endblock %}
 {% block precontent %}
 	{% if page.slideshow_group %}
-		{% if not fullscreen %}
-			{% with page.slideshow_group as slideshow_group %}
-				{% include "jssor/loader.html" %}
-			{% endwith %}
-		{% endif %}
+		{% with page.slideshow_group as slideshow_group %}
+			{% include "jssor/loader.html" %}
+		{% endwith %}
 	{% endif %}
 {% endblock %}
 
