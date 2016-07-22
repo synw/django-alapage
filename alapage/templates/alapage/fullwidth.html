@@ -1,0 +1,33 @@
+{% extends template_to_extend %}
+
+{% block extra_head %}
+	<meta name="keywords" content="{{ page.seo_description }}" />
+	<meta name="description" content="{{ page.seo_keywords }}" />
+{% endblock %}
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block container_type %}container-fluid{% endblock %}
+{% block precontent %}
+	{% if page.slideshow_group %}
+		{% with page.slideshow_group as slideshow_group %}
+			{% include "jssor/loader.html" %}
+		{% endwith %}
+	{% endif %}
+{% endblock %}
+
+{% block infoslabel %}
+	{% include "alapage/edit_btn.html" %}
+{% endblock %}
+{% block content %}
+	{% if layout %}
+		{% include layout_path %}
+	{% endif %}
+	{% if page.content %}{{ page.content|safe }}{% endif %}
+	{% if page.html %}{{ page.html|safe }}{% endif %}
+	{% if layout %}
+		{% include 'alapage/layouts/bottom.html' %}
+	{% endif %}
+{% endblock %}
+
+
+
