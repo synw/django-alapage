@@ -95,9 +95,10 @@ CKEDITOR_CONFIGS = {
                     ["Image", "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'],
                     ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'],["Source", "Maximize"],
                     ]
-        'width': '1150px',
-        'height': '450px',
     },
+    "removePlugins": "stylesheetparser",
+    'width': '1150px',
+    'height': '450px',
 }
   ```
 
@@ -108,7 +109,8 @@ Optional settings
 
 `ALAPAGE_USE_JSSOR = True` : to enable the slideshows. Warning: you will have to run a migration if you change this setting after the first migration.
 
-`ALAPAGE_EDIT_MODE='code'` : if you plan to code html manualy more than in the wysywig editor. This will put the code editor in front and collapse the wysywig editor.
+`ALAPAGE_EDIT_MODE='code'` : if you plan to code html manualy more than in the wysywig editor: this will enable the
+codemirror editor.
 
 `'ALAPAGE_CODEMIRROR_KEYMAP'='vim'` : select your favourite keymap for codemirror editor (ex: "vim", "emacs"): default is no mapping
 
@@ -157,5 +159,6 @@ Todo
 
 - [ ] More tests
 - [ ] Base template selection option
+- [ ] Ability to choose from wysiwig editor or code editor depending on the user preference
 - [ ] Add more layouts
 
