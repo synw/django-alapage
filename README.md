@@ -114,6 +114,26 @@ Optional settings
 
 `ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'` : to choose a root base template with a different name than the default `base.html`
 
+Using the slideshows
+--------------
+
+This feature enables the page to serve different slideshows according to the screen with.
+Enable the slideshows in the settings. To link a responsive slideshow to a page do the following:
+
+- In the django-jssor admin create a slideshow with the "Slideshow group" set (Ex: "homepage") and no breakpoints. This
+one will be used for the desktop version.
+
+- Create more slideshows with breakpoints using the same "Slideshow group" value. Note: a slideshow with a 360px
+breakpoint needs slides with images that have a width of 360px to optimize the loading time.
+
+- In the alapage admin create a page and fill the "Slideshow group" with the value corresponding to your slideshow group
+("homepage" in our example). Set the breakpoints according to the slideshows that belong to the group.
+
+The proper slideshow will be loaded according to the screen width. By default it loads these in a "precontent" block
+that must be in your base template. To change this behavior cutomize the template `templates/alapage/default.html` or 
+make new ones.
+
+
 Management commands
 --------------
 
