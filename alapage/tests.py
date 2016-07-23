@@ -16,8 +16,8 @@ class PageTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
     
-    def create_page(self, url='/mypage/', layout='xs-12', published=True, template_name='', slideshow=None):
-        return Page.objects.create(url=url, layout=layout, slideshow=slideshow, published=published, template_name=template_name)
+    def create_page(self, url='/mypage/', layout='xs-12', published=True, template_name='', slideshow_group='', breakpoints_with_no_header=''):
+        return Page.objects.create(url=url, layout=layout, published=published, template_name=template_name, slideshow_group=slideshow_group, breakpoints_with_no_header=breakpoints_with_no_header)
     
     def test_page_creation(self):
         page=self.create_page()
@@ -27,15 +27,8 @@ class PageTest(TestCase):
         self.assertTrue(page.published)
     
     #~ slideshows
-    def create_slideshow(self, template_name="full_width_slider.html", title="Slideshow", width=780, height=300):
-        return Slideshow.objects.create(template_name=template_name, title=title, width=width, height=height)
-
-    def test_page_with_slideshow_creation(self):
-        slideshow=self.create_slideshow()
-        page=self.create_page(slideshow=slideshow)
-        self.assertTrue(isinstance(page, Page))
-        self.assertTrue(isinstance(slideshow, Slideshow))
-        self.assertEqual(page.slideshow, slideshow)
+    #def create_slideshow(self, template_name="full_width_slider.html", title="Slideshow", width=780, height=300):
+    #    return Slideshow.objects.create(template_name=template_name, title=title, width=width, height=height)
       
     #~ client tests
     def test_404_page(self):
@@ -46,10 +39,8 @@ class PageTest(TestCase):
         page=self.create_page()
         response = self.client.get('/mypage/')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('flatpage' in response.context)
+        self.assertTrue('page' in response.context)
         self.assertTrue('layout' in response.context)
-        self.assertTrue('slideshow' in response.context)
-        self.assertTrue('slides' in response.context)
         self.assertTrue('layout_path' in response.context)
         self.assertTrue(page.published)
         self.assertTemplateUsed(response, 'alapage/default.html')
@@ -61,8 +52,9 @@ class PageTest(TestCase):
         
     def page_not_published(self):
         page=self.create_page(url='/mypage/', published=False)
-        response = self.client.get('/mypage')
+        response = self.client.get('/mypage/')
         self.assertFalse(page.published)
+        self.assertEqual(response.status_code, 404)
         
     def test_template_name(self):
         page=self.create_page(url='/mypage/', template_name='alapage/layouts/bottom.html')
@@ -73,6 +65,14 @@ class PageTest(TestCase):
         self.create_page(url='/')
         resp = self.client.get('/')
         self.assertEqual(resp.status_code, 200)
+        
+    def test_page_with_slideshow(self):
+        page = self.create_page(url='/', slideshow_group='home', breakpoints_with_no_header='320,360')
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(page.slideshow_group, 'home')
+        self.assertEqual(page.breakpoints_with_no_header, '320,360')
+        self.assertEqual(response.context['breakpoints_with_no_header'], [320, 360])
 
     #~ admin
     def test_admin_form(self):
