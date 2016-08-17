@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
+from django.db.models.query import Prefetch
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import TemplateView, View
@@ -8,7 +9,7 @@ from django.views.generic.base import RedirectView
 from django.utils.html import strip_tags
 from alapage.models import Page
 from alapage.utils import can_see_page
-from alapage.conf import BASE_TEMPLATE_PATH, ENABLE_PRIVATE_PAGES
+from alapage.conf import BASE_TEMPLATE_PATH
 from jssor.models import Slideshow
     
 
@@ -28,15 +29,24 @@ class PageView(TemplateView):
             url = '/' + url
         if not url.endswith('/') and settings.APPEND_SLASH:
             url += '/'
-        if ENABLE_PRIVATE_PAGES is True:
-            self.page = get_object_or_404(Page.objects.prefetch_related('groups_only', 'users_only'), url=url)
-        else:
-            self.page = get_object_or_404(Page.objects.select_related(), url=url)
-        # check permissions
-        if ENABLE_PRIVATE_PAGES is True:
+        # get the page with 1 query
+        self.page_q = Page.objects.filter(url=url)
+        self.page = self.page_q[0]
+        # check if other queries are really necessary and get the related data
+        if self.page.is_reserved_to_users is True \
+        or self.page.is_reserved_to_groups is True\
+        or self.page.staff_only is True \
+        or self.page.superuser_only is True:
+            if self.page.is_reserved_to_users is True:
+                prefetch = Prefetch('users_only', queryset=self.page_q)
+                self.page_q = Page.objects.prefetch_related(prefetch)
+            if self.page.is_reserved_to_groups is True:
+                prefetch = Prefetch('groups_only', queryset=self.page_q)
+                self.page_q = Page.objects.prefetch_related(prefetch)
+            # check permissions
             if can_see_page(self.page, request.user) is False:
                 raise Http404
-        return super(PageView, self).dispatch(request, *args, **kwargs)
+            return super(PageView, self).dispatch(request, *args, **kwargs)
     
     def get_template_names(self):
         template_name = 'alapage/default.html'

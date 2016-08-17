@@ -39,23 +39,19 @@ class PageAdmin(admin_class):
                 'fields': ('content',)
             }),
             (None, {
-                'fields': ('url','title'),
-            }),
-            (_(u'Page caracteristics'), {
-                'classes': ('collapse',),
-                'fields': ('has_slideshow',)
-            }),
-            (_(u'SEO'), {
-                'classes': ('collapse',),
-                'fields': ('seo_keywords','seo_description')
+                'fields': ('url','title','published', 'has_slideshow'),
             }),
             (_(u'Layout'), {
                 'classes': ('collapse',),
                 'fields': ('layout', 'template_name')
             }),
+            (_(u'SEO'), {
+                'classes': ('collapse',),
+                'fields': ('seo_keywords','seo_description')
+            }),
             (_(u'Permissions'), {
                 'classes': ('collapse',),
-                'fields': ('published', 'registration_required', 'groups_only', 'users_only', 'staff_only', 'superuser_only')
+                'fields': ('registration_required','is_reserved_to_users', 'users_only', 'is_reserved_to_groups', 'groups_only', 'staff_only', 'superuser_only')
             }),
         )
         return fieldsets

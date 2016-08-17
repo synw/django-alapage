@@ -21,5 +21,3 @@ BASE_TEMPLATE_PATH = getattr(settings, 'ALAPAGE_BASE_TEMPLATE_PATH', 'base.html'
 EDIT_MODE = getattr(settings, 'ALAPAGE_EDIT_MODE', EDIT_MODES[0])
 CODEMIRROR_KEYMAP = getattr(settings, 'ALAPAGE_CODEMIRROR_KEYMAP', 'default')
 
-ENABLE_PRIVATE_PAGES = getattr(settings, 'ALAPAGE_ENABLE_PRIVATE_PAGES', False)
-

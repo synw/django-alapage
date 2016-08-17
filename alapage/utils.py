@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-
 def can_see_page(page, user):
     """
-    To avoid queries pass a prefetched related page object: prefetch 'users_only' and 'groups_only'
+    To avoid queries pass a prefetched related page object: prefetch 'users_only' and/or 'groups_only'
     """
     if user.is_superuser:
         return True
@@ -14,17 +13,16 @@ def can_see_page(page, user):
             return True
         else:
             return False
-    reserved_to_groups = page.groups_only.all()
-    if len(reserved_to_groups) > 0:
+    if page.is_reserved_to_groups is True:
         user_is_allowed = False
         for group in user.groups.all():
-            if group in reserved_to_groups:
+            if group in page.groups_only.all():
                 user_is_allowed = True
                 break
         return user_is_allowed
-    reserved_to_users = page.users_only.all()
-    if len(reserved_to_users) > 0:
-        if user in reserved_to_users:
+    if page.is_reserved_to_users is True:
+        print "UUUUUUUUUUUUU"
+        if user in page.users_only.all():
             return True
         else:
             return False

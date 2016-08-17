@@ -35,6 +35,9 @@ class Page(BasePage):
     users_only = models.ManyToManyField(USER_MODEL, blank=True, verbose_name=_(u'Reserved to some users'))
     # page caracteristics used to tminimize the select related queries
     has_slideshow = models.BooleanField(default=False, verbose_name=_(u'Has slideshow'))
+    is_reserved_to_groups = models.BooleanField(default=False, verbose_name=_(u'Reserved to groups'))
+    is_reserved_to_users = models.BooleanField(default=False, verbose_name=_(u'Reserved to users'))
+    
     
     class Meta:
         verbose_name = _(u'Page')
