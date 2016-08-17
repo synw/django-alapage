@@ -24,6 +24,8 @@ class PageView(TemplateView):
             url += '/'
         # get the page with 1 query
         self.page_q = Page.objects.filter(url=url)
+        if len(self.page_q) == 0:
+            raise Http404
         self.page = self.page_q[0]
         # check if other queries are really necessary and get the related data
         if self.page.is_reserved_to_users is True \
@@ -39,7 +41,7 @@ class PageView(TemplateView):
             # check permissions
             if can_see_page(self.page, request.user) is False:
                 raise Http404
-            return super(PageView, self).dispatch(request, *args, **kwargs)
+        return super(PageView, self).dispatch(request, *args, **kwargs)
     
     def get_template_names(self):
         template_name = 'alapage/default.html'
@@ -55,16 +57,16 @@ class PageView(TemplateView):
         layout=self.page.layout
         if page.has_slideshow is True:
             slideshows = Slideshow.objects.filter(page=page)
-        # encode slideshow ids to pass in an url
-        slideshow_ids = 0
-        i = 0
-        for slideshow in slideshows:
-            if i == 0:
-                slideshow_ids = str(slideshow.pk)
-            else:
-                slideshow_ids += '_'+str(slideshow.pk)
-            i += 1
-        context['slideshow_ids'] = slideshow_ids
+            # encode slideshow ids to pass in an url
+            slideshow_ids = 0
+            i = 0
+            for slideshow in slideshows:
+                if i == 0:
+                    slideshow_ids = str(slideshow.pk)
+                else:
+                    slideshow_ids += '_'+str(slideshow.pk)
+                i += 1
+            context['slideshow_ids'] = slideshow_ids
         context['page'] = page
         context['layout'] = layout
         context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
@@ -74,5 +76,4 @@ class PageView(TemplateView):
 
 class HomepageView(PageView):
     pass
-    
     

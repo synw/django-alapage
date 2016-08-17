@@ -29,7 +29,7 @@ Read the [documentation](http://django-alapage.readthedocs.io/en/latest/)
 Todo
 ----
 
-- [ ] Fix the tests
+- [ ] More tests
 - [ ] Base template selection option
 - [ ] Ability to choose from wysiwig editor or code editor depending on the user preference
 - [ ] Add more layouts
