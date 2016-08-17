@@ -25,4 +25,7 @@ def can_see_page(page, user):
             return True
         else:
             return False
+    if page.registration_required:
+        if user.is_anonymous():
+            return False
     return True
