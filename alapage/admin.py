@@ -30,6 +30,7 @@ class PageAdmin(admin_class):
     list_filter = ['created','edited','published','registration_required']
     filter_horizontal = ['users_only']
     list_select_related = ['editor']
+    #save_on_top = True
 
     
     def get_fieldsets(self, request, obj=None):
