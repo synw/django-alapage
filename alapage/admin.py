@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse
-from django.conf import settings
 from django.contrib import admin
-from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.contrib.flatpages.models import FlatPage
-from django.contrib import messages
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
@@ -86,4 +83,3 @@ class PageAdmin(admin_class):
 
 #~ deactivate flatpages admin
 admin.site.unregister(FlatPage)
-

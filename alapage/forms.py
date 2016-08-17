@@ -17,7 +17,7 @@ class PageAdminForm(forms.ModelForm):
             pass
     
     if EDIT_MODE == 'visual':    
-        content = forms.CharField(widget=CKEditorUploadingWidget(attrs={'onkeypress':'return runScript(event)'}))
+        content = forms.CharField(widget=CKEditorUploadingWidget())
     elif EDIT_MODE == 'code':
         content = forms.CharField(
                                   widget=CodeMirrorEditor(options={
