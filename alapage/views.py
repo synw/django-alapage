@@ -3,19 +3,12 @@
 from django.conf import settings
 from django.db.models.query import Prefetch
 from django.http import Http404
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import TemplateView, View
-from django.views.generic.base import RedirectView
-from django.utils.html import strip_tags
+from django.views.generic import TemplateView
 from alapage.models import Page
 from alapage.utils import can_see_page
 from alapage.conf import BASE_TEMPLATE_PATH
 from jssor.models import Slideshow
-    
 
-def get_template_to_extend():
-    return BASE_TEMPLATE_PATH
- 
 
 class PageView(TemplateView):
     
@@ -62,6 +55,7 @@ class PageView(TemplateView):
         layout=self.page.layout
         if page.has_slideshow is True:
             slideshows = Slideshow.objects.filter(page=page)
+        # encode slideshow ids to pass in an url
         slideshow_ids = 0
         i = 0
         for slideshow in slideshows:
@@ -74,14 +68,11 @@ class PageView(TemplateView):
         context['page'] = page
         context['layout'] = layout
         context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
-        context['template_to_extend'] = get_template_to_extend()
+        context['template_to_extend'] = BASE_TEMPLATE_PATH
         return context
 
 
 class HomepageView(PageView):
     pass
-
-
-
     
     

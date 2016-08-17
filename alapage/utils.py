@@ -21,7 +21,6 @@ def can_see_page(page, user):
                 break
         return user_is_allowed
     if page.is_reserved_to_users is True:
-        print "UUUUUUUUUUUUU"
         if user in page.users_only.all():
             return True
         else:
