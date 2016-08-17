@@ -14,7 +14,6 @@ LAYOUTS = (('xs-12','Xs 12'),('smooth-md','Smooth md'))
 
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', User)
 
-USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', False)
 USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', False)
 
 BASE_TEMPLATE_PATH = getattr(settings, 'ALAPAGE_BASE_TEMPLATE_PATH', 'base.html')

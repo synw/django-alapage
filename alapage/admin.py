@@ -11,7 +11,7 @@ from django.contrib import messages
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
-from alapage.conf import USE_JSSOR, USE_REVERSION
+from alapage.conf import USE_REVERSION
 
 
 if USE_REVERSION:
@@ -34,15 +34,16 @@ class PageAdmin(admin_class):
     
     def get_fieldsets(self, request, obj=None):
         super(PageAdmin, self).get_fieldsets(request, obj)
-        jssor_fieldset = ('url','title')
-        if USE_JSSOR:
-            jssor_fieldset += ('slideshow_group', 'breakpoints_with_no_header')
         fieldsets = (
             (None, {
                 'fields': ('content',)
             }),
             (None, {
-                'fields': jssor_fieldset
+                'fields': ('url','title'),
+            }),
+            (_(u'Page caracteristics'), {
+                'classes': ('collapse',),
+                'fields': ('has_slideshow',)
             }),
             (_(u'SEO'), {
                 'classes': ('collapse',),
@@ -67,10 +68,6 @@ class PageAdmin(admin_class):
         return readonly_fields
 
     def save_model(self, request, obj, form, change):
-        bpn = ''
-        bpn = obj.breakpoints_with_no_header.replace('[','').replace(']','').replace('u','').replace("'",'')
-        print bpn
-        obj.breakpoints_with_no_header = bpn
         obj.editor = request.user
         obj.save()
         return

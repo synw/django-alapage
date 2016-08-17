@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from codemirror2.widgets import CodeMirrorEditor
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from alapage.models import Page
-from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP, USE_JSSOR
+from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
 
 
 class PageAdminForm(forms.ModelForm):

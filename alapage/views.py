@@ -8,7 +8,8 @@ from django.views.generic.base import RedirectView
 from django.utils.html import strip_tags
 from alapage.models import Page
 from alapage.utils import can_see_page
-from alapage.conf import USE_JSSOR, BASE_TEMPLATE_PATH, ENABLE_PRIVATE_PAGES
+from alapage.conf import BASE_TEMPLATE_PATH, ENABLE_PRIVATE_PAGES
+from jssor.models import Slideshow
     
 
 def get_template_to_extend():
@@ -49,12 +50,17 @@ class PageView(TemplateView):
         if not page.published and not self.request.user.is_superuser:
             raise Http404
         layout=self.page.layout
-        if page.breakpoints_with_no_header:
-            bnh = []
-            for bp in page.breakpoints_with_no_header.split(','):
-                bnh.append(int(str.rstrip(str(bp)))) 
-            context['breakpoints_with_no_header'] = bnh
-            print str(context['breakpoints_with_no_header'])
+        if page.has_slideshow is True:
+            slideshows = Slideshow.objects.filter(page=page)
+        slideshow_ids = 0
+        i = 0
+        for slideshow in slideshows:
+            if i == 0:
+                slideshow_ids = str(slideshow.pk)
+            else:
+                slideshow_ids += '_'+str(slideshow.pk)
+            i += 1
+        context['slideshow_ids'] = slideshow_ids
         context['page'] = page
         context['layout'] = layout
         context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
