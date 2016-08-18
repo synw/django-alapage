@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 15:04+0000\n"
+"POT-Creation-Date: 2016-08-18 01:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: admin.py:47 models.py:18
-msgid "SEO"
-msgstr "Référencement"
-
-#: admin.py:51
+#: admin.py:42
 msgid "Layout"
 msgstr "Layout"
 
-#: admin.py:55
+#: admin.py:46 models.py:18
+msgid "SEO"
+msgstr "Référencement"
+
+#: admin.py:50
 msgid "Permissions"
 msgstr "Permissions"
 
@@ -97,53 +97,60 @@ msgid "Reserved to some users"
 msgstr "Réservé à des utilisateurs"
 
 #: models.py:37
+msgid "Has slideshow"
+msgstr "A un slideshow"
+
+#: models.py:38
 #, fuzzy
-#| msgid "Slideshow"
-msgid "Slideshows group id"
-msgstr "Slideshow"
+#| msgid "Reserved to some groups"
+msgid "Reserved to groups"
+msgstr "Réservé à des groupes"
 
-#: models.py:38
-msgid "Breakpoints fullscreen"
-msgstr "Breakpoints plein écran"
+#: models.py:39
+#, fuzzy
+#| msgid "Reserved to some users"
+msgid "Reserved to users"
+msgstr "Réservé à des utilisateurs"
 
-#: models.py:38
-msgid ""
-"This will remove the {% header %} or {% site_header %} block to display a "
-"fullscreen slideshow / Ex: 320, 360"
-msgstr "Cela va enlever les blocs {% header %} or {% site_header %} pour afficher un slideshow "
-"plein écran / Ex: 320, 360"
-
-#: models.py:42 models.py:43
+#: models.py:43 models.py:44
 msgid "Page"
 msgstr "Page"
 
-#: templates/admin/alapage/page/change_form.html:18
+#: templates/admin/alapage/page/change_form.html:28
 msgid "Home"
 msgstr "Home"
 
-#: templates/admin/alapage/page/change_form.html:21
+#: templates/admin/alapage/page/change_form.html:31
 msgid "Add"
 msgstr "Ajouter"
 
-#: templates/admin/alapage/page/change_form.html:33
+#: templates/admin/alapage/page/change_form.html:43
 msgid "History"
 msgstr "Historique"
 
-#: templates/admin/alapage/page/change_form.html:35
+#: templates/admin/alapage/page/change_form.html:45
 msgid "View on site"
 msgstr "Voir sur le site"
 
-#: templates/admin/alapage/page/change_form.html:47
+#: templates/admin/alapage/page/change_form.html:57
 msgid "Please correct the error below."
 msgstr "Merci de corriger l'erreur ci-dessous"
 
-#: templates/admin/alapage/page/change_form.html:47
+#: templates/admin/alapage/page/change_form.html:57
 msgid "Please correct the errors below."
 msgstr "Merci de corriger les erreurs ci-dessous"
 
-#: templates/admin/alapage/page/change_form.html:70
+#: templates/admin/alapage/page/change_form.html:80
+msgid "Save"
+msgstr "Enregistrer"
+
+#: templates/admin/alapage/page/change_form.html:81
+msgid "Close"
+msgstr "Fermer"
+
+#: templates/admin/alapage/page/change_form.html:85
 msgid "Save and view page"
-msgstr "Sauver et voir la page"
+msgstr "Enregistrer et voir la page"
 
 #: templates/alapage/edit_btn.html:7
 #, fuzzy

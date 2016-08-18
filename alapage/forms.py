@@ -10,6 +10,7 @@ from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
 
 class PageAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
+        print str(args)+' / '+str(kwargs)
         super(PageAdminForm, self).__init__(*args, **kwargs)
         try:
             self.fields['template_name'].help_text = _(u'If no template is defined neither any layout, "alapage/default.html" will be used' )
@@ -32,6 +33,7 @@ class PageAdminForm(forms.ModelForm):
                                                              'autoCloseTags': 'true',
                                                              'keyMap': CODEMIRROR_KEYMAP,
                                                              'theme':'blackboard',
+                                                             #'fullScreen':'true',
                                                              }, 
                                                              modes=['css', 'xml', 'javascript', 'htmlmixed'],
                                                              )

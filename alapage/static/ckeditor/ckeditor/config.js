@@ -6,15 +6,8 @@
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
+	config.uiColor = '#AADC6E';
 	config.allowedContent = true;
 	config.startupFocus = true;
 };
 
-CKEDITOR.on('instanceReady',
-   function( evt ) {
-      var instanceName = 'id_content'; // the HTML id configured for editor
-      var editor = CKEDITOR.instances[instanceName]; 
-      editor.execCommand('maximize');
-   }
- );

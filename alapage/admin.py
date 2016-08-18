@@ -76,7 +76,7 @@ class PageAdmin(admin_class):
     
     def response_change(self, request, obj):
         # for inline editing
-        if '_inline' in request.POST:
+        if '_inline_' in request.POST:
             return HttpResponseRedirect(reverse('page-view', kwargs={"url":obj.url}))
         else:
             return super(PageAdmin, self).response_change(request, obj)

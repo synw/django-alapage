@@ -3,6 +3,16 @@
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<style>
+.toolbar_button {
+	background-color:#D4D4D4 !important;
+	color:black !important;
+	border-radius:0.2em !important;
+	padding:0.3em 0.5em 0.3em 0.5em !important;
+	font-size:90% !important;
+	border:1px solid black !important;
+}
+</style>
 {{ media }}
 {% endblock %}
 
@@ -66,16 +76,14 @@
 {% block after_related_objects %}{% endblock %}
 
 {% block submit_buttons_bottom %}
-	{% if request.GET.i %}
-		<div style="z-index:100000;position:fixed;top:0;right:0.5em">
-			<input type="submit" name="_inline" style="background-color:transparent;color:black;font-weight:bold;" value="{% trans 'Save' %}" />
-		</div>
-		<div style="float:right;">
-			<input type="submit" name="_inline" class="default" value="{% trans 'Save and view page' %}" />
-		</div>
-	{% else %}
-		{% submit_row %}
-	{% endif %}
+	<div style="z-index:100000;position:fixed;top:0.4em;right:0.5em">
+		<input class="toolbar_button" type="submit" style="padding:0.3em 0.5em 0.2em 0.5em !important" name="_inline_" value="{% trans 'Save' %}" />
+		<a class="toolbar_button" href="javascript:elmirror.setOption('fullScreen', false)">{% trans 'Close' %}</a>
+	</div>
+	{% submit_row %}
+	<div style="float:right;">
+		<input type="submit" name="_inline" class="default" value="{% trans 'Save and view page' %}" />
+	</div>
 {% endblock %}
 
 {% block admin_change_form_document_ready %}
@@ -96,6 +104,13 @@
             {% endif %}
             });
         })(django.jQuery);
+        CKEDITOR.on('instanceReady',
+        		function( evt ) {
+        		  	var instanceName = 'id_content';
+        		  	var editor = CKEDITOR.instances[instanceName]; 
+        		  	editor.execCommand('maximize');
+        	   	}
+        	 );
     </script>
 {% endblock %}
 
