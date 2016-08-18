@@ -7,7 +7,8 @@ from django.contrib.flatpages.models import FlatPage
 from django.contrib.auth.models import Group 
 from ckeditor.fields import RichTextField
 from alapage.conf import USER_MODEL, LAYOUTS
-
+from knocker.mixins import KnockerModel
+from meta.models import ModelMeta
 
 class Seo(models.Model):
     seo_description = models.CharField(max_length=256, null=True, blank=True, verbose_name=_(u'SEO: description'), help_text=_(u'Short description of the page content'))
@@ -18,7 +19,7 @@ class Seo(models.Model):
         verbose_name=_(u'SEO')
 
 
-class BasePage(FlatPage, Seo):
+class BasePage(FlatPage, Seo, KnockerModel, ModelMeta):
     class Meta:
         abstract = True
 

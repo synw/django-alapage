@@ -2,10 +2,11 @@
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from codemirror2.widgets import CodeMirrorEditor
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from alapage.models import Page
 from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
+if EDIT_MODE == 'code':
+    from codemirror2.widgets import CodeMirrorEditor
 
 
 class PageAdminForm(forms.ModelForm):
