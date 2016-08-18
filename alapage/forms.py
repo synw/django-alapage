@@ -46,6 +46,7 @@ class PageAdminForm(forms.ModelForm):
     content.label = ""
     template_name = forms.ChoiceField(choices=TEMPLATES_NAMES, widget=forms.RadioSelect())
     template_name.label = "Template"
+    template_name.required = False
     
     class Meta:
         model = Page
