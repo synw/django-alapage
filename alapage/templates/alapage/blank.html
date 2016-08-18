@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{% block extra_head %}
+	<meta name="keywords" content="{{ page.seo_description }}" />
+	<meta name="description" content="{{ page.seo_keywords }}" />
+{% endblock %}
+</head>
+
+<body>
+{% if layout %}
+	{% include layout_path %}
+{% endif %}
+{% if page.content %}{{ page.content|safe }}{% endif %}
+{% if page.html %}{{ page.html|safe }}{% endif %}
+{% if layout %}
+	{% include 'alapage/layouts/bottom.html' %}
+{% endif %}
+</body>
+</html>

@@ -2,11 +2,11 @@
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from codemirror2.widgets import CodeMirrorEditor
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from alapage.models import Page
 from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
-if EDIT_MODE == 'code':
-    from codemirror2.widgets import CodeMirrorEditor
+from alapage.conf import TEMPLATES_NAMES
 
 
 class PageAdminForm(forms.ModelForm):
@@ -43,6 +43,9 @@ class PageAdminForm(forms.ModelForm):
     else:
         content = forms.CharField(widget=forms.Textarea)
     content.required = False
+    content.label = ""
+    template_name = forms.ChoiceField(choices=TEMPLATES_NAMES, widget=forms.RadioSelect())
+    template_name.label = "Template"
     
     class Meta:
         model = Page
