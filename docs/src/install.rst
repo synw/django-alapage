@@ -5,7 +5,10 @@ Install
 
 ::
 
-   pip install django-alapage
+   pip install django-alapage django-ckeditor pytz
+   # options
+   pip install django-codemirror2 django-jssor django-reversion
+   
    python manage.py collectstatic
    python manage.py makemigrations && python manage.py migrate
    
@@ -28,6 +31,7 @@ Install
 	#'jssor',
     )
     
+    
 In urls.py
 
 .. highlight:: python
@@ -43,6 +47,14 @@ In urls.py
    urlpatterns += url(r'^', include('alapage.urls')),
     
 You have to put alapage urls in last if you want to have your pages served from `/`
+
+Create an uploads dir for Ckeditor:
+
+.. highlight:: python
+
+::
+
+   mkdir static/uploads
     
 Options
 -------

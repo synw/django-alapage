@@ -16,14 +16,7 @@
 	{% include "alapage/edit_btn.html" %}
 {% endblock %}
 {% block content %}
-	{% if layout %}
-		{% include layout_path %}
-	{% endif %}
 	{% if page.content %}{{ page.content|safe }}{% endif %}
-	{% if page.html %}{{ page.html|safe }}{% endif %}
-	{% if layout %}
-		{% include 'alapage/layouts/bottom.html' %}
-	{% endif %}
 {% endblock %}
 
 

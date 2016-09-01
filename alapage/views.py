@@ -6,8 +6,9 @@ from django.http import Http404
 from django.views.generic import TemplateView
 from alapage.models import Page
 from alapage.utils import can_see_page
-from alapage.conf import BASE_TEMPLATE_PATH
-from jssor.models import Slideshow
+from alapage.conf import BASE_TEMPLATE_PATH, USE_JSSOR
+if USE_JSSOR:
+    from jssor.models import Slideshow
 
 
 class PageView(TemplateView):
@@ -54,7 +55,6 @@ class PageView(TemplateView):
         page=self.page
         if not page.published and not self.request.user.is_superuser:
             raise Http404
-        layout=self.page.layout
         if page.has_slideshow is True:
             slideshows = Slideshow.objects.filter(page=page)
             # encode slideshow ids to pass in an url
@@ -68,8 +68,6 @@ class PageView(TemplateView):
                 i += 1
             context['slideshow_ids'] = slideshow_ids
         context['page'] = page
-        context['layout'] = layout
-        context['layout_path'] = 'alapage/layouts/'+layout+'/top.html'
         context['template_to_extend'] = BASE_TEMPLATE_PATH
         return context
 

@@ -1,11 +1,6 @@
 Settings
 ========
 
-``ALAPAGE_USE_REVERSION = True`` : to enable reversion
-
-``JSSOR_USE_ALAPAGE = True`` : to enable the slideshows. 
-Warning: you will have to run a migration if you change this setting after the first migration.
-
 ``ALAPAGE_EDIT_MODE='code'`` : if you plan to code html manualy more than in the wysywig editor: 
 this will enable the
 codemirror editor.

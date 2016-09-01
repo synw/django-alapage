@@ -7,15 +7,13 @@ from django.contrib.auth.models import User
 
 EDIT_MODES = (
               'visual',
-              'mixed',
               'code',
               )
 
-LAYOUTS = (('xs-12','Xs 12'),('smooth-md','Smooth md'))
-
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', User)
 
-USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', False)
+USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', "reversion" in settings.INSTALLED_APPS)
+USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', "jssor" in settings.INSTALLED_APPS)
 
 BASE_TEMPLATE_PATH = getattr(settings, 'ALAPAGE_BASE_TEMPLATE_PATH', 'base.html')
 

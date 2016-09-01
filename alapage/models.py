@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.auth.models import Group 
 from ckeditor.fields import RichTextField
-from alapage.conf import USER_MODEL, LAYOUTS
+from alapage.conf import USER_MODEL
 
 
 class Seo(models.Model):
@@ -24,7 +24,6 @@ class BasePage(FlatPage, Seo):
 
 
 class Page(BasePage):
-    layout = models.CharField(null=True, blank=True, max_length=125, choices=LAYOUTS, default=LAYOUTS[0][0], help_text=_(u'Note: the field name of the template takes precedence over layout choices'))
     edited = models.DateTimeField(editable=False, null=True, auto_now=True, verbose_name=_(u'Edited'))
     created = models.DateTimeField(editable=False, null=True, auto_now_add=True, verbose_name=_(u'Created'))
     editor = models.ForeignKey(USER_MODEL, editable = False, related_name='+', null=True, on_delete=models.SET_NULL, verbose_name=_(u'Edited by'))   

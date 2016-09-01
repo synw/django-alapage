@@ -2,11 +2,12 @@
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from codemirror2.widgets import CodeMirrorEditor
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from alapage.models import Page
 from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
 from alapage.conf import TEMPLATES_NAMES
+if EDIT_MODE == "code":
+    from codemirror2.widgets import CodeMirrorEditor
 
 
 class PageAdminForm(forms.ModelForm):
@@ -14,7 +15,7 @@ class PageAdminForm(forms.ModelForm):
         print str(args)+' / '+str(kwargs)
         super(PageAdminForm, self).__init__(*args, **kwargs)
         try:
-            self.fields['template_name'].help_text = _(u'If no template is defined neither any layout, "alapage/default.html" will be used' )
+            self.fields['template_name'].help_text = _(u'If no template is defined "alapage/default.html" will be used' )
         except:
             pass
     
