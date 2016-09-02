@@ -12,7 +12,6 @@ if EDIT_MODE == "code":
 
 class PageAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        print str(args)+' / '+str(kwargs)
         super(PageAdminForm, self).__init__(*args, **kwargs)
         try:
             self.fields['template_name'].help_text = _(u'If no template is defined "alapage/default.html" will be used' )

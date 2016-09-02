@@ -27,3 +27,4 @@ TEMPLATES_NAMES = getattr(settings, 'ALAPAGE_TEMPLATES_NAMES', templates_names)
 EDIT_MODE = getattr(settings, 'ALAPAGE_EDIT_MODE', EDIT_MODES[0])
 CODEMIRROR_KEYMAP = getattr(settings, 'ALAPAGE_CODEMIRROR_KEYMAP', 'default')
 
+STAFFPAGES = "staffpages" in getattr(settings, 'INSTALLED_APPS')
