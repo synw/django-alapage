@@ -60,8 +60,9 @@ class PageView(TemplateView):
             raise Http404
         if USE_JSSOR is True:
             slideshow_group = page.slideshow_group
-            context['slideshows_group'] = slideshow_group
-            context['fullscreen'] = slideshow_group.fullscreen
+            if page.slideshow_group is not None:
+                context['slideshows_group'] = slideshow_group
+                context['fullscreen'] = slideshow_group.fullscreen
         context['page'] = page
         context['template_to_extend'] = BASE_TEMPLATE_PATH
         return context
