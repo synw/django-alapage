@@ -7,9 +7,8 @@
 {% block title %}{{ page.title }}{% endblock %}
 
 {% block precontent %}
-	{% if slideshow_ids %}
-		{% include "jssor/loader.html" %}
-	{% endif %}
+<div id="slideshow"></div>
+{% include "jssor/loader.html" %}
 {% endblock %}
 
 {% block infoslabel %}

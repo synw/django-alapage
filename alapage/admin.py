@@ -37,7 +37,7 @@ class PageAdmin(admin_class):
                 'fields': ('content',)
             }),
             (None, {
-                'fields': ('url','title', 'template_name','published', 'has_slideshow'),
+                'fields': ('url','title', 'template_name','published', 'slideshow_group'),
             }),
             (_(u'SEO'), {
                 'classes': ('collapse',),

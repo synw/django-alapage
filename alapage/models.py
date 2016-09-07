@@ -5,7 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.auth.models import Group 
 from ckeditor.fields import RichTextField
-from alapage.conf import USER_MODEL
+from alapage.conf import USER_MODEL, USE_JSSOR
+if USE_JSSOR is True:
+    from jssor.models import ResponsiveGroup
+
 
 
 class Seo(models.Model):
@@ -32,9 +35,11 @@ class Page(BasePage):
     groups_only = models.ManyToManyField(Group, blank=True, verbose_name=_(u'Reserved to some groups'))
     users_only = models.ManyToManyField(USER_MODEL, blank=True, verbose_name=_(u'Reserved to some users'))
     # page caracteristics used to tminimize the select related queries
-    has_slideshow = models.BooleanField(default=False, verbose_name=_(u'Has slideshow'))
     is_reserved_to_groups = models.BooleanField(default=False, verbose_name=_(u'Reserved to groups'))
     is_reserved_to_users = models.BooleanField(default=False, verbose_name=_(u'Reserved to users'))
+    # slideshows
+    if USE_JSSOR is True:
+        slideshow_group = models.ForeignKey(ResponsiveGroup, null=True, blank=True, verbose_name=_(u"Slideshow"))
     
     
     class Meta:

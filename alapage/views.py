@@ -29,6 +29,9 @@ class PageView(TemplateView):
             raise Http404
         self.page = self.page_q[0]
         # check if other queries are really necessary and get the related data
+        if USE_JSSOR is True:
+            prefetch = Prefetch("slideshow_group__slideshows", queryset=self.page_q)
+            self.page_q = Page.objects.prefetch_related(prefetch)
         if self.page.is_reserved_to_users is True \
         or self.page.is_reserved_to_groups is True\
         or self.page.staff_only is True \
@@ -55,18 +58,10 @@ class PageView(TemplateView):
         page=self.page
         if not page.published and not self.request.user.is_superuser:
             raise Http404
-        if page.has_slideshow is True:
-            slideshows = Slideshow.objects.filter(page=page)
-            # encode slideshow ids to pass in an url
-            slideshow_ids = 0
-            i = 0
-            for slideshow in slideshows:
-                if i == 0:
-                    slideshow_ids = str(slideshow.pk)
-                else:
-                    slideshow_ids += '_'+str(slideshow.pk)
-                i += 1
-            context['slideshow_ids'] = slideshow_ids
+        if USE_JSSOR is True:
+            slideshow_group = page.slideshow_group
+            context['slideshows_group'] = slideshow_group
+            context['fullscreen'] = slideshow_group.fullscreen
         context['page'] = page
         context['template_to_extend'] = BASE_TEMPLATE_PATH
         return context
