@@ -19,12 +19,18 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
+   src/templates
    src/management
    
 .. toctree::
    :maxdepth: 2
    
    src/permissions
+   
+.. toctree::
+   :maxdepth: 2
+   
+   src/inline
 
 
 
