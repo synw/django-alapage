@@ -19,9 +19,6 @@ Install
    INSTALLED_APPS = (
 	#~ ...
 	#~ required
-	'django.contrib.admin',
-	'django.contrib.sites',
-	'django.contrib.flatpages',
 	'ckeditor',
 	'ckeditor_uploader',
 	'alapage',
