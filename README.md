@@ -30,7 +30,5 @@ Todo
 ----
 
 - [ ] More tests
-- [ ] Base template selection option
 - [ ] Ability to choose from wysiwig editor or code editor depending on the user preference
-- [ ] Add more layouts
 

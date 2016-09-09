@@ -20,6 +20,11 @@ Contents:
    :maxdepth: 2
    
    src/management
+   
+.. toctree::
+   :maxdepth: 2
+   
+   src/permissions
 
 
 
