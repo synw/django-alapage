@@ -77,13 +77,15 @@
 
 {% block submit_buttons_bottom %}
 	{% get_edit_mode as edit_mode %}
-	{% if edit_mode == "visual" and request.GET.m == "fs" %}
+	{% if request.GET.m == "fs" %}
 	<div style="z-index:100000;position:fixed;top:0.4em;right:0.5em">
 		<input class="toolbar_button" type="submit" style="padding:0.3em 0.5em 0.2em 0.5em !important" name="_inline_" value="{% trans 'Save' %}" />
 	</div>
 	{% endif %}
 	{% if edit_mode == "code" %}
-	<a class="toolbar_button" href="javascript:elmirror.setOption('fullScreen', false)">{% trans 'Close' %}</a>
+	<div style="z-index:100000;position:fixed;top:0.9em;right:4.8em">
+		<a class="toolbar_button" href="javascript:elmirror.setOption('fullScreen', false)">{% trans 'Close' %}</a>
+	</div>
 	{% endif %}
 	{% submit_row %}
 	<div style="float:right;">
@@ -118,6 +120,7 @@
         		  	{% endif %}
         	   	}
         	 );
+        
     </script>
 {% endblock %}
 

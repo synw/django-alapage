@@ -17,13 +17,6 @@ USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', "jssor" in settings.INSTALLED_A
 
 BASE_TEMPLATE_PATH = getattr(settings, 'ALAPAGE_BASE_TEMPLATE_PATH', 'base.html')
 
-templates_names = (
-                   ("alapage/default.html", _(u'Normal')),
-                   ("alapage/smooth.html", _(u'Smooth')),
-                   ("alapage/blank.html", _(u'Blank')),
-                   )
-TEMPLATES_NAMES = getattr(settings, 'ALAPAGE_TEMPLATES_NAMES', templates_names)
-
 EDIT_MODE = getattr(settings, 'ALAPAGE_EDIT_MODE', EDIT_MODES[0])
 CODEMIRROR_KEYMAP = getattr(settings, 'ALAPAGE_CODEMIRROR_KEYMAP', 'default')
 

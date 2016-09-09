@@ -4,7 +4,6 @@ from django.core.urlresolvers import reverse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
-from django.contrib.flatpages.models import FlatPage
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
@@ -54,7 +53,7 @@ class PageAdmin(admin_class):
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = ()
         if request.user.has_perm('can_change_page_permissions') is False:
-            readonly_fields = ('login_required', 'superuser_only', 'staff_only', 'groups_only', 'users_only')
+            readonly_fields = ('registration_required', 'superuser_only', 'staff_only', 'groups_only', 'users_only', 'is_reserved_to_groups', 'is_reserved_to_users')
         return readonly_fields
 
     def save_model(self, request, obj, form, change):
@@ -76,6 +75,3 @@ class PageAdmin(admin_class):
             return HttpResponseRedirect(reverse('page-view', kwargs={"url":obj.url}))
         else:
             return super(PageAdmin, self).response_change(request, obj)
-
-#~ deactivate flatpages admin
-admin.site.unregister(FlatPage)

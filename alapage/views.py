@@ -7,8 +7,6 @@ from django.views.generic import TemplateView
 from alapage.models import Page
 from alapage.utils import can_see_page
 from alapage.conf import BASE_TEMPLATE_PATH, USE_JSSOR
-if USE_JSSOR:
-    from jssor.models import Slideshow
 
 
 class PageView(TemplateView):

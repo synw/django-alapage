@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 01:23+0000\n"
+"POT-Creation-Date: 2016-09-09 08:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: admin.py:42
-msgid "Layout"
-msgstr "Layout"
-
-#: admin.py:46 models.py:18
+#: admin.py:41 models.py:19
 msgid "SEO"
 msgstr "Référencement"
 
-#: admin.py:50
+#: admin.py:45
 msgid "Permissions"
 msgstr "Permissions"
 
@@ -34,85 +30,129 @@ msgstr "Permissions"
 msgid "Alapage"
 msgstr ""
 
-#: forms.py:16
-msgid ""
-"If no template is defined neither any layout, \"alapage/default.html\" will "
-"be used"
+#: conf.py:21
+msgid "Normal"
+msgstr ""
+
+#: conf.py:22
+msgid "Smooth"
+msgstr ""
+
+#: conf.py:23
+msgid "Blank"
+msgstr ""
+
+#: forms.py:17
+#, fuzzy
+#| msgid ""
+#| "If no template is defined neither any layout, \"alapage/default.html\" "
+#| "will be used"
+msgid "If no template is defined \"alapage/default.html\" will be used"
 msgstr ""
 "Si aucun template n'est défini ni de layout, \"alapage/default.html\" sera "
 "utilisé"
 
-#: models.py:13
+#: models.py:14
 msgid "SEO: description"
 msgstr "Référencement: description"
 
-#: models.py:13
+#: models.py:14
 msgid "Short description of the page content"
 msgstr "Description courte du contenu de la page"
 
-#: models.py:14
+#: models.py:15
 msgid "SEO: keywords"
 msgstr "Référencement: mots clé"
 
-#: models.py:14
+#: models.py:15
 msgid "List of keywords separated by commas"
 msgstr "Liste de mots clé séparés par une virgule"
 
-#: models.py:27
-msgid ""
-"Note: the field name of the template takes precedence over layout choices"
+#: models.py:23
+msgid "Url"
 msgstr ""
-"Note: le champs nom du template prends la précédence sur le choix du layout"
 
-#: models.py:28
+#: models.py:24
+msgid "Title"
+msgstr "Titre"
+
+#: models.py:25
+msgid "Content"
+msgstr "Contenu"
+
+#: models.py:26
+msgid "Template name"
+msgstr "Nom du template"
+
+#: models.py:27
+#, fuzzy
+#| msgid ""
+#| "If no template is defined neither any layout, \"alapage/default.html\" "
+#| "will be used"
+msgid "If not template name is provided \"alapage/default.html\" will be used."
+msgstr ""
+"Si aucun template n'est défini ni de layout, \"alapage/default.html\" sera "
+"utilisé"
+
+#: models.py:30
+msgid "Registration required"
+msgstr "Enregistrement requis"
+
+#: models.py:31
+msgid "If this is checked, only logged-in users will be able to view the page."
+msgstr "Si cette case est cochée seulement les utilisateurs connectés pourront voir la page."
+
+#: models.py:34
 msgid "Edited"
 msgstr "Edité"
 
-#: models.py:29
+#: models.py:35
 msgid "Created"
 msgstr "Crée"
 
-#: models.py:30
+#: models.py:36
 msgid "Edited by"
 msgstr "Edité par"
 
-#: models.py:31
+#: models.py:37
 msgid "Published"
 msgstr "Publié"
 
-#: models.py:32
+#: models.py:38
 msgid "Staff only"
 msgstr "Staff seulement"
 
-#: models.py:33
+#: models.py:39
 msgid "Superuser only"
 msgstr "Superuser seulement"
 
-#: models.py:34
+#: models.py:40
 msgid "Reserved to some groups"
 msgstr "Réservé à des groupes"
 
-#: models.py:35
+#: models.py:41
 msgid "Reserved to some users"
 msgstr "Réservé à des utilisateurs"
 
-#: models.py:37
-msgid "Has slideshow"
-msgstr "A un slideshow"
-
-#: models.py:38
+#: models.py:43
 #, fuzzy
 #| msgid "Reserved to some groups"
 msgid "Reserved to groups"
 msgstr "Réservé à des groupes"
 
-#: models.py:39
+#: models.py:44
 #, fuzzy
 #| msgid "Reserved to some users"
 msgid "Reserved to users"
 msgstr "Réservé à des utilisateurs"
 
-#: models.py:43 models.py:44
+#: models.py:47
+#, fuzzy
+#| msgid "Has slideshow"
+msgid "Slideshow"
+msgstr "A un slideshow"
+
+#: models.py:51 models.py:52
 msgid "Page"
 msgstr "Page"
 
@@ -140,15 +180,15 @@ msgstr "Merci de corriger l'erreur ci-dessous"
 msgid "Please correct the errors below."
 msgstr "Merci de corriger les erreurs ci-dessous"
 
-#: templates/admin/alapage/page/change_form.html:80
+#: templates/admin/alapage/page/change_form.html:82
 msgid "Save"
 msgstr "Enregistrer"
 
-#: templates/admin/alapage/page/change_form.html:81
+#: templates/admin/alapage/page/change_form.html:87
 msgid "Close"
 msgstr "Fermer"
 
-#: templates/admin/alapage/page/change_form.html:85
+#: templates/admin/alapage/page/change_form.html:92
 msgid "Save and view page"
 msgstr "Enregistrer et voir la page"
 
@@ -157,3 +197,12 @@ msgstr "Enregistrer et voir la page"
 #| msgid "Edited"
 msgid "Edit"
 msgstr "Edité"
+
+#~ msgid "Layout"
+#~ msgstr "Layout"
+
+#~ msgid ""
+#~ "Note: the field name of the template takes precedence over layout choices"
+#~ msgstr ""
+#~ "Note: le champs nom du template prends la précédence sur le choix du "
+#~ "layout"

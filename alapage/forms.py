@@ -1,22 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from alapage.models import Page
 from alapage.conf import EDIT_MODE, CODEMIRROR_KEYMAP
-from alapage.conf import TEMPLATES_NAMES
 if EDIT_MODE == "code":
     from codemirror2.widgets import CodeMirrorEditor
 
 
 class PageAdminForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(PageAdminForm, self).__init__(*args, **kwargs)
-        try:
-            self.fields['template_name'].help_text = _(u'If no template is defined "alapage/default.html" will be used' )
-        except:
-            pass
     
     if EDIT_MODE == 'visual':    
         content = forms.CharField(widget=CKEditorUploadingWidget())
@@ -44,10 +36,7 @@ class PageAdminForm(forms.ModelForm):
         content = forms.CharField(widget=forms.Textarea)
     content.required = False
     content.label = ""
-    template_name = forms.ChoiceField(choices=TEMPLATES_NAMES, widget=forms.RadioSelect())
-    template_name.label = "Template"
-    template_name.required = False
     
     class Meta:
         model = Page
-        exclude = ('enable_comments','sites')
+        exclude = ('edited', 'created', "editor")

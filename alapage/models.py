@@ -2,7 +2,6 @@
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.flatpages.models import FlatPage
 from django.contrib.auth.models import Group 
 from ckeditor.fields import RichTextField
 from alapage.conf import USER_MODEL, USE_JSSOR
@@ -20,16 +19,22 @@ class Seo(models.Model):
         verbose_name=_(u'SEO')
 
 
-class BasePage(FlatPage, Seo):
-    class Meta:
-        abstract = True
-
-
-class Page(BasePage):
+class Page(Seo):
+    url = models.CharField(_(u'Url'), max_length=180, db_index=True)
+    title = models.CharField(_(u'Title'), max_length=200)
+    content = models.TextField(_(u'Content'), blank=True)
+    template_name = models.CharField(_(u'Template name'), max_length=120, blank=True,
+        help_text=_(u'If no template name is provided "alapage/default.html" will be used.')
+    )
+    registration_required = models.BooleanField(
+        _(u'Registration required'),
+        help_text=_(u"If this is checked, only logged-in users will be able to view the page."),
+        default=False,
+    )
     edited = models.DateTimeField(editable=False, null=True, auto_now=True, verbose_name=_(u'Edited'))
     created = models.DateTimeField(editable=False, null=True, auto_now_add=True, verbose_name=_(u'Created'))
     editor = models.ForeignKey(USER_MODEL, editable = False, related_name='+', null=True, on_delete=models.SET_NULL, verbose_name=_(u'Edited by'))   
-    published = models.BooleanField(default='published', verbose_name=_(u'Published'))
+    published = models.BooleanField(default=True, verbose_name=_(u'Published'))
     staff_only = models.BooleanField(default=False, verbose_name=_(u'Staff only'))
     superuser_only = models.BooleanField(default=False, verbose_name=_(u'Superuser only'))
     groups_only = models.ManyToManyField(Group, blank=True, verbose_name=_(u'Reserved to some groups'))
