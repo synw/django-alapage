@@ -21,7 +21,7 @@ class AddPagePostView(AJAXMixin, TemplateView):
         url = self.request.POST['url']
         parent_url = self.request.POST['parent']
         parent = Page.objects.get(url=parent_url)
-        self.newnode = Page.objects.create(url=url, title=title, parent=parent)
+        self.newnode = Page.objects.create(url=url, title=title, parent=parent, editor=request.user)
         self.context=self.get_context_data()
         return super(AddPagePostView, self).dispatch(request, *args, **kwargs)
     
