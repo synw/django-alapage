@@ -1,0 +1,41 @@
+{% load staticfiles mptt_tags %}
+<link rel="stylesheet" media="screen, projection" href="{% static 'alapage/tree.css' %}" />
+<div class="row">
+	<div class="col-xs-12">
+		<div class="tree">
+			<ul>
+			{% recursetree nodes %}
+		        <li>
+		        	<span id="displayzone_{{ node.pk }}">
+			        	<a href="{{ node.url }}" id="{{ node.pk }}" style="font-weight:bold">
+			            	{{ node.title }}
+			            </a><br />
+			            <a class="abtn" href="javascript:pop_form('{{ node.url }}')">&nbsp;+&nbsp;</a>
+		            </span>
+		            {% if not node.is_leaf_node %}
+		                <ul>
+		                    {{ children }}
+		                </ul>
+		            {% endif %}
+		        </li>
+		    {% endrecursetree %}
+		    </ul>
+	    </div>
+	</div>
+</div>
+<script type="text/javascript">
+function pop_form(url) {
+	$("#addpageform").show();
+	$("input[name='parent']").val(url);
+}
+{% if flashnode %}
+$(document).ready(function(){
+	setTimeout(function(){
+		$("#displayzone_{{ flashnode }}").addClass("flashnode");
+		setTimeout(function(){
+			$("#displayzone_{{ flashnode }}").removeClass("flashnode");
+	    }, 800);
+	}, 300);
+});
+{% endif %}
+</script>

@@ -1,0 +1,41 @@
+{% extends template_to_extend %}
+{% load i18n staticfiles %}
+
+{% block title %}{% trans "Alapage manager" %}{% endblock %}
+
+{% block content %}
+	<script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+	<h1>{% trans "Alapage manager" %}</h1>
+	<form class="form-inline" id="addpageform" method="post" style="display:none;margin-top:1em">
+		<div class="form-group">
+			<input class="form-control" type="text" name="title" placeholder="Title" />
+			<input class="form-control" type="text" name="url" placeholder="Url" />
+			<input class="form-control" type="text" name="parent" placeholder="Parent" />
+			<input class="btn btn-primary" type="submit" value="{% trans 'Create page' %}" />
+		</div>
+	</form>
+	<div id="treezone">
+		{% include "alapage/wizard/tree_inline.html" %}
+	</div>
+	<script type="text/javascript">
+	function pop_form(url) {
+		$("#addpageform").show();
+		$("input[name='parent']").val(url);
+	}
+	$(document).ready(function(){
+	    $('#addpageform').on('submit', function(e){
+	        e.preventDefault();
+	        var params = {
+	        	"url": $("input[name='url']").val(), 
+	        	"title": $("input[name='title']").val(),
+	        	"parent": $("input[name='parent']").val()
+	        }
+	        var purl = "{% url 'alapage-wizard-post' %}";
+	        ajaxPost(purl, params, function(content){
+	        	$("#addpageform").hide();
+	        	$("#treezone").html(content);
+	        });
+	    });
+	});
+	</script>
+{% endblock %}

@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
+from mptt.admin import MPTTModelAdmin
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
@@ -16,16 +17,17 @@ admin_class=admin.ModelAdmin
 if USE_REVERSION:
     admin_class=VersionAdmin
 @admin.register(Page)
-class PageAdmin(admin_class):
+class PageAdmin(MPTTModelAdmin, admin_class):
     form = PageAdminForm
     date_hierarchy = 'edited'
     search_fields = ['title','url','editor__username']
-    list_display = ['url','title','edited','editor','created','published','registration_required', 'staff_only']
+    list_display = ['url','title','published','registration_required', 'staff_only','edited','editor']
     list_select_related = ['editor']
     list_display_links = ['title','url']
     list_filter = ['created','edited','published','registration_required']
     filter_horizontal = ['users_only']
     list_select_related = ['editor']
+    mptt_level_indent = 25
     #save_on_top = True
 
     
@@ -36,7 +38,7 @@ class PageAdmin(admin_class):
                 'fields': ('content',)
             }),
             (None, {
-                'fields': ('url','title', 'template_name','published', 'slideshow_group'),
+                'fields': ('url','title', 'template_name','published', 'parent', 'slideshow_group'),
             }),
             (_(u'SEO'), {
                 'classes': ('collapse',),

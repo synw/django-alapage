@@ -1,0 +1,9 @@
+{% extends template_to_extend %}
+{% load i18n %}
+
+{% block title %}{% trans "Site map" %}{% endblock %}
+
+{% block content %}
+	<h1>{% trans "Site map" %}</h1>
+	{% include "mptt_graph/tree_inline.html" %}
+{% endblock %}

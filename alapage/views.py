@@ -2,11 +2,65 @@
 
 from django.conf import settings
 from django.db.models.query import Prefetch
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.views.generic import TemplateView
+from django.shortcuts import render
+from django_ajax.mixin import AJAXMixin
 from alapage.models import Page
 from alapage.utils import can_see_page
 from alapage.conf import BASE_TEMPLATE_PATH, USE_JSSOR
+
+
+class AddPagePostView(AJAXMixin, TemplateView):
+    template_name = "alapage/wizard/tree_inline.html"
+    
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.method == "POST":
+            raise Http404
+        title = self.request.POST['title']
+        url = self.request.POST['url']
+        parent_url = self.request.POST['parent']
+        parent = Page.objects.get(url=parent_url)
+        self.newnode = Page.objects.create(url=url, title=title, parent=parent)
+        self.context=self.get_context_data()
+        return super(AddPagePostView, self).dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddPagePostView, self).get_context_data(**kwargs)
+        context["template_to_extend"] = BASE_TEMPLATE_PATH
+        root_node = Page.objects.get(url="/")
+        nodes = root_node.get_descendants(include_self=True)
+        context['nodes'] = nodes
+        context["flashnode"] = self.newnode.pk
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        data = render(request, "alapage/wizard/tree_inline.html", context=self.context)
+        return data
+       
+
+class PagesmapView(TemplateView):
+    template_name = "alapage/map.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(PagesmapView, self).get_context_data(**kwargs)
+        context["template_to_extend"] = BASE_TEMPLATE_PATH
+        root_node, created = Page.objects.get_or_create(url="/")
+        nodes = root_node.get_descendants(include_self=True)
+        context['nodes'] = nodes
+        return context
+
+
+class PageWizardView(TemplateView):
+    template_name = "alapage/wizard/index.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(PageWizardView, self).get_context_data(**kwargs)
+        context["template_to_extend"] = BASE_TEMPLATE_PATH
+        root_node, created = Page.objects.get_or_create(url="/")
+        nodes = root_node.get_descendants(include_self=True)
+        context['nodes'] = nodes
+        return context
 
 
 class PageView(TemplateView):
