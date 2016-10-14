@@ -8,37 +8,61 @@
 	<h1>{% trans "Alapage manager" %}</h1>
 	<form class="form-inline" id="addpageform" method="post" style="display:none;margin-top:1em">
 		<div class="form-group">
+			{% trans "Parent" %}: <input class="form-control" type="text" name="parent" placeholder="Parent" disabled />
 			<input class="form-control" type="text" name="title" placeholder="Title" />
 			<input class="form-control" type="text" name="url" placeholder="Url" />
-			<input class="form-control" type="text" name="parent" placeholder="Parent" />
 			<input class="btn btn-primary" type="submit" value="{% trans 'Create page' %}" />
 		</div>
 	</form>
-	<div id="treezone">
-		{% include "alapage/wizard/tree_inline.html" %}
-	</div>
 	<script type="text/javascript">
 	function pop_form(url) {
 		$("#addpageform").show();
 		$("input[name='parent']").val(url);
 	}
+	function startsWith(str, word) {
+	    if ( word.substring(0, 1) != "/" ) {
+	    	return false
+	    }
+	    return true
+	}
+	function clean_form() {
+		$("input[name='url']").val("");
+    	$("input[name='title']").val("");
+    	$("input[name='parent']").val("");
+	}
 	$(document).ready(function(){
 	    $('#addpageform').on('submit', function(e){
 	        e.preventDefault();
+	        var val_url = $("input[name='url']").val();
+	        var title = $("input[name='title']").val();
+	        var parent = $("input[name='parent']").val();
+	        if ( val_url == "" ) {
+	        	alert("{% trans 'Please provide an url' %}")
+	        	return
+	        }
+	        if ( startsWith("/", val_url) != true ) {
+	        	alert("{% trans 'The url must start with /' %}")
+	        	return
+	        }
+	        if ( title == "" ) {
+	        	alert("{% trans 'Please provide a title' %}")
+	        	return
+	        }
 	        var params = {
-	        	"url": $("input[name='url']").val(), 
-	        	"title": $("input[name='title']").val(),
-	        	"parent": $("input[name='parent']").val()
+	        	"url": val_url, 
+	        	"title": title,
+	        	"parent": parent
 	        }
 	        var purl = "{% url 'alapage-wizard-post' %}";
 	        ajaxPost(purl, params, function(content){
 	        	$("#addpageform").hide();
-	        	$("input[name='url']").val("");
-	        	$("input[name='title']").val("");
-	        	$("input[name='parent']").val("");
+	        	clean_form();
 	        	$("#treezone").html(content);
 	        });
 	    });
 	});
 	</script>
+	<div id="treezone">
+		{% include "alapage/wizard/tree_inline.html" %}
+	</div>
 {% endblock %}
