@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from django.http.response import Http404
 from django.conf import settings
 from django.db.models.query import Prefetch
-from django.http import Http404, JsonResponse
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django_ajax.mixin import AJAXMixin
@@ -15,7 +15,7 @@ class AddPagePostView(AJAXMixin, TemplateView):
     template_name = "alapage/wizard/tree_inline.html"
     
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.method == "POST":
+        if not request.user.has_perm('alapage.change_page') or not self.request.method == "POST":
             raise Http404
         title = self.request.POST['title']
         url = self.request.POST['url']
@@ -37,22 +37,15 @@ class AddPagePostView(AJAXMixin, TemplateView):
     def post(self, request, *args, **kwargs):
         data = render(request, "alapage/wizard/tree_inline.html", context=self.context)
         return data
-       
-
-class PagesmapView(TemplateView):
-    template_name = "alapage/map.html"
-    
-    def get_context_data(self, **kwargs):
-        context = super(PagesmapView, self).get_context_data(**kwargs)
-        context["template_to_extend"] = BASE_TEMPLATE_PATH
-        root_node, created = Page.objects.get_or_create(url="/")
-        nodes = root_node.get_descendants(include_self=True)
-        context['nodes'] = nodes
-        return context
 
 
 class PageWizardView(TemplateView):
     template_name = "alapage/wizard/index.html"
+    
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm('alapage.change_page'):
+            raise Http404
+        return super(PageWizardView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
         context = super(PageWizardView, self).get_context_data(**kwargs)
@@ -117,6 +110,18 @@ class PageView(TemplateView):
                 context['fullscreen'] = slideshow_group.fullscreen
         context['page'] = page
         context['template_to_extend'] = BASE_TEMPLATE_PATH
+        return context
+
+
+class PagesmapView(TemplateView):
+    template_name = "alapage/map.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(PagesmapView, self).get_context_data(**kwargs)
+        context["template_to_extend"] = BASE_TEMPLATE_PATH
+        root_node, created = Page.objects.get_or_create(url="/")
+        nodes = root_node.get_descendants(include_self=True)
+        context['nodes'] = nodes
         return context
 
 
