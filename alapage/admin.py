@@ -18,6 +18,7 @@ if USE_REVERSION:
     admin_class=VersionAdmin
 @admin.register(Page)
 class PageAdmin(MPTTModelAdmin, admin_class):
+    change_list_template = "admin/alapage/page/change_list.html"
     form = PageAdminForm
     date_hierarchy = 'edited'
     search_fields = ['title','url','editor__username']
