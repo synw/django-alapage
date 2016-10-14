@@ -33,6 +33,9 @@
 	        var purl = "{% url 'alapage-wizard-post' %}";
 	        ajaxPost(purl, params, function(content){
 	        	$("#addpageform").hide();
+	        	$("input[name='url']").val("");
+	        	$("input[name='title']").val("");
+	        	$("input[name='parent']").val("");
 	        	$("#treezone").html(content);
 	        });
 	    });
