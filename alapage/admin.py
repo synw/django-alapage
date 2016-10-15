@@ -4,7 +4,6 @@ from django.core.urlresolvers import reverse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
-from mptt.admin import MPTTModelAdmin
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
@@ -17,18 +16,16 @@ admin_class=admin.ModelAdmin
 if USE_REVERSION:
     admin_class=VersionAdmin
 @admin.register(Page)
-class PageAdmin(MPTTModelAdmin, admin_class):
-    change_list_template = "admin/alapage/page/change_list.html"
+class PageAdmin(admin_class):
     form = PageAdminForm
     date_hierarchy = 'edited'
     search_fields = ['title','url','editor__username']
-    list_display = ['url','title','published','registration_required', 'staff_only','edited','editor']
+    list_display = ['url','title','edited','editor','created','published','is_reserved_to_users', 'is_reserved_to_groups', 'staff_only']
     list_select_related = ['editor']
     list_display_links = ['title','url']
-    list_filter = ['created','edited','published','registration_required']
+    list_filter = ['created','edited','published','is_reserved_to_users', 'is_reserved_to_groups', 'staff_only', 'superuser_only']
     filter_horizontal = ['users_only']
     list_select_related = ['editor']
-    mptt_level_indent = 25
     #save_on_top = True
 
     
@@ -39,7 +36,7 @@ class PageAdmin(MPTTModelAdmin, admin_class):
                 'fields': ('content',)
             }),
             (None, {
-                'fields': ('url','title', 'template_name','published', 'parent', 'slideshow_group'),
+                'fields': ('url','title', 'template_name','published', 'slideshow_group'),
             }),
             (_(u'SEO'), {
                 'classes': ('collapse',),
@@ -47,7 +44,7 @@ class PageAdmin(MPTTModelAdmin, admin_class):
             }),
             (_(u'Permissions'), {
                 'classes': ('collapse',),
-                'fields': ('registration_required','is_reserved_to_users', 'users_only', 'is_reserved_to_groups', 'groups_only', 'staff_only', 'superuser_only')
+                'fields': ('is_reserved_to_users', 'users_only', 'is_reserved_to_groups', 'groups_only', 'staff_only', 'superuser_only')
             }),
         )
         return fieldsets
