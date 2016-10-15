@@ -4,10 +4,11 @@ from django.core.urlresolvers import reverse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
+from mptt.admin import MPTTModelAdmin
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
-from alapage.conf import USE_REVERSION
+from alapage.conf import USE_REVERSION, USE_JSSOR
 
 
 if USE_REVERSION:
@@ -16,27 +17,33 @@ admin_class=admin.ModelAdmin
 if USE_REVERSION:
     admin_class=VersionAdmin
 @admin.register(Page)
-class PageAdmin(admin_class):
+class PageAdmin(MPTTModelAdmin, admin_class):
+    change_list_template = "admin/alapage/page/change_list.html"
     form = PageAdminForm
     date_hierarchy = 'edited'
     search_fields = ['title','url','editor__username']
-    list_display = ['url','title','edited','editor','created','published','is_reserved_to_users', 'is_reserved_to_groups', 'staff_only']
+    list_display = ['url','title','published','registration_required', 'staff_only','edited','editor']
     list_select_related = ['editor']
     list_display_links = ['title','url']
-    list_filter = ['created','edited','published','is_reserved_to_users', 'is_reserved_to_groups', 'staff_only', 'superuser_only']
+    list_filter = ['created','edited','published','registration_required']
     filter_horizontal = ['users_only']
     list_select_related = ['editor']
+    mptt_level_indent = 25
     #save_on_top = True
 
     
     def get_fieldsets(self, request, obj=None):
         super(PageAdmin, self).get_fieldsets(request, obj)
+        if USE_JSSOR:
+            base_fields = ('url','title', 'template_name','published', 'parent', 'slideshow_group')
+        else:
+            base_fields = (('url', 'parent'),'title', 'template_name','published')
         fieldsets = (
             (None, {
                 'fields': ('content',)
             }),
             (None, {
-                'fields': ('url','title', 'template_name','published', 'slideshow_group'),
+                'fields': base_fields,
             }),
             (_(u'SEO'), {
                 'classes': ('collapse',),
@@ -44,7 +51,7 @@ class PageAdmin(admin_class):
             }),
             (_(u'Permissions'), {
                 'classes': ('collapse',),
-                'fields': ('is_reserved_to_users', 'users_only', 'is_reserved_to_groups', 'groups_only', 'staff_only', 'superuser_only')
+                'fields': ('registration_required','is_reserved_to_users', 'users_only', 'is_reserved_to_groups', 'groups_only', 'staff_only', 'superuser_only')
             }),
         )
         return fieldsets

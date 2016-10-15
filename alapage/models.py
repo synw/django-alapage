@@ -2,8 +2,8 @@
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.models import Group 
-from ckeditor.fields import RichTextField
+from django.contrib.auth.models import Group
+from mptt.models import TreeForeignKey, MPTTModel
 from alapage.conf import USER_MODEL, USE_JSSOR
 if USE_JSSOR is True:
     from jssor.models import ResponsiveGroup
@@ -19,13 +19,19 @@ class Seo(models.Model):
         verbose_name=_(u'SEO')
 
 
-class Page(Seo):
+class Page(MPTTModel, Seo):
     url = models.CharField(_(u'Url'), max_length=180, db_index=True)
     title = models.CharField(_(u'Title'), max_length=200)
     content = models.TextField(_(u'Content'), blank=True)
     template_name = models.CharField(_(u'Template name'), max_length=120, blank=True,
         help_text=_(u'If no template name is provided "alapage/default.html" will be used.')
     )
+    registration_required = models.BooleanField(
+        _(u'Registration required'),
+        help_text=_(u"If this is checked, only logged-in users will be able to view the page."),
+        default=False,
+    )
+    parent = TreeForeignKey('self', null=True, blank=True, related_name=u'children', verbose_name=_(u'Parent page'))
     edited = models.DateTimeField(editable=False, null=True, auto_now=True, verbose_name=_(u'Edited'))
     created = models.DateTimeField(editable=False, null=True, auto_now_add=True, verbose_name=_(u'Created'))
     editor = models.ForeignKey(USER_MODEL, editable = False, related_name='+', null=True, on_delete=models.SET_NULL, verbose_name=_(u'Edited by'))   
@@ -49,3 +55,6 @@ class Page(Seo):
         permissions = (
             ("can_change_page_permissions", "Can change page permissions"),
         )
+    
+    def __unicode__(self):
+        return unicode(self.title)
