@@ -8,7 +8,9 @@
 
 {% block precontent %}
 <div id="slideshow"></div>
-{% include "jssor/loader.html" %}
+{% if slideshows_group %}
+	{% include "jssor/loader.html" %}
+{% endif %}
 {% endblock %}
 
 {% block infoslabel %}
