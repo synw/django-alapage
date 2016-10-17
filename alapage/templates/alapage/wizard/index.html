@@ -17,6 +17,7 @@
 	<script type="text/javascript">
 	function pop_form(url) {
 		$("#addpageform").show();
+		$("input[name='url']").val(url);
 		$("input[name='parent']").val(url);
 	}
 	function startsWith(str, word) {
