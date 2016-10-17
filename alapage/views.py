@@ -120,7 +120,7 @@ class PagesmapView(TemplateView):
         context = super(PagesmapView, self).get_context_data(**kwargs)
         context["template_to_extend"] = BASE_TEMPLATE_PATH
         root_node, created = Page.objects.get_or_create(url="/")
-        nodes = root_node.get_descendants(include_self=True).filter(is_public=True, published=True)
+        nodes = root_node.get_descendants(include_self=True).filter(is_reserved_to_groups=False, staff_only=False, superuser_only=False, registration_required=False, is_reserved_to_users=False, published=True)
         context['nodes'] = nodes
         return context
 
