@@ -7,7 +7,7 @@ Install
 
    pip install django-alapage django-ckeditor pytz
    # options
-   pip install django-codemirror2 django-jssor django-reversion
+   pip install django-codemirror2 django-reversion djangoajax
    
    python manage.py collectstatic
    python manage.py makemigrations && python manage.py migrate
@@ -19,13 +19,13 @@ Install
    INSTALLED_APPS = (
 	#~ ...
 	#~ required
+   "django_ajax",
 	'ckeditor',
 	'ckeditor_uploader',
 	'alapage',
 	#~ options 
 	#'reversion',
 	#'codemirror2',
-	#'jssor',
     )
     
     
@@ -61,12 +61,6 @@ Options
 ``pip install django-reversion``
 
 Add ``"reversion",`` to INSTALLED_APPS
-
-- `Django Jssor <https://github.com/synw/django-jssor>`_ for slideshows
-
-``pip install django-jssor``
-
-Add ``"jssor",`` to INSTALLED_APPS
 
 - `Django Codemirror <https://github.com/synw/django-jssor>`_ for the code editor
 
