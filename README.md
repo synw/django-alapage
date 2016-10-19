@@ -10,8 +10,8 @@ Features
 --------
 
 - Edit page in a wysiwyg editor or code editor
-- Easy integration of slideshows
 - Page level permissions management
+- Fullscreen inline edit
 
 Screenshots
 -----------
