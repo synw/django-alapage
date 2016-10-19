@@ -27,7 +27,8 @@ class PageAdminForm(forms.ModelForm):
                                                              'keyMap': CODEMIRROR_KEYMAP,
                                                              'theme':'blackboard',
                                                              #'fullScreen':'true',
-                                                             }, 
+                                                             },
+                                                             script_template='codemirror2/codemirror_script_alapage.html',
                                                              modes=['css', 'xml', 'javascript', 'htmlmixed'],
                                                              )
                                   

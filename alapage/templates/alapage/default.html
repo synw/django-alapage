@@ -6,19 +6,9 @@
 {% endblock %}
 {% block title %}{{ page.title }}{% endblock %}
 
-{% block precontent %}
-<div id="slideshow"></div>
-{% if slideshows_group %}
-	{% include "jssor/loader.html" %}
-{% endif %}
-{% endblock %}
-
-{% block infoslabel %}
-	{% include "alapage/edit_btn.html" %}
+{% block editbtn %}
+	{% include "alapage/inlines/edit_btn.html" %}
 {% endblock %}
 {% block content %}
 	{% if page.content %}{{ page.content|safe }}{% endif %}
 {% endblock %}
-
-
-

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.conf.urls import url
 from alapage.views import HomepageView, PageView, PageWizardView, PagesmapView, AddPagePostView
 from alapage.conf import STAFFPAGES

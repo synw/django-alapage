@@ -55,6 +55,9 @@ class Page(MPTTModel, Seo):
         permissions = (
             ("can_change_page_permissions", "Can change page permissions"),
         )
+        
+    def get_absolute_url(self):
+        return self.url
     
     def __unicode__(self):
         return unicode(self.title)

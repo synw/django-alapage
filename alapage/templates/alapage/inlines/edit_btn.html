@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% block infoszone %}
+	{% if perms.alapage.change_page %}
+		<div style="position:absolute;top;10px;right:10px;z-index1000">
+			<a href="{% url 'admin:alapage_page_change' page.pk %}?m=fs">
+				<i class="fa fa-edit"></i>&nbsp;{% trans 'Edit' %}
+			</a>
+		</div>
+	{% endif %}
+{% endblock %}

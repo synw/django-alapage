@@ -13,10 +13,6 @@
     var elem = document.getElementById("id_content");
     var elmirror = CodeMirror.fromTextArea(elem, {{ options|safe }});
 	elmirror.setSize(1130, 810);
-	{% if request.GET.m == "fs" and edit_mode == "code" %}
-		elmirror.setOption("fullScreen", true);
-		alert('ok');
-	{% endif %}
 </script>
 
 
