@@ -1,7 +1,7 @@
 Permissions management
 ======================
 
-Alapage provides a page level permissions. Those with the ``can_change_page_permissions`` will be able to manage
+Alapage provides page level permissions. Those with the ``can_change_page_permissions`` will be able to manage
 them.
 
 Pages access can be limited to:

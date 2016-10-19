@@ -19,7 +19,7 @@ Install
    INSTALLED_APPS = (
 	#~ ...
 	#~ required
-   "django_ajax",
+   'django_ajax',
 	'ckeditor',
 	'ckeditor_uploader',
 	'alapage',
