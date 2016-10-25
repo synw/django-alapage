@@ -103,11 +103,6 @@ class PageView(TemplateView):
         page=self.page
         if not page.published and not self.request.user.is_superuser:
             raise Http404
-        if USE_JSSOR is True:
-            slideshow_group = page.slideshow_group
-            if page.slideshow_group is not None:
-                context['slideshows_group'] = slideshow_group
-                context['fullscreen'] = slideshow_group.fullscreen
         context['page'] = page
         context['template_to_extend'] = BASE_TEMPLATE_PATH
         return context
@@ -120,6 +115,9 @@ class PagesmapView(TemplateView):
         context = super(PagesmapView, self).get_context_data(**kwargs)
         context["template_to_extend"] = BASE_TEMPLATE_PATH
         root_node, created = Page.objects.get_or_create(url="/")
+        if created is True:
+            root_node.title = "Home"
+            root_node.save()
         nodes = root_node.get_descendants(include_self=True).filter(is_reserved_to_groups=False, staff_only=False, superuser_only=False, registration_required=False, is_reserved_to_users=False, published=True)
         context['nodes'] = nodes
         return context
