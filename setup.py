@@ -27,6 +27,7 @@ setup(
         'django-ckeditor',
         'django-codemirror2',
         "djangoajax",
+        "django-mptt",
         "django-mptt-graph",
     ],
   zip_safe=False
