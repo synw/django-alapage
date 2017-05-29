@@ -1,3 +1,4 @@
+from __future__ import print_function
 from django.core.management.base import BaseCommand, CommandError
 from alapage.models import Page
 
@@ -11,7 +12,7 @@ class Command(BaseCommand):
         #~ create page
         if not home_exists:
             Page.objects.create(url='/', title='Home', content=content)
-            print "Homepage created"
+            print("Homepage created")
         else:
-            print "The homepage already exists with root url"
+            print("The homepage already exists with root url")
         return

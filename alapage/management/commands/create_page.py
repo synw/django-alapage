@@ -1,3 +1,4 @@
+from __future__ import print_function
 from django.core.management.base import BaseCommand, CommandError
 from alapage.models import Page
 
@@ -15,6 +16,6 @@ class Command(BaseCommand):
         #~ create page
         if not exists:
             Page.objects.create(url=url, title=name)
-            print "Page "+name+" created"
+            print("Page "+name+" created")
         else:
-            print "The page already exists at "+url
+            print("The page already exists at "+url)
