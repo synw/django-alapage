@@ -13,7 +13,6 @@ EDIT_MODES = (
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', User)
 
 USE_REVERSION=getattr(settings, 'ALAPAGE_USE_REVERSION', "reversion" in settings.INSTALLED_APPS)
-USE_JSSOR=getattr(settings, 'ALAPAGE_USE_JSSOR', "jssor" in settings.INSTALLED_APPS)
 
 BASE_TEMPLATE_PATH = getattr(settings, 'ALAPAGE_BASE_TEMPLATE_PATH', 'base.html')
 

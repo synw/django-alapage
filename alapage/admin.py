@@ -8,11 +8,11 @@ from mptt.admin import MPTTModelAdmin
 from alapage.models import Page
 from alapage.forms import PageAdminForm
 from alapage.utils import can_see_page
-from alapage.conf import USE_REVERSION, USE_JSSOR
-
-
+from alapage.conf import USE_REVERSION
 if USE_REVERSION:
     from reversion.admin import VersionAdmin
+
+
 admin_class=admin.ModelAdmin
 if USE_REVERSION:
     admin_class=VersionAdmin
@@ -34,10 +34,7 @@ class PageAdmin(MPTTModelAdmin, admin_class):
     
     def get_fieldsets(self, request, obj=None):
         super(PageAdmin, self).get_fieldsets(request, obj)
-        if USE_JSSOR:
-            base_fields = ('url','title', 'template_name','published', 'parent', 'slideshow_group')
-        else:
-            base_fields = (('url', 'parent'),'title', 'template_name','published')
+        base_fields = (('url', 'parent'),'title', 'template_name','published')
         fieldsets = (
             (None, {
                 'fields': ('content',)

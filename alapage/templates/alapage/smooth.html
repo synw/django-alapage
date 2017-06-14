@@ -6,12 +6,6 @@
 {% endblock %}
 {% block title %}{{ page.title }}{% endblock %}
 
-{% block precontent %}
-	{% if slideshow_ids %}
-		{% include "jssor/loader.html" %}
-	{% endif %}
-{% endblock %}
-
 {% block infoslabel %}
 	{% include "alapage/edit_btn.html" %}
 {% endblock %}

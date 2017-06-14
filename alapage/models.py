@@ -4,10 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import Group
 from mptt.models import TreeForeignKey, MPTTModel
-from alapage.conf import USER_MODEL, USE_JSSOR
-if USE_JSSOR is True:
-    from jssor.models import ResponsiveGroup
-
+from alapage.conf import USER_MODEL
 
 
 class Seo(models.Model):
@@ -43,9 +40,6 @@ class Page(MPTTModel, Seo):
     # page caracteristics used to tminimize the select related queries
     is_reserved_to_groups = models.BooleanField(default=False, verbose_name=_(u'Reserved to groups'))
     is_reserved_to_users = models.BooleanField(default=False, verbose_name=_(u'Reserved to users'))
-    # slideshows
-    if USE_JSSOR is True:
-        slideshow_group = models.ForeignKey(ResponsiveGroup, null=True, blank=True, verbose_name=_(u"Slideshow"))
     
     
     class Meta:

@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django_ajax.mixin import AJAXMixin
 from alapage.models import Page
 from alapage.utils import can_see_page
-from alapage.conf import BASE_TEMPLATE_PATH, USE_JSSOR
+from alapage.conf import BASE_TEMPLATE_PATH
 
 
 class AddPagePostView(AJAXMixin, TemplateView):
@@ -74,9 +74,6 @@ class PageView(TemplateView):
             raise Http404
         self.page = self.page_q[0]
         # check if other queries are really necessary and get the related data
-        if USE_JSSOR is True:
-            prefetch = Prefetch("slideshow_group__slideshows", queryset=self.page_q)
-            self.page_q = Page.objects.prefetch_related(prefetch)
         if self.page.is_reserved_to_users is True \
         or self.page.is_reserved_to_groups is True\
         or self.page.staff_only is True \
