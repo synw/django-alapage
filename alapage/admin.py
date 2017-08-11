@@ -32,7 +32,7 @@ class PageAdmin(MPTTModelAdmin, admin_class):
     filter_horizontal = ['users_only']
     list_select_related = ['editor']
     mptt_level_indent = 25
-    #save_on_top = True
+    save_on_top = True
 
     def get_fieldsets(self, request, obj=None):
         super(PageAdmin, self).get_fieldsets(request, obj)
