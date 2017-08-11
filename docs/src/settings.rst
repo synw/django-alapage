@@ -1,14 +1,9 @@
 Settings
 ========
 
-``ALAPAGE_EDIT_MODE='code'`` : if you plan to code html manualy more than in the wysywig editor: 
-this will enable the
-codemirror editor.
+``ALAPAGE_CODE_MODE = False`` : to use the wysywig editor instead of the code editor
 
-``'ALAPAGE_CODEMIRROR_KEYMAP'='vim'`` : select your favourite keymap for codemirror editor (ex: "vim", "emacs"): 
-default is no mapping
-
-``ALAPAGE_BASE_TEMPLATE_PATH='my_base_template.html'`` : to choose a root base template with a different name 
+``ALAPAGE_BASE_TEMPLATE_PATH = 'my_base_template.html'`` : to choose a root base template with a different name 
 than the default ``base.html``
 
 To configure the Ckeditor interface:

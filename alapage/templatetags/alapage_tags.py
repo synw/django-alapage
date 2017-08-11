@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-
 from django import template
-from alapage.conf import EDIT_MODE
+from alapage.conf import CODE_MODE
 
 
 register = template.Library()
 
+
 @register.simple_tag
-def get_edit_mode():
-    return EDIT_MODE
+def iscode_mode():
+    return CODE_MODE

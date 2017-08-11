@@ -49,11 +49,6 @@
                 {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
               </a>
             </li>
-            <li>
-				<a href="{% url 'alapage-wizard' %}" class="addlink">
-					{% trans "Page creation wizard" %}
-				</a>
-			</li>
             {% endif %}
           {% endblock %}
         </ul>
