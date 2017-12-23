@@ -22,7 +22,8 @@ class Page(MPTTModel, Seo):
     content = models.TextField(_(u'Content'), blank=True)
     template_name = models.CharField(_(u'Template name'), max_length=120, blank=True,
                                      help_text=_(
-                                         u'If no template name is provided "alapage/default.html" will be used.')
+                                         u'If no template name is provided '
+                                         '"alapage/default.html" will be used.')
                                      )
     registration_required = models.BooleanField(
         _(u'Registration required'),
@@ -37,7 +38,8 @@ class Page(MPTTModel, Seo):
     created = models.DateTimeField(
         editable=False, null=True, auto_now_add=True, verbose_name=_(u'Created'))
     editor = models.ForeignKey(USER_MODEL, editable=False, related_name='+',
-                               null=True, on_delete=models.SET_NULL, verbose_name=_(u'Edited by'))
+                               null=True, on_delete=models.SET_NULL, verbose_name=_(
+                                   u'Edited by'))
     published = models.BooleanField(default=True, verbose_name=_(u'Published'))
     staff_only = models.BooleanField(
         default=False, verbose_name=_(u'Staff only'))

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
+
 def can_see_page(page, user):
     """
-    To avoid queries pass a prefetched related page object: prefetch 'users_only' and/or 'groups_only'
+    To avoid queries pass a prefetched related page object: 
+    prefetch 'users_only' and/or 'groups_only'
     """
     if user.is_superuser:
         return True

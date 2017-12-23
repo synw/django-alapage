@@ -51,7 +51,9 @@ class PageAdmin(MPTTModelAdmin, admin_class):
             }),
             (_(u'Permissions'), {
                 'classes': ('collapse',),
-                'fields': ('registration_required', 'is_reserved_to_users', 'users_only', 'is_reserved_to_groups', 'groups_only', 'staff_only', 'superuser_only')
+                'fields': ('registration_required', 'is_reserved_to_users',
+                           'users_only', 'is_reserved_to_groups', 'groups_only',
+                           'staff_only', 'superuser_only')
             }),
         )
         return fieldsets
@@ -60,7 +62,8 @@ class PageAdmin(MPTTModelAdmin, admin_class):
         readonly_fields = ()
         if request.user.has_perm('can_change_page_permissions') is False:
             readonly_fields = ('registration_required', 'superuser_only', 'staff_only',
-                               'groups_only', 'users_only', 'is_reserved_to_groups', 'is_reserved_to_users')
+                               'groups_only', 'users_only', 'is_reserved_to_groups',
+                               'is_reserved_to_users')
         return readonly_fields
 
     def save_model(self, request, obj, form, change):
