@@ -4,14 +4,18 @@ python:
   - 2.7
 
 env:
-  - DJANGO=1.11.8
+  global:
+    - DJANGO_SETTINGS_MODULE="django-alapage.travis_settings"
+    - PYTHONPATH="/home/travis/build/synw/django-alapage"
+  matrix:
+    - DJANGO=1.11.8
 
 install:
   - pip install -r requirements.txt
   - pip install coveralls
 
 script:
-  coverage run --source=alapage setup.py test --settings=django-alapage.travis_settings
+  coverage run --source=alapage setup.py test
 
 after_success:
   coveralls
