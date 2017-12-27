@@ -1,3 +1,6 @@
+import os
+
+
 SECRET_KEY = "xyz"
 DEBUG = False
 TEMPLATE_DEBUG = True
