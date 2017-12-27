@@ -22,6 +22,7 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     install_requires=[
+        'django<2',
         'Pillow',
         'pytz',
         'django-ckeditor',
