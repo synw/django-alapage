@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from django.test import TestCase, override_settings
 from django.contrib.admin.sites import AdminSite
 from django.contrib.auth.models import User
@@ -7,14 +6,12 @@ from alapage.models import Page
 from alapage.admin import PageAdmin, PageAdminForm
 from django.core.urlresolvers import reverse
 
-# models test
-
 
 @override_settings(USE_JSSOR=True)
 class PageTest(TestCase):
 
-    def create_page(self, url='/mypage/', layout='xs-12', published=True, template_name=''):
-        page = Page.objects.create(url=url, layout=layout, published=published,
+    def create_page(self, url='/mypage/', published=True, template_name=''):
+        page = Page.objects.create(url=url, published=published,
                                    template_name=template_name)
         return page
 
@@ -22,7 +19,6 @@ class PageTest(TestCase):
         page = self.create_page()
         self.assertTrue(isinstance(page, Page))
         self.assertEqual(page.url, '/mypage/')
-        self.assertEqual(page.layout, 'xs-12')
         self.assertTrue(page.published)
 
     #~ client tests
@@ -37,8 +33,6 @@ class PageTest(TestCase):
             reverse('page-view', kwargs={"url": "/mypage/"}))
         self.assertEqual(response.status_code, 200)
         self.assertTrue('page' in response.context)
-        self.assertTrue('layout' in response.context)
-        self.assertTrue('layout_path' in response.context)
         self.assertTrue(page.published)
         self.assertTemplateUsed(response, 'alapage/default.html')
 
