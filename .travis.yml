@@ -4,14 +4,14 @@ python:
   - 2.7
 
 env:
-  - DJANGO=1.8.7
+  - DJANGO=1.11.8
 
 install:
   - pip install -r requirements.txt
   - pip install coveralls
 
 script:
-  coverage run --source=alapage setup.py test
+  coverage run --source=alapage setup.py test --noinput --settings=django-alapage.travis_settings
 
 after_success:
   coveralls
