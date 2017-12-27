@@ -29,4 +29,6 @@ INSTALLED_APPS = (
     "alapage",
 )
 
+CKEDITOR_UPLOAD_PATH = "/media/upload/"
+
 django.setup()
