@@ -5,8 +5,8 @@ python:
 
 env:
   global:
-    - DJANGO_SETTINGS_MODULE="django-alapage.travis_settings"
     - PYTHONPATH="/home/travis/build/synw/django-alapage"
+    - DJANGO_SETTINGS_MODULE="travis_settings"
   matrix:
     - DJANGO=1.11.8
 
