@@ -31,15 +31,15 @@ class Page(MPTTModel, Seo):
             u"If this is checked, only logged-in users will be able to view the page."),
         default=False,
     )
-    parent = TreeForeignKey('self', null=True, blank=True,
-                            related_name=u'children', verbose_name=_(u'Parent page'))
+    parent = TreeForeignKey('self', null=True, blank=True, related_name=u'children',
+                            on_delete=models.CASCADE, verbose_name=_(u'Parent page'))
     edited = models.DateTimeField(
         editable=False, null=True, auto_now=True, verbose_name=_(u'Edited'))
     created = models.DateTimeField(
         editable=False, null=True, auto_now_add=True, verbose_name=_(u'Created'))
     editor = models.ForeignKey(USER_MODEL, editable=False, related_name='+',
-                               null=True, on_delete=models.SET_NULL, verbose_name=_(
-                                   u'Edited by'))
+                               null=True, on_delete=models.SET_NULL,
+                               verbose_name=_(u'Edited by'))
     published = models.BooleanField(default=True, verbose_name=_(u'Published'))
     staff_only = models.BooleanField(
         default=False, verbose_name=_(u'Staff only'))

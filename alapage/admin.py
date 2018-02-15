@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
-
-from django.core.urlresolvers import reverse
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
+except Exception:
+    raise
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
@@ -99,6 +103,7 @@ class PageAdmin(MPTTModelAdmin, admin_class):
     def response_change(self, request, obj):
         # for inline editing
         if '_inline_' in request.POST:
-            return HttpResponseRedirect(reverse('page-view', kwargs={"url": obj.url}))
+            return HttpResponseRedirect(
+                reverse('page-view', kwargs={"url": obj.url}))
         else:
             return super(PageAdmin, self).response_change(request, obj)
